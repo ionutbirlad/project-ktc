@@ -7,8 +7,9 @@ export default function Navbar() {
         <span className="text-xl font-bold tracking-tight">KTC</span>
         <nav className="space-x-6 text-sm font-medium">
           <Link href="/" className="hover:text-orange-600 transition-colors">Home</Link>
-          <a href="#about" className="hover:text-orange-600 transition-colors">About</a>
-          <a href="#contact" className="hover:text-orange-600 transition-colors">Contact</a>
+          <Link href="/about" className="hover:text-orange-600 transition-colors">About</Link>
+          <Link href="/projects" className="hover:text-orange-600 transition-colors">Projects</Link>
+          <Link href="/blog" className="hover:text-orange-600 transition-colors">Blog</Link>
         </nav>
       </div>
     </header>

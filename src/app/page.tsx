@@ -1,7 +1,7 @@
-export default function Home() {
+export default function HomePage() {
   return (
-    <main className="min-h-screen flex items-center justify-center">
-      <h1 className="text-3xl font-bold">Kill the Competition 🚀</h1>
-    </main>
+    <section className="flex items-center justify-center min-h-[60vh]">
+      <h1 className="text-4xl font-bold">Kill the Competition 🧠🔥</h1>
+    </section>
   );
 }

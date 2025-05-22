@@ -1,11 +1,12 @@
 import LayoutContainer from "@/components/layout/LayoutContainer";
+import Hero from "@/components/sections/Hero";
+import GitHubStats from "@/components/sections/GitHubStats";
 
 export default function HomePage() {
   return (
     <LayoutContainer>
-      <section className="flex items-center justify-center min-h-[60vh]">
-        <h1 className="text-4xl font-bold">Kill the Competition 🧠🔥</h1>
-      </section>
+      <Hero />
+      <GitHubStats />
     </LayoutContainer>
   );
 }

@@ -6,7 +6,7 @@ import Footer from "@/components/layout/Footer";
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className="flex min-h-screen flex-col font-sans">
+      <body className="bg-background text-foreground flex min-h-screen flex-col font-sans">
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />

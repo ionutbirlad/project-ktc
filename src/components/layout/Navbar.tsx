@@ -7,7 +7,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="w-full bg-background border-b">
+    <header className="w-full border-b">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <span className="text-xl font-bold tracking-tight">KTC</span>
         <nav className="space-x-6 text-sm font-medium">

@@ -15,14 +15,20 @@ export default function Navbar() {
         <nav className="space-x-6 text-sm font-medium">
           <Link
             href="/"
-            className={pathname === "/" ? "text-orange-600 font-semibold" : "hover:text-orange-600"}
+            className={
+              pathname === "/"
+                ? "text-primary-foreground font-semibold"
+                : "hover:text-primary-foreground"
+            }
           >
             Home
           </Link>
           <Link
             href="/about"
             className={
-              pathname === "/about" ? "text-orange-600 font-semibold" : "hover:text-orange-600"
+              pathname === "/about"
+                ? "text-primary-foreground font-semibold"
+                : "hover:text-primary-foreground"
             }
           >
             About
@@ -30,7 +36,9 @@ export default function Navbar() {
           <Link
             href="/projects"
             className={
-              pathname === "/projects" ? "text-orange-600 font-semibold" : "hover:text-orange-600"
+              pathname === "/projects"
+                ? "text-primary-foreground font-semibold"
+                : "hover:text-primary-foreground"
             }
           >
             Projects
@@ -38,7 +46,9 @@ export default function Navbar() {
           <Link
             href="/blog"
             className={
-              pathname === "/blog" ? "text-orange-600 font-semibold" : "hover:text-orange-600"
+              pathname === "/blog"
+                ? "text-primary-foreground font-semibold"
+                : "hover:text-primary-foreground"
             }
           >
             Blog

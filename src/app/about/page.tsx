@@ -1,12 +1,12 @@
 import LayoutContainer from "@/components/layout/LayoutContainer";
+import AboutIntro from "@/components/sections/AboutIntro";
+import ExperienceTimeline from "@/components/sections/ExperienceTimeline";
 
 export default function AboutPage() {
   return (
     <LayoutContainer>
-      <section className="container mx-auto px-4 py-10">
-        <h1 className="text-3xl font-bold mb-4">About</h1>
-        <p>This project is built to challenge and outperform. Welcome to Kill the Competition.</p>
-      </section>
+      <AboutIntro />
+      <ExperienceTimeline />
     </LayoutContainer>
   );
 }

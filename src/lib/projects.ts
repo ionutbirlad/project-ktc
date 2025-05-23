@@ -1,0 +1,58 @@
+export const projects = [
+  {
+    title: "Bustí",
+    description: "Sistema di borse riutilizzabili e brand di e-commerce.",
+    year: 2024,
+    tech: ["Next.js", "Tailwind", "Shopify", "Stripe"],
+    url: "https://laspesadelpinguino.it",
+  },
+  {
+    title: "Portfolio Dev",
+    description: "Il sito che stai guardando: interamente costruito da zero.",
+    year: 2025,
+    tech: ["Next.js", "Framer Motion", "shadcn/ui"],
+    url: "/",
+  },
+  {
+    title: "Progetto Agenzia Moda",
+    description: "Frontend Shopify custom per un brand italiano di moda.",
+    year: 2023,
+    tech: ["Shopify", "Liquid", "JavaScript"],
+    url: "#",
+  },
+  {
+    title: "Dashboard Analytics",
+    description: "Dashboard interattiva per analisi vendite e KPI.",
+    year: 2024,
+    tech: ["React", "Tailwind", "Chart.js", "Supabase"],
+    url: "#",
+  },
+  {
+    title: "Notion Exporter",
+    description: "Tool open-source per esportare contenuti Notion in Markdown.",
+    year: 2022,
+    tech: ["Node.js", "TypeScript", "CLI"],
+    url: "https://github.com/tuonome/notion-exporter",
+  },
+  {
+    title: "SaaS Landing Page",
+    description: "Landing page reattiva per validazione di un servizio SaaS.",
+    year: 2023,
+    tech: ["Next.js", "Tailwind", "Vercel"],
+    url: "#",
+  },
+  {
+    title: "App mobile di tracking spesa",
+    description: "Prototipo PWA per registrare acquisti quotidiani in mobilità.",
+    year: 2023,
+    tech: ["React", "TypeScript", "Vite", "IndexedDB"],
+    url: "#",
+  },
+  {
+    title: "E-commerce Handmade",
+    description: "Sito per vendere prodotti artigianali, con focus sulla UX.",
+    year: 2021,
+    tech: ["Vue.js", "Nuxt", "Stripe"],
+    url: "#",
+  },
+];

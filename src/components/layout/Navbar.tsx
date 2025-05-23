@@ -53,6 +53,16 @@ export default function Navbar() {
           >
             Blog
           </Link>
+          <Link
+            href="/contact"
+            className={
+              pathname === "/blog"
+                ? "text-primary-foreground font-semibold"
+                : "hover:text-primary-foreground"
+            }
+          >
+            Contact
+          </Link>
         </nav>
         <ThemeToggle />
       </div>

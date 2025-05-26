@@ -11,11 +11,11 @@ export default function HomePage() {
   return (
     <LayoutContainer>
       <HeroSection />
-      <TrustedBySection />
+      <AboutCallout />
       <TechStatsSection />
       <ProjectsPreview />
       <BlogTeaser />
-      <AboutCallout />
+      <TrustedBySection />
       <ContactCTA />
     </LayoutContainer>
   );

@@ -1,3 +1,4 @@
+import SectionContainer from "@/components/layout/SectionContainer";
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function ProjectsPreview() {
@@ -8,7 +9,7 @@ export default function ProjectsPreview() {
   ];
 
   return (
-    <section>
+    <SectionContainer>
       <h2 className="text-2xl font-semibold mb-6">Progetti in evidenza</h2>
       <div className="grid gap-6 md:grid-cols-3">
         {projects.map((p, i) => (
@@ -20,6 +21,6 @@ export default function ProjectsPreview() {
           </Card>
         ))}
       </div>
-    </section>
+    </SectionContainer>
   );
 }

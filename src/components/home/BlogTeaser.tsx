@@ -1,3 +1,4 @@
+import SectionContainer from "@/components/layout/SectionContainer";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -8,7 +9,7 @@ export default function BlogTeaser() {
   ];
 
   return (
-    <section>
+    <SectionContainer>
       <h2 className="text-2xl font-semibold mb-6">Dal blog</h2>
       <div className="grid gap-6 md:grid-cols-2">
         {posts.map((post, i) => (
@@ -22,6 +23,6 @@ export default function BlogTeaser() {
           </Card>
         ))}
       </div>
-    </section>
+    </SectionContainer>
   );
 }

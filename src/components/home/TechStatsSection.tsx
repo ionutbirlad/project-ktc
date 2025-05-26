@@ -1,3 +1,4 @@
+import SectionContainer from "@/components/layout/SectionContainer";
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function TechStatsSection() {
@@ -8,7 +9,7 @@ export default function TechStatsSection() {
   ];
 
   return (
-    <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <SectionContainer extraStyle="grid grid-cols-1 md:grid-cols-3 gap-6">
       {stats.map((stat, i) => (
         <Card key={i}>
           <CardContent className="text-center py-8">
@@ -17,6 +18,6 @@ export default function TechStatsSection() {
           </CardContent>
         </Card>
       ))}
-    </section>
+    </SectionContainer>
   );
 }

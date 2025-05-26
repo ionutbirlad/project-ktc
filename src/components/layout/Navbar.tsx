@@ -17,43 +17,43 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 w-full max-w-[95vw] sm:max-w-[600px] overflow-hidden rounded-full bg-background shadow-lg border px-4 py-3 backdrop-blur-md group">
-      <div className="flex items-center gap-4 sm:gap-6 justify-between">
+    <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 group">
+      <header
+        className="transition-transform duration-300 ease-out group-hover:scale-[1.05]
+          w-full max-w-[95vw] sm:max-w-[600px]
+          rounded-full bg-background shadow-lg border px-4 py-3 backdrop-blur-md
+          flex items-center justify-between gap-4 sm:gap-6"
+      >
         {/* Logo */}
         <span className="text-sm sm:text-base font-bold tracking-tight text-muted-foreground hover:text-foreground transition whitespace-nowrap">
           KTC
         </span>
 
-        {/* Separator */}
         <Separator orientation="vertical" className="h-6" />
 
         {/* Links */}
-        <div className="origin-bottom scale-100 sm:scale-95 xs:scale-90 transition-transform duration-300 overflow-hidden">
-          <nav className="flex flex-nowrap items-center space-x-3 sm:space-x-6 text-sm font-medium">
-            {links.map((link) => (
-              <Link key={link.href} href={link.href}>
-                <span
-                  className={`inline-block text-sm sm:text-xs transition-transform duration-300 ease-out hover:scale-125 whitespace-nowrap ${
-                    pathname === link.href
-                      ? "text-primary font-semibold"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {link.label}
-                </span>
-              </Link>
-            ))}
-          </nav>
-        </div>
+        <nav className="flex flex-nowrap items-center space-x-3 sm:space-x-6 text-sm font-medium">
+          {links.map((link) => (
+            <Link key={link.href} href={link.href}>
+              <span
+                className={`inline-block text-sm sm:text-xs transition-transform duration-300 ease-out hover:scale-125 whitespace-nowrap ${
+                  pathname === link.href
+                    ? "text-primary font-semibold"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {link.label}
+              </span>
+            </Link>
+          ))}
+        </nav>
 
-        {/* Separator */}
         <Separator orientation="vertical" className="h-6" />
 
-        {/* Theme toggle */}
         <div className="shrink-0">
           <ThemeToggle />
         </div>
-      </div>
-    </header>
+      </header>
+    </div>
   );
 }

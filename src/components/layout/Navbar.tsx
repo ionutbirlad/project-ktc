@@ -32,7 +32,7 @@ export default function Navbar() {
           KTC
         </span>
 
-        <Separator orientation="vertical" className="h-6 min-w-0" />
+        <Separator orientation="vertical" className="!h-6" />
 
         {/* Links */}
         <nav className="flex flex-nowrap items-center gap-2 sm:gap-4 font-medium min-w-0">
@@ -51,7 +51,7 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <Separator orientation="vertical" className="h-6 min-w-0" />
+        <Separator orientation="vertical" className="!h-6" />
 
         <div className="shrink-0 min-w-0">
           <ThemeToggle />

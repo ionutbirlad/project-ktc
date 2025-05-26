@@ -23,20 +23,23 @@ export default function Navbar() {
           w-full max-w-[95vw] sm:max-w-[600px]
           rounded-full bg-background shadow-lg border px-4 py-3 backdrop-blur-md
           flex items-center justify-between gap-4 sm:gap-6"
+        style={{
+          fontSize: "clamp(0.65rem, 2vw, 0.95rem)",
+        }}
       >
         {/* Logo */}
-        <span className="text-sm sm:text-base font-bold tracking-tight text-muted-foreground hover:text-foreground transition whitespace-nowrap">
+        <span className="sm:text-base font-bold tracking-tight text-muted-foreground hover:text-foreground transition whitespace-nowrap">
           KTC
         </span>
 
         <Separator orientation="vertical" className="h-6" />
 
         {/* Links */}
-        <nav className="flex flex-nowrap items-center space-x-3 sm:space-x-6 text-sm font-medium">
+        <nav className="flex flex-nowrap items-center space-x-3 sm:space-x-6 font-medium">
           {links.map((link) => (
             <Link key={link.href} href={link.href}>
               <span
-                className={`inline-block text-sm sm:text-xs transition-transform duration-300 ease-out hover:scale-125 whitespace-nowrap ${
+                className={`inline-block transition-transform duration-300 ease-out hover:scale-125 whitespace-nowrap ${
                   pathname === link.href
                     ? "text-primary font-semibold"
                     : "text-muted-foreground hover:text-foreground"

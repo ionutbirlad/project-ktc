@@ -28,18 +28,18 @@ export default function Navbar() {
         }}
       >
         {/* Logo */}
-        <span className="sm:text-base font-bold tracking-tight text-muted-foreground hover:text-foreground transition whitespace-nowrap">
+        <span className="sm:text-base font-bold tracking-tight text-muted-foreground hover:text-foreground transition whitespace-nowrap min-w-0">
           KTC
         </span>
 
-        <Separator orientation="vertical" className="h-6" />
+        <Separator orientation="vertical" className="h-6 min-w-0" />
 
         {/* Links */}
-        <nav className="flex flex-nowrap items-center space-x-3 sm:space-x-6 font-medium">
+        <nav className="flex flex-nowrap items-center gap-2 sm:gap-4 font-medium min-w-0">
           {links.map((link) => (
             <Link key={link.href} href={link.href}>
               <span
-                className={`inline-block transition-transform duration-300 ease-out hover:scale-125 whitespace-nowrap ${
+                className={`inline-block transition-transform duration-300 ease-out hover:scale-125 whitespace-nowrap min-w-0 ${
                   pathname === link.href
                     ? "text-primary font-semibold"
                     : "text-muted-foreground hover:text-foreground"
@@ -51,9 +51,9 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <Separator orientation="vertical" className="h-6" />
+        <Separator orientation="vertical" className="h-6 min-w-0" />
 
-        <div className="shrink-0">
+        <div className="shrink-0 min-w-0">
           <ThemeToggle />
         </div>
       </header>

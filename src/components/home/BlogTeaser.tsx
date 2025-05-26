@@ -8,7 +8,7 @@ export default function BlogTeaser() {
   ];
 
   return (
-    <section className="py-16">
+    <section>
       <h2 className="text-2xl font-semibold mb-6">Dal blog</h2>
       <div className="grid gap-6 md:grid-cols-2">
         {posts.map((post, i) => (

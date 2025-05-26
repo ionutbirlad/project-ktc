@@ -11,7 +11,7 @@ type Props = {
 export default function SectionContainer({ children, fullWidth = false, extraStyle = "" }: Props) {
   return (
     <section
-      className={`${fullWidth ? "my-20" : "mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 my-20"} ${extraStyle}`}
+      className={`${fullWidth ? "mb-20" : "mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 mb-20"} ${extraStyle}`}
     >
       {children}
     </section>

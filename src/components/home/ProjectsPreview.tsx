@@ -8,7 +8,7 @@ export default function ProjectsPreview() {
   ];
 
   return (
-    <section className="py-16">
+    <section>
       <h2 className="text-2xl font-semibold mb-6">Progetti in evidenza</h2>
       <div className="grid gap-6 md:grid-cols-3">
         {projects.map((p, i) => (

@@ -8,7 +8,7 @@ export default function TechStatsSection() {
   ];
 
   return (
-    <section className="py-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+    <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {stats.map((stat, i) => (
         <Card key={i}>
           <CardContent className="text-center py-8">

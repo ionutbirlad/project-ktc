@@ -1,6 +1,6 @@
 import LayoutContainer from "@/components/layout/LayoutContainer";
-import AboutIntro from "@/components/sections/AboutIntro";
-import ExperienceTimeline from "@/components/sections/ExperienceTimeline";
+import AboutIntro from "@/components/about/AboutIntro";
+import ExperienceTimeline from "@/components/about/ExperienceTimeline";
 
 export default function AboutPage() {
   return (

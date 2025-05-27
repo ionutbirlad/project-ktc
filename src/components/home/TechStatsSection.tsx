@@ -304,7 +304,7 @@ export default function TechStatsSection() {
 
       <div className="mt-16 sm:mt-24">
         <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
-          The perfect starting point for any project
+          Panoramica delle Competenze Tecniche
         </h3>
         <TreemapChart chartData={chartData} />
       </div>

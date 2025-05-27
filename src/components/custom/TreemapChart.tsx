@@ -1,7 +1,6 @@
 "use client";
 
 import { ResponsiveTreeMap } from "@nivo/treemap";
-import { BasicTooltip } from "@nivo/tooltip";
 
 type ChartData = {
   chartData: object;

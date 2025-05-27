@@ -21,7 +21,7 @@ function ExperienceItem({
   return (
     <div className="relative pl-8 not-last:pb-12">
       {/* Timeline line */}
-      <div className="absolute left-0 top-2.5 h-full w-[2px] bg-muted group-first:h-[calc(100%-24px)] group-first:top-6">
+      <div className="absolute left-0 top-2.5 h-full w-[2px] bg-primary-foreground group-first:h-[calc(100%-24px)] group-first:top-6">
         <div className="absolute h-3 w-3 -left-[5px] top-0 rounded-full border-2 border-primary bg-background" />
       </div>
 

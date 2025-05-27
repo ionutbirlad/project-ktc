@@ -132,7 +132,7 @@ const Projects = () => {
       </div>
 
       <div className="flex justify-center mt-8">
-        <Button>
+        <Button className="cursor-pointer">
           Scopri di piu <ArrowRight />
         </Button>
       </div>

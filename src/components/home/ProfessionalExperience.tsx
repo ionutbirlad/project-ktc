@@ -11,13 +11,13 @@ type ExperienceItemProps = {
   technologies: string[];
 };
 
-const ExperienceItem = ({
+function ExperienceItem({
   title,
   company,
   period,
   description,
   technologies,
-}: ExperienceItemProps) => {
+}: ExperienceItemProps) {
   return (
     <div className="relative pl-8 not-last:pb-12">
       {/* Timeline line */}
@@ -51,9 +51,9 @@ const ExperienceItem = ({
       </div>
     </div>
   );
-};
+}
 
-const Experience = () => {
+export default function Experience() {
   const experiences = [
     {
       title: "Senior Full Stack Developer",
@@ -102,6 +102,4 @@ const Experience = () => {
       </div>
     </SectionContainer>
   );
-};
-
-export default Experience;
+}

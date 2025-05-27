@@ -2,7 +2,7 @@ import SectionContainer from "@/components/layout/SectionContainer";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ArrowRight } from "lucide-react";
 import Image from "next/image";
 
 type ProjectCardProps = {
@@ -129,6 +129,12 @@ const Projects = () => {
             <ProjectCard key={index} {...project} />
           ))}
         </div>
+      </div>
+
+      <div className="flex justify-center mt-8">
+        <Button>
+          Scopri di piu <ArrowRight />
+        </Button>
       </div>
     </SectionContainer>
   );

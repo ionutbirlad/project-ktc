@@ -18,7 +18,7 @@ export default function SectionContainer({
   return (
     <section
       id={id}
-      className={`${fullWidth ? "mb-40" : "mx-auto w-full max-w-7xl px-6 sm:px-6 lg:px-8 mb-40"} ${extraStyle}`}
+      className={`${fullWidth ? "mb-28 py-10" : "mx-auto w-full max-w-7xl px-6 sm:px-6 lg:px-8 mb-28 py-10"} ${extraStyle}`}
     >
       {children}
     </section>

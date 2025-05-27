@@ -82,7 +82,7 @@ export default function Experience() {
   ];
 
   return (
-    <SectionContainer id="experience" extraStyle="relative">
+    <SectionContainer id="experience" fullWidth={true} extraStyle="relative bg-muted">
       <div className="max-w-screen-lg mx-auto">
         <div className="text-center mb-12">
           <Badge variant="secondary" className="mb-4">

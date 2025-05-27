@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 type ProjectCardProps = {
   title: string;
@@ -132,9 +133,11 @@ const Projects = () => {
       </div>
 
       <div className="flex justify-center mt-8">
-        <Button className="cursor-pointer">
-          Scopri di piu <ArrowRight />
-        </Button>
+        <Link href="/projects">
+          <Button className="cursor-pointer">
+            Scopri di piu <ArrowRight />
+          </Button>
+        </Link>
       </div>
     </SectionContainer>
   );

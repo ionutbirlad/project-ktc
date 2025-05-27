@@ -1,5 +1,3 @@
-"use client";
-
 import SectionContainer from "@/components/layout/SectionContainer";
 
 import { Badge } from "@/components/ui/badge";

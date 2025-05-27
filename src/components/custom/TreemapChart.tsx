@@ -1,6 +1,7 @@
 "use client";
 
 import { ResponsiveTreeMap } from "@nivo/treemap";
+import { BasicTooltip } from "@nivo/tooltip";
 
 type ChartData = {
   chartData: object;
@@ -20,6 +21,9 @@ export default function TreemapChart({ chartData }: ChartData) {
         parentLabelTextColor="#999"
         colors={{ scheme: "nivo" }}
         borderColor={{ from: "color", modifiers: [["darker", 0.3]] }}
+        tile="squarify"
+        label="id"
+        motionConfig="wobbly"
       />
     </div>
   );

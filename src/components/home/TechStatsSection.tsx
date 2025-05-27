@@ -15,12 +15,263 @@ export default function TechStatsSection() {
   ];
 
   const chartData = {
-    name: "root",
+    name: "Skills",
     children: [
-      { name: "React", value: 60 },
-      { name: "Vue", value: 30 },
-      { name: "Next.js", value: 45 },
-      { name: "Svelte", value: 25 },
+      {
+        name: "Tech Stack",
+        children: [
+          {
+            name: "Frontend",
+            children: [
+              {
+                name: "HTML",
+                value: 8,
+              },
+              {
+                name: "CSS",
+                value: 8,
+              },
+              {
+                name: "Tailwind CSS",
+                value: 10,
+              },
+              {
+                name: "Sass / SCSS",
+                value: 6,
+              },
+              {
+                name: "JavaScript",
+                value: 12,
+              },
+              {
+                name: "TypeScript",
+                value: 10,
+              },
+              {
+                name: "Vue.js",
+                value: 9,
+              },
+              {
+                name: "React.js",
+                value: 13,
+              },
+              {
+                name: "Web Components",
+                value: 5,
+              },
+              {
+                name: "React Native",
+                value: 4,
+              },
+            ],
+          },
+          {
+            name: "Backend",
+            children: [
+              {
+                name: "Node.js",
+                value: 10,
+              },
+              {
+                name: "Express.js",
+                value: 8,
+              },
+              {
+                name: "RESTful APIs",
+                value: 9,
+              },
+              {
+                name: "GraphQL",
+                value: 6,
+              },
+              {
+                name: "OAuth2",
+                value: 5,
+              },
+              {
+                name: "Supabase",
+                value: 7,
+              },
+            ],
+          },
+          {
+            name: "Templating & eCommerce",
+            children: [
+              {
+                name: "Liquid",
+                value: 6,
+              },
+              {
+                name: "Shopify",
+                value: 11,
+              },
+            ],
+          },
+          {
+            name: "Database",
+            children: [
+              {
+                name: "PostgreSQL",
+                value: 6,
+              },
+              {
+                name: "MongoDB",
+                value: 7,
+              },
+              {
+                name: "MySQL",
+                value: 5,
+              },
+            ],
+          },
+          {
+            name: "DevOps",
+            children: [
+              {
+                name: "Git",
+                value: 12,
+              },
+              {
+                name: "GitHub",
+                value: 12,
+              },
+              {
+                name: "GitHub Actions",
+                value: 9,
+              },
+              {
+                name: "Docker",
+                value: 8,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: "Tools & Methods",
+        children: [
+          {
+            name: "Build Tools",
+            children: [
+              {
+                name: "Vite",
+                value: 6,
+              },
+            ],
+          },
+          {
+            name: "Linters & Formatters",
+            children: [
+              {
+                name: "ESLint",
+                value: 7,
+              },
+              {
+                name: "Prettier",
+                value: 7,
+              },
+            ],
+          },
+          {
+            name: "Design & UX",
+            children: [
+              {
+                name: "Figma",
+                value: 6,
+              },
+            ],
+          },
+          {
+            name: "Debug & API",
+            children: [
+              {
+                name: "Postman",
+                value: 6,
+              },
+            ],
+          },
+          {
+            name: "Project Management",
+            children: [
+              {
+                name: "Scrum",
+                value: 5,
+              },
+              {
+                name: "Kanban",
+                value: 5,
+              },
+            ],
+          },
+          {
+            name: "Paradigms",
+            children: [
+              {
+                name: "OOP",
+                value: 7,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: "Testing",
+        children: [
+          {
+            name: "Jest",
+            value: 7,
+          },
+          {
+            name: "Cypress",
+            value: 6,
+          },
+          {
+            name: "Playwright",
+            value: 5,
+          },
+          {
+            name: "Lighthouse",
+            value: 4,
+          },
+        ],
+      },
+      {
+        name: "Soft Skills",
+        children: [
+          {
+            name: "Problem Solving",
+            value: 10,
+          },
+          {
+            name: "Teamwork",
+            value: 9,
+          },
+          {
+            name: "Communication",
+            value: 9,
+          },
+          {
+            name: "Adaptability",
+            value: 8,
+          },
+          {
+            name: "Critical Thinking",
+            value: 8,
+          },
+          {
+            name: "Creativity & Innovation",
+            value: 7,
+          },
+          {
+            name: "Attention to Detail",
+            value: 8,
+          },
+          {
+            name: "Resilience",
+            value: 7,
+          },
+        ],
+      },
     ],
   };
 
@@ -50,7 +301,13 @@ export default function TechStatsSection() {
           </div>
         </div>
       </div>
-      <TreemapChart chartData={chartData} />
+
+      <div className="mt-16 sm:mt-24">
+        <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
+          The perfect starting point for any project
+        </h3>
+        <TreemapChart chartData={chartData} />
+      </div>
     </SectionContainer>
   );
 }

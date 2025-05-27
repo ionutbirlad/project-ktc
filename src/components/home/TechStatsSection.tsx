@@ -1,5 +1,6 @@
 import SectionContainer from "@/components/layout/SectionContainer";
 // import { Card, CardContent } from "@/components/ui/card";
+import TreemapChart from "@/components/custom/TreemapChart";
 
 export default function TechStatsSection() {
   const stats = [
@@ -12,6 +13,16 @@ export default function TechStatsSection() {
     { label: "🔁 Pull requests merged", value: "67" },
     { label: "🐛 Issues closed", value: "33" },
   ];
+
+  const chartData = {
+    name: "root",
+    children: [
+      { name: "React", value: 60 },
+      { name: "Vue", value: 30 },
+      { name: "Next.js", value: 45 },
+      { name: "Svelte", value: 25 },
+    ],
+  };
 
   return (
     <SectionContainer>
@@ -39,6 +50,7 @@ export default function TechStatsSection() {
           </div>
         </div>
       </div>
+      <TreemapChart chartData={chartData} />
     </SectionContainer>
   );
 }

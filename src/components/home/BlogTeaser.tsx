@@ -85,7 +85,7 @@ const posts = [
   { title: "Dietro le quinte: admin panel", slug: "tailwind-setup-tips" },
 ];
 
-const BlogTeaser = () => {
+export default function BlogTeaser() {
   return (
     <SectionContainer>
       <div className="flex flex-col lg:flex-row items-start gap-12">
@@ -156,6 +156,4 @@ const BlogTeaser = () => {
       </div>
     </SectionContainer>
   );
-};
-
-export default BlogTeaser;
+}

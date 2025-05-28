@@ -1,78 +1,59 @@
-// import SectionContainer from "@/components/layout/SectionContainer";
-
-// export default function TrustedBySection() {
-//   return (
-//     <SectionContainer extraStyle="text-center">
-//       <h2 className="text-xl font-semibold mb-4">Usato o ispirato da</h2>
-//       <div className="flex flex-wrap justify-center gap-6 text-muted-foreground">
-//         <span>GitHub</span>
-//         <span>Vercel</span>
-//         <span>Tailwind</span>
-//         <span>Open Source Devs</span>
-//       </div>
-//     </SectionContainer>
-//   );
-// }
-
 import SectionContainer from "@/components/layout/SectionContainer";
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Logo01, Logo02, Logo03, Logo04, Logo05, Logo06 } from "@/components/custom/logos";
+
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import Marquee from "react-fast-marquee";
 
 const testimonials = [
   {
     id: 1,
-    name: "John Doe",
-    designation: "Software Engineer",
-    company: "TechCorp",
+    company: "EdilGo",
+    site: "Bergamo",
     testimonial:
       "This product has completely transformed the way we work. The efficiency and ease of use are unmatched!",
-    avatar: "https://randomuser.me/api/portraits/men/1.jpg",
+    avatar: "/images/edilgo_logo.png",
   },
   {
     id: 2,
-    name: "Sophia Lee",
-    designation: "Data Analyst",
-    company: "InsightTech",
+    company: "Piume Studio",
+    site: "Milano",
     testimonial:
       "This tool has saved me hours of work! The analytics and reporting features are incredibly powerful.",
-    avatar: "https://randomuser.me/api/portraits/women/6.jpg",
+    avatar: "/images/piumestudio_logo.png",
   },
   {
     id: 3,
-    name: "Michael Johnson",
-    designation: "UX Designer",
-    company: "DesignPro",
+    company: "Underscore District",
+    site: "Milano",
     testimonial:
       "An amazing tool that simplifies complex tasks. Highly recommended for professionals in the industry. " +
       "The intuitive interface makes it easy to onboard new team members, and the automation features save us countless hours every week. ",
-    avatar: "https://randomuser.me/api/portraits/men/3.jpg",
+    avatar: "/images/ud_logo.png",
   },
   {
     id: 4,
-    name: "Emily Davis",
-    designation: "Marketing Specialist",
-    company: "BrandBoost",
+    company: "GR10K",
+    site: "Milano",
     testimonial:
       "I've seen a significant improvement in our team's productivity since we started using this service.",
-    avatar: "https://randomuser.me/api/portraits/women/4.jpg",
+    avatar: "/images/gr10k_logo.png",
   },
   {
     id: 5,
-    name: "Daniel Martinez",
-    designation: "Full-Stack Developer",
-    company: "CodeCrafters",
+    company: "Wok Store",
+    site: "Milano",
     testimonial:
       "The best investment we've made! The support team is also super responsive and helpful.",
-    avatar: "https://randomuser.me/api/portraits/men/5.jpg",
+    avatar: "/images/wokstore_logo.png",
   },
   {
     id: 6,
-    name: "Jane Smith",
-    designation: "Product Manager",
-    company: "InnovateX",
+    company: "Magliano Brand",
+    site: "Bologna",
     testimonial:
       "The user experience is top-notch! The interface is clean, intuitive, and easy to navigate.",
-    avatar: "https://randomuser.me/api/portraits/women/2.jpg",
+    avatar: "/images/magliano_logo.jpg",
   },
 ];
 
@@ -93,13 +74,14 @@ export default function TrustedBy() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
                     <Avatar>
+                      <AvatarImage src={testimonial.avatar} />
                       <AvatarFallback className="text-xl font-medium bg-primary text-primary-foreground">
-                        {testimonial.name.charAt(0)}
+                        {testimonial.company.charAt(0)}
                       </AvatarFallback>
                     </Avatar>
                     <div>
-                      <p className="text-lg font-semibold">{testimonial.name}</p>
-                      <p className="text-sm text-gray-500">{testimonial.designation}</p>
+                      <p className="text-lg font-semibold">{testimonial.company}</p>
+                      <p className="text-sm text-gray-500">{testimonial.site}</p>
                     </div>
                   </div>
                   <div className="absolute top-4 right-4">
@@ -123,6 +105,29 @@ export default function TrustedBy() {
             ))}
           </div>
         </div>
+      </div>
+
+      <div className="mt-6">
+        <Marquee gradient={false} speed={50}>
+          <div className="mx-20">
+            <Logo01 />
+          </div>
+          <div className="mx-20 bg-white p-5">
+            <Logo02 />
+          </div>
+          <div className="mx-20 bg-white p-3">
+            <Logo03 />
+          </div>
+          <div className="mx-20">
+            <Logo04 />
+          </div>
+          <div className="mx-20">
+            <Logo05 />
+          </div>
+          <div className="mx-20 bg-white p-2">
+            <Logo06 />
+          </div>
+        </Marquee>
       </div>
     </SectionContainer>
   );

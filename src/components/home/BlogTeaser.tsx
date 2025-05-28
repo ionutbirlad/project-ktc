@@ -27,6 +27,8 @@
 //   );
 // }
 
+import SectionContainer from "@/components/layout/SectionContainer";
+
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
@@ -109,66 +111,68 @@ const posts = [
 
 const BlogTeaser = () => {
   return (
-    <div className="max-w-screen-xl mx-auto py-10 lg:py-16 px-6 xl:px-0 flex flex-col lg:flex-row items-start gap-12">
-      <div>
-        <h2 className="text-3xl font-bold tracking-tight">Posts</h2>
+    <SectionContainer>
+      <div className="flex flex-col lg:flex-row items-start gap-12">
+        <div>
+          <h2 className="text-3xl font-bold tracking-tight">Posts</h2>
 
-        <div className="mt-4 space-y-12">
-          {posts.map((post, i) => (
-            <Card
-              key={i}
-              className="flex flex-col sm:flex-row sm:items-center shadow-none overflow-hidden rounded-md border-none"
-            >
-              <CardHeader>
-                <div className="aspect-video sm:w-56 sm:aspect-square bg-muted rounded-lg" />
-              </CardHeader>
-              <CardContent className="flex flex-col">
-                <div className="flex items-center gap-6">
-                  <Badge className="bg-primary/5 text-primary hover:bg-primary/5 shadow-none">
-                    Technology
-                  </Badge>
-                </div>
+          <div className="mt-4 space-y-12">
+            {posts.map((post, i) => (
+              <Card
+                key={i}
+                className="flex flex-col sm:flex-row sm:items-center shadow-none overflow-hidden rounded-md border-none"
+              >
+                <CardHeader>
+                  <div className="aspect-video sm:w-56 sm:aspect-square bg-muted rounded-lg" />
+                </CardHeader>
+                <CardContent className="flex flex-col">
+                  <div className="flex items-center gap-6">
+                    <Badge className="bg-primary/5 text-primary hover:bg-primary/5 shadow-none">
+                      Technology
+                    </Badge>
+                  </div>
 
-                <h3 className="mt-4 text-2xl font-semibold tracking-tight">{post.title}</h3>
-                <p className="mt-2 text-muted-foreground line-clamp-3 text-ellipsis">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa consequatur minus
-                  dicta accusantium quos, ratione suscipit id adipisci voluptatibus. Nulla sint
-                  repudiandae fugiat tenetur dolores.
-                </p>
-                <div className="mt-4 flex items-center gap-6 text-muted-foreground text-sm font-medium">
-                  <div className="flex items-center gap-2">
-                    <ClockIcon className="h-4 w-4" /> 5 min read
+                  <h3 className="mt-4 text-2xl font-semibold tracking-tight">{post.title}</h3>
+                  <p className="mt-2 text-muted-foreground line-clamp-3 text-ellipsis">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa consequatur minus
+                    dicta accusantium quos, ratione suscipit id adipisci voluptatibus. Nulla sint
+                    repudiandae fugiat tenetur dolores.
+                  </p>
+                  <div className="mt-4 flex items-center gap-6 text-muted-foreground text-sm font-medium">
+                    <div className="flex items-center gap-2">
+                      <ClockIcon className="h-4 w-4" /> 5 min read
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Calendar className="h-4 w-4" /> Nov 20, 2024
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4" /> Nov 20, 2024
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
-      </div>
-      <aside className="sticky top-8 shrink-0 lg:max-w-sm w-full">
-        <h3 className="text-3xl font-bold tracking-tight">Categories</h3>
-        <div className="mt-4 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-1 gap-2">
-          {categories.map((category) => (
-            <div
-              key={category.name}
-              className={cn(
-                "flex items-center justify-between gap-2 bg-muted p-3 rounded-md bg-opacity-15 dark:bg-opacity-25",
-                category.background
-              )}
-            >
-              <div className="flex items-center gap-3">
-                <category.icon className={cn("h-5 w-5", category.color)} />
-                <span className="font-medium">{category.name}</span>
+        <aside className="sticky top-8 shrink-0 lg:max-w-sm w-full">
+          <h3 className="text-3xl font-bold tracking-tight">Categories</h3>
+          <div className="mt-4 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-1 gap-2">
+            {categories.map((category) => (
+              <div
+                key={category.name}
+                className={cn(
+                  "flex items-center justify-between gap-2 bg-muted p-3 rounded-md bg-opacity-15 dark:bg-opacity-25",
+                  category.background
+                )}
+              >
+                <div className="flex items-center gap-3">
+                  <category.icon className={cn("h-5 w-5", category.color)} />
+                  <span className="font-medium">{category.name}</span>
+                </div>
+                <Badge className="px-1.5 rounded-full">{category.totalPosts}</Badge>
               </div>
-              <Badge className="px-1.5 rounded-full">{category.totalPosts}</Badge>
-            </div>
-          ))}
-        </div>
-      </aside>
-    </div>
+            ))}
+          </div>
+        </aside>
+      </div>
+    </SectionContainer>
   );
 };
 

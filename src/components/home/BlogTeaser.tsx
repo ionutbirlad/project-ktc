@@ -4,6 +4,8 @@ import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
 import { cn } from "@/lib/utils";
 import {
   BadgeDollarSign,
@@ -16,6 +18,7 @@ import {
   FlaskRound,
   HeartPulse,
   Scale,
+  ArrowRight,
 } from "lucide-react";
 
 const categories = [
@@ -88,7 +91,6 @@ const BlogTeaser = () => {
       <div className="flex flex-col lg:flex-row items-start gap-12">
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Posts</h2>
-
           <div className="mt-4 space-y-12">
             {posts.map((post, i) => (
               <Link key={i} href={`/blog/${post.slug}`} className="block">
@@ -121,6 +123,14 @@ const BlogTeaser = () => {
                 </Card>
               </Link>
             ))}
+          </div>
+
+          <div className="flex justify-center mt-8">
+            <Button className="cursor-pointer">
+              <Link href="/blog" className="flex items-center gap-1">
+                Guarda tutti i post <ArrowRight />
+              </Link>
+            </Button>
           </div>
         </div>
         <aside className="sticky top-8 shrink-0 lg:max-w-sm w-full">

@@ -24,9 +24,9 @@ const ProjectCard = ({
   githubUrl,
 }: ProjectCardProps) => {
   return (
-    <div className="group relative flex flex-col overflow-hidden rounded-xl border border-accent transition-all hover:border-primary/50">
+    <div className="bg-gray-900 group relative flex flex-col overflow-hidden rounded-xl border border-primary-foreground transition-all hover:border-primary/50">
       {/* Project Image */}
-      <div className="relative h-64 overflow-hidden bg-accent">
+      <div className="relative h-64 overflow-hidden">
         <Image
           src={image}
           alt={title}
@@ -36,7 +36,7 @@ const ProjectCard = ({
       </div>
 
       {/* Content */}
-      <div className="flex-1 flex flex-col p-6">
+      <div className="flex-1 flex flex-col p-6 border-t border-primary-foreground">
         <h3 className="text-xl font-semibold mb-2">{title}</h3>
         <p className="text-muted-foreground mb-4">{description}</p>
 
@@ -113,7 +113,7 @@ const Projects = () => {
   ];
 
   return (
-    <SectionContainer id="projects" extraStyle="relative">
+    <SectionContainer id="projects" fullWidth={true} extraStyle="relative bg-muted">
       <div className="max-w-screen-lg mx-auto">
         <div className="text-center mb-12">
           <Badge variant="secondary" className="mb-4">

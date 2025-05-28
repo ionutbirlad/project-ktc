@@ -1,33 +1,6 @@
-// import SectionContainer from "@/components/layout/SectionContainer";
-// import Link from "next/link";
-// import { Card, CardContent } from "@/components/ui/card";
-
-// export default function BlogTeaser() {
-//   const posts = [
-//     { title: "Come funziona KTC", slug: "funziona-ktc" },
-//     { title: "Dietro le quinte: admin panel", slug: "admin-panel" },
-//   ];
-
-//   return (
-//     <SectionContainer>
-//       <h2 className="text-2xl font-semibold mb-6">Dal blog</h2>
-//       <div className="grid gap-6 md:grid-cols-2">
-//         {posts.map((post, i) => (
-//           <Card key={i}>
-//             <CardContent className="py-6">
-//               <Link href={`/blog/${post.slug}`}>
-//                 <h3 className="text-lg font-semibold hover:underline">{post.title}</h3>
-//               </Link>
-//               <p className="text-muted-foreground text-sm mt-1">Leggi l&apos;articolo completo →</p>
-//             </CardContent>
-//           </Card>
-//         ))}
-//       </div>
-//     </SectionContainer>
-//   );
-// }
-
 import SectionContainer from "@/components/layout/SectionContainer";
+
+import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -105,8 +78,8 @@ const categories = [
 ];
 
 const posts = [
-  { title: "Come funziona KTC", slug: "funziona-ktc" },
-  { title: "Dietro le quinte: admin panel", slug: "admin-panel" },
+  { title: "Come funziona KTC", slug: "nextjs-server-actions-guide" },
+  { title: "Dietro le quinte: admin panel", slug: "tailwind-setup-tips" },
 ];
 
 const BlogTeaser = () => {
@@ -118,36 +91,35 @@ const BlogTeaser = () => {
 
           <div className="mt-4 space-y-12">
             {posts.map((post, i) => (
-              <Card
-                key={i}
-                className="flex flex-col sm:flex-row sm:items-center shadow-none overflow-hidden rounded-md border-none"
-              >
-                <CardHeader>
-                  <div className="aspect-video sm:w-56 sm:aspect-square bg-muted rounded-lg" />
-                </CardHeader>
-                <CardContent className="flex flex-col">
-                  <div className="flex items-center gap-6">
-                    <Badge className="bg-primary/5 text-primary hover:bg-primary/5 shadow-none">
-                      Technology
-                    </Badge>
-                  </div>
+              <Link key={i} href={`/blog/${post.slug}`} className="block">
+                <Card className="flex flex-col sm:flex-row sm:items-center shadow-none overflow-hidden rounded-md border-none">
+                  <CardHeader>
+                    <div className="aspect-video sm:w-56 sm:aspect-square bg-muted rounded-lg" />
+                  </CardHeader>
+                  <CardContent className="flex flex-col">
+                    <div className="flex items-center gap-6">
+                      <Badge className="bg-primary/5 text-primary hover:bg-primary/5 shadow-none">
+                        Technology
+                      </Badge>
+                    </div>
 
-                  <h3 className="mt-4 text-2xl font-semibold tracking-tight">{post.title}</h3>
-                  <p className="mt-2 text-muted-foreground line-clamp-3 text-ellipsis">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa consequatur minus
-                    dicta accusantium quos, ratione suscipit id adipisci voluptatibus. Nulla sint
-                    repudiandae fugiat tenetur dolores.
-                  </p>
-                  <div className="mt-4 flex items-center gap-6 text-muted-foreground text-sm font-medium">
-                    <div className="flex items-center gap-2">
-                      <ClockIcon className="h-4 w-4" /> 5 min read
+                    <h3 className="mt-4 text-2xl font-semibold tracking-tight">{post.title}</h3>
+                    <p className="mt-2 text-muted-foreground line-clamp-3 text-ellipsis">
+                      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa consequatur
+                      minus dicta accusantium quos, ratione suscipit id adipisci voluptatibus. Nulla
+                      sint repudiandae fugiat tenetur dolores.
+                    </p>
+                    <div className="mt-4 flex items-center gap-6 text-muted-foreground text-sm font-medium">
+                      <div className="flex items-center gap-2">
+                        <ClockIcon className="h-4 w-4" /> 5 min read
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Calendar className="h-4 w-4" /> Nov 20, 2024
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Calendar className="h-4 w-4" /> Nov 20, 2024
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>

@@ -42,16 +42,21 @@ export default function TrustedBy() {
     <SectionContainer fullWidth={true} extraStyle="bg-muted">
       <div className="flex justify-center items-center">
         <div>
-          <h2 className="mb-14 text-5xl md:text-6xl font-bold text-center tracking-tight">
+          <h2 className="mb-14 text-5xl md:text-6xl font-bold text-center tracking-tight text-zinc-900 dark:text-zinc-100">
             Collaborazioni, progetti, impatto
           </h2>
           <div className="max-w-screen-xl mx-auto columns-1 md:columns-2 lg:columns-3 gap-8">
             {testimonials.map((testimonial, i) => (
-              <div key={i} className="relative mb-8 bg-black rounded-xl p-6 break-inside-avoid">
+              <div
+                key={i}
+                className="relative mb-8 rounded-xl p-6 break-inside-avoid bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm"
+              >
                 <div className="flex items-center justify-between">
-                  <h3 className="text-xl">{testimonial.title}</h3>
+                  <h3 className="text-xl text-zinc-900 dark:text-zinc-100">{testimonial.title}</h3>
                 </div>
-                <p className="mt-5 text-[17px]">{testimonial.description}</p>
+                <p className="mt-5 text-[17px] text-zinc-700 dark:text-zinc-300">
+                  {testimonial.description}
+                </p>
               </div>
             ))}
           </div>

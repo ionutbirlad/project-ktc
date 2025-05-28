@@ -90,28 +90,36 @@ export default function BlogTeaser() {
     <SectionContainer>
       <div className="flex flex-col lg:flex-row items-start gap-12">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight">Posts</h2>
+          <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+            Posts
+          </h2>
+
           <div className="mt-4 space-y-12">
             {posts.map((post, i) => (
               <Link key={i} href={`/blog/${post.slug}`} className="block">
-                <Card className="flex flex-col sm:flex-row sm:items-center shadow-none overflow-hidden rounded-md border-none">
+                <Card className="flex flex-col sm:flex-row sm:items-center shadow-none overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
                   <CardHeader>
-                    <div className="aspect-video sm:w-56 sm:aspect-square bg-muted rounded-lg" />
+                    <div className="aspect-video sm:w-56 sm:aspect-square bg-zinc-200 dark:bg-zinc-800 rounded-lg" />
                   </CardHeader>
+
                   <CardContent className="flex flex-col">
                     <div className="flex items-center gap-6">
-                      <Badge className="bg-primary/5 text-primary hover:bg-primary/5 shadow-none">
+                      <Badge className="bg-primary/10 text-primary hover:bg-primary/20 dark:bg-primary/10 dark:hover:bg-primary/20 shadow-none">
                         Technology
                       </Badge>
                     </div>
 
-                    <h3 className="mt-4 text-2xl font-semibold tracking-tight">{post.title}</h3>
-                    <p className="mt-2 text-muted-foreground line-clamp-3 text-ellipsis">
+                    <h3 className="mt-4 text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
+                      {post.title}
+                    </h3>
+
+                    <p className="mt-2 text-zinc-700 dark:text-zinc-400 line-clamp-3 text-ellipsis">
                       Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa consequatur
                       minus dicta accusantium quos, ratione suscipit id adipisci voluptatibus. Nulla
                       sint repudiandae fugiat tenetur dolores.
                     </p>
-                    <div className="mt-4 flex items-center gap-6 text-muted-foreground text-sm font-medium">
+
+                    <div className="mt-4 flex items-center gap-6 text-zinc-600 dark:text-zinc-400 text-sm font-medium">
                       <div className="flex items-center gap-2">
                         <ClockIcon className="h-4 w-4" /> 5 min read
                       </div>
@@ -127,12 +135,16 @@ export default function BlogTeaser() {
 
           <div className="flex justify-center mt-8">
             <Button className="cursor-pointer">
-              <Link href="/blog" className="flex items-center gap-1">
+              <Link
+                href="/blog"
+                className="flex items-center gap-1 text-zinc-900 dark:text-zinc-100"
+              >
                 Guarda tutti i post <ArrowRight />
               </Link>
             </Button>
           </div>
         </div>
+
         <aside className="sticky top-8 shrink-0 lg:max-w-sm w-full">
           <h3 className="text-3xl font-bold tracking-tight">Categories</h3>
           <div className="mt-4 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-1 gap-2">

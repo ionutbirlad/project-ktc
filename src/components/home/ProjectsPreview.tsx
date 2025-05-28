@@ -24,7 +24,7 @@ const ProjectCard = ({
   githubUrl,
 }: ProjectCardProps) => {
   return (
-    <div className="bg-gray-900 group relative flex flex-col overflow-hidden rounded-xl border border-primary-foreground transition-all hover:border-primary/50">
+    <div className="bg-white dark:bg-zinc-900 group relative flex flex-col overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800 transition-all hover:border-zinc-400 dark:hover:border-zinc-600">
       {/* Project Image */}
       <div className="relative h-64 overflow-hidden">
         <Image
@@ -36,14 +36,19 @@ const ProjectCard = ({
       </div>
 
       {/* Content */}
-      <div className="flex-1 flex flex-col p-6 border-t border-primary-foreground">
-        <h3 className="text-xl font-semibold mb-2">{title}</h3>
-        <p className="text-muted-foreground mb-4">{description}</p>
+      <div className="flex-1 flex flex-col p-6 border-t border-zinc-200 dark:border-zinc-800">
+        <h3 className="text-xl font-semibold mb-2 text-zinc-900 dark:text-zinc-100">{title}</h3>
+
+        <p className="mb-4 text-zinc-700 dark:text-zinc-400">{description}</p>
 
         {/* Technologies */}
         <div className="flex flex-wrap gap-2 mb-6">
           {technologies.map((tech) => (
-            <Badge key={tech} variant="secondary" className="rounded-full">
+            <Badge
+              key={tech}
+              variant="secondary"
+              className="rounded-full bg-zinc-200 text-zinc-800 dark:bg-zinc-700 dark:text-zinc-100"
+            >
               {tech}
             </Badge>
           ))}
@@ -60,7 +65,11 @@ const ProjectCard = ({
             </Button>
           )}
           {githubUrl && (
-            <Button variant="outline" className="rounded-full shadow-none" asChild>
+            <Button
+              variant="outline"
+              className="rounded-full shadow-none border-zinc-300 dark:border-zinc-700"
+              asChild
+            >
               <a href={githubUrl} target="_blank" rel="noopener noreferrer">
                 <GitHubIcon className="mr-1 h-4 w-4" />
                 View Code
@@ -116,11 +125,18 @@ const Projects = () => {
     <SectionContainer id="projects" fullWidth={true} extraStyle="relative bg-muted">
       <div className="max-w-screen-lg mx-auto">
         <div className="text-center mb-12">
-          <Badge variant="secondary" className="mb-4">
+          <Badge
+            variant="secondary"
+            className="mb-4 bg-zinc-200 text-zinc-800 dark:bg-zinc-700 dark:text-zinc-100"
+          >
             Projects
           </Badge>
-          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight">Featured Work</h2>
-          <p className="text-muted-foreground mt-2 sm:mt-4 text-lg">
+
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+            Featured Work
+          </h2>
+
+          <p className="mt-2 sm:mt-4 text-lg text-zinc-700 dark:text-zinc-400">
             Showcasing some of my best projects and technical achievements
           </p>
         </div>
@@ -135,7 +151,7 @@ const Projects = () => {
       <div className="flex justify-center mt-8">
         <Link href="/projects">
           <Button className="cursor-pointer">
-            Scopri di piu <ArrowRight />
+            Scopri di più <ArrowRight />
           </Button>
         </Link>
       </div>

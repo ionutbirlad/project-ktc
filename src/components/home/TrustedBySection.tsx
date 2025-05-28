@@ -118,7 +118,7 @@ export default function TrustedBy() {
           <div className="mx-20 bg-white p-3">
             <Logo03 />
           </div>
-          <div className="mx-20">
+          <div className="mx-20 bg-white p-2">
             <Logo04 />
           </div>
           <div className="mx-20">

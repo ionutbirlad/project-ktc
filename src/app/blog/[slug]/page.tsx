@@ -24,7 +24,13 @@ const getPost = async (slug: string) => {
   return { mdxSource, meta: data };
 };
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+type BlogPageProps = {
+  params: {
+    slug: string;
+  };
+};
+
+export default async function BlogPage({ params }: BlogPageProps) {
   const post = await getPost(params.slug);
   if (!post) return notFound();
 

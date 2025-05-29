@@ -14,7 +14,7 @@ export default function AdminPage() {
     if (password !== "ktc123") {
       router.push("/");
     }
-  }, []);
+  }, [router]);
 
   return (
     <LayoutContainer>

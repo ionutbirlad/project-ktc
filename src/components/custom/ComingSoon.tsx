@@ -1,3 +1,5 @@
+import Spline from "@splinetool/react-spline";
+
 export default function ComingSoon() {
-  return <div>dasdasd</div>;
+  return <Spline scene="/ComingSoon.splinecode" />;
 }

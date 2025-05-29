@@ -7,7 +7,7 @@ type Props = {
   meta: {
     title: string;
     date: string;
-    description: string;
+    description?: string;
   };
 };
 

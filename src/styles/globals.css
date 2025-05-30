@@ -118,3 +118,23 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Temporary */
+.mobile-canvas-wrapper div {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-canvas-wrapper canvas {
+  aspect-ratio: 9 / 16 !important;
+  height: 100vh !important;
+  width: auto !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: cover !important;
+}

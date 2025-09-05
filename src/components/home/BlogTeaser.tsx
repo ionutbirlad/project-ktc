@@ -1,0 +1,171 @@
+import SectionContainer from "@/components/layout/SectionContainer";
+
+import Link from "next/link";
+
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+import { cn } from "@/lib/utils";
+import {
+  BadgeDollarSign,
+  Bike,
+  BookHeart,
+  BriefcaseBusiness,
+  Calendar,
+  ClockIcon,
+  Cpu,
+  FlaskRound,
+  HeartPulse,
+  Scale,
+  ArrowRight,
+} from "lucide-react";
+
+const categories = [
+  {
+    name: "Technology",
+    totalPosts: 10,
+    icon: Cpu,
+    background: "bg-indigo-500",
+    color: "text-indigo-500",
+  },
+  {
+    name: "Business",
+    totalPosts: 5,
+    icon: BriefcaseBusiness,
+    background: "bg-amber-500",
+    color: "text-amber-500",
+  },
+  {
+    name: "Finance",
+    totalPosts: 8,
+    icon: BadgeDollarSign,
+    background: "bg-emerald-500",
+    color: "text-emerald-500",
+  },
+  {
+    name: "Health",
+    totalPosts: 12,
+    icon: HeartPulse,
+    background: "bg-rose-500",
+    color: "text-rose-500",
+  },
+  {
+    name: "Lifestyle",
+    totalPosts: 15,
+    icon: BookHeart,
+    background: "bg-cyan-500",
+    color: "text-cyan-500",
+  },
+  {
+    name: "Politics",
+    totalPosts: 20,
+    icon: Scale,
+    background: "bg-teal-500",
+    color: "text-teal-500",
+  },
+  {
+    name: "Science",
+    totalPosts: 25,
+    icon: FlaskRound,
+    background: "bg-purple-500",
+    color: "text-purple-500",
+  },
+  {
+    name: "Sports",
+    totalPosts: 30,
+    icon: Bike,
+    background: "bg-cyan-500",
+    color: "text-cyan-500",
+  },
+];
+
+const posts = [
+  { title: "Come funziona KTC", slug: "nextjs-server-actions-guide" },
+  { title: "Dietro le quinte: admin panel", slug: "tailwind-setup-tips" },
+];
+
+export default function BlogTeaser() {
+  return (
+    <SectionContainer>
+      <div className="flex flex-col lg:flex-row items-start gap-12">
+        <div>
+          <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+            Posts
+          </h2>
+
+          <div className="mt-4 space-y-12">
+            {posts.map((post, i) => (
+              <Link key={i} href={`/blog/${post.slug}`} className="block">
+                <Card className="flex flex-col sm:flex-row sm:items-center shadow-none overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
+                  <CardHeader>
+                    <div className="aspect-video sm:w-56 sm:aspect-square bg-zinc-200 dark:bg-zinc-800 rounded-lg" />
+                  </CardHeader>
+
+                  <CardContent className="flex flex-col">
+                    <div className="flex items-center gap-6">
+                      <Badge className="bg-primary/10 text-primary hover:bg-primary/20 dark:bg-primary/10 dark:hover:bg-primary/20 shadow-none">
+                        Technology
+                      </Badge>
+                    </div>
+
+                    <h3 className="mt-4 text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
+                      {post.title}
+                    </h3>
+
+                    <p className="mt-2 text-zinc-700 dark:text-zinc-400 line-clamp-3 text-ellipsis">
+                      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa consequatur
+                      minus dicta accusantium quos, ratione suscipit id adipisci voluptatibus. Nulla
+                      sint repudiandae fugiat tenetur dolores.
+                    </p>
+
+                    <div className="mt-4 flex items-center gap-6 text-zinc-600 dark:text-zinc-400 text-sm font-medium">
+                      <div className="flex items-center gap-2">
+                        <ClockIcon className="h-4 w-4" /> 5 min read
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Calendar className="h-4 w-4" /> Nov 20, 2024
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+
+          <div className="flex justify-center mt-8">
+            <Button className="cursor-pointer">
+              <Link
+                href="/blog"
+                className="flex items-center gap-1 text-zinc-900 dark:text-zinc-100"
+              >
+                Guarda tutti i post <ArrowRight />
+              </Link>
+            </Button>
+          </div>
+        </div>
+
+        <aside className="sticky top-8 shrink-0 lg:max-w-sm w-full">
+          <h3 className="text-3xl font-bold tracking-tight">Categories</h3>
+          <div className="mt-4 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-1 gap-2">
+            {categories.map((category) => (
+              <div
+                key={category.name}
+                className={cn(
+                  "flex items-center justify-between gap-2 bg-muted p-3 rounded-md bg-opacity-15 dark:bg-opacity-25",
+                  category.background
+                )}
+              >
+                <div className="flex items-center gap-3">
+                  <category.icon className={cn("h-5 w-5", category.color)} />
+                  <span className="font-medium">{category.name}</span>
+                </div>
+                <Badge className="px-1.5 rounded-full">{category.totalPosts}</Badge>
+              </div>
+            ))}
+          </div>
+        </aside>
+      </div>
+    </SectionContainer>
+  );
+}

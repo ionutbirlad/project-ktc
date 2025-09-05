@@ -1,5 +1,5 @@
 import LayoutContainer from "@/components/layout/LayoutContainer";
-import ProjectsList from "@/components/sections/ProjectsList";
+import ProjectsList from "@/components/projects/ProjectsList";
 
 export default function ProjectsPage() {
   return (

@@ -128,7 +128,7 @@ const Projects = ({ extraStyle, fullWidth }: ProjectsProps) => {
 
   return (
     <SectionContainer id="projects" fullWidth={fullWidth} extraStyle={extraStyle}>
-      <div className="max-w-screen-lg mx-auto">
+      <div>
         <div className="text-center mb-12">
           <Badge
             variant="secondary"

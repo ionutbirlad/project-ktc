@@ -12,9 +12,9 @@ export default function HomePage() {
     <LayoutContainer>
       <HeroSection extraStyle="max-h-[100svh] overflow-hidden bg-muted" fullWidth={true} />
       <AboutCallout />
-      <TechStatsSection />
-      <ProjectsPreview extraStyle="relative bg-muted" fullWidth={true} />
-      <BlogTeaser />
+      <TechStatsSection extraStyle="bg-muted" fullWidth={true} />
+      <ProjectsPreview extraStyle="relative" />
+      <BlogTeaser extraStyle="bg-muted" fullWidth={true} />
       <ContactCTA extraStyle="text-center" />
     </LayoutContainer>
   );

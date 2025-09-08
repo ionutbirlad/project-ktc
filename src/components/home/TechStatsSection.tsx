@@ -282,7 +282,7 @@ export default function TechStatsSection({ extraStyle, fullWidth }: TechStatsSec
 
   return (
     <SectionContainer extraStyle={extraStyle} fullWidth={fullWidth}>
-      <div className="flex items-center justify-center">
+      <div className="max-w-screen-lg mx-auto">
         <div className="w-full">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
             The perfect starting point for any project
@@ -307,7 +307,7 @@ export default function TechStatsSection({ extraStyle, fullWidth }: TechStatsSec
         </div>
       </div>
 
-      <div className="mt-16 sm:mt-24">
+      <div className="max-w-screen-lg mx-auto mt-16 sm:mt-24">
         <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
           Panoramica delle Competenze Tecniche
         </h3>

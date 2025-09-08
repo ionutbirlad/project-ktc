@@ -2,7 +2,6 @@ import LayoutContainer from "@/components/layout/LayoutContainer";
 
 import HeroSection from "@/components/home/HeroSection";
 import AboutCallout from "@/components/home/AboutCallout";
-import ProfessionalExperience from "@/components/home/ProfessionalExperience";
 import TechStatsSection from "@/components/home/TechStatsSection";
 import ProjectsPreview from "@/components/home/ProjectsPreview";
 import BlogTeaser from "@/components/home/BlogTeaser";
@@ -14,7 +13,6 @@ export default function HomePage() {
     <LayoutContainer>
       <HeroSection />
       <AboutCallout />
-      <ProfessionalExperience />
       <TechStatsSection />
       <ProjectsPreview />
       <BlogTeaser />

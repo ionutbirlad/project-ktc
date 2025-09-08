@@ -5,7 +5,6 @@ import AboutCallout from "@/components/home/AboutCallout";
 import TechStatsSection from "@/components/home/TechStatsSection";
 import ProjectsPreview from "@/components/home/ProjectsPreview";
 import BlogTeaser from "@/components/home/BlogTeaser";
-import TrustedBySection from "@/components/home/TrustedBySection";
 import ContactCTA from "@/components/home/ContactCTA";
 
 export default function HomePage() {
@@ -16,7 +15,6 @@ export default function HomePage() {
       <TechStatsSection />
       <ProjectsPreview extraStyle="relative bg-muted" />
       <BlogTeaser />
-      <TrustedBySection extraStyle="bg-muted" />
       <ContactCTA extraStyle="text-center" />
     </LayoutContainer>
   );

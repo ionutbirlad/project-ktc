@@ -85,9 +85,13 @@ const posts = [
   { title: "Dietro le quinte: admin panel", slug: "tailwind-setup-tips" },
 ];
 
-export default function BlogTeaser() {
+type BlogTeaserProps = {
+  extraStyle?: string;
+};
+
+export default function BlogTeaser({ extraStyle }: BlogTeaserProps) {
   return (
-    <SectionContainer>
+    <SectionContainer extraStyle={extraStyle}>
       <div className="flex flex-col lg:flex-row items-start gap-12">
         <div>
           <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">

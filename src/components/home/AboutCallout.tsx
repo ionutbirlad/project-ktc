@@ -6,9 +6,13 @@ import { Button } from "@/components/ui/button";
 
 import { Download } from "lucide-react";
 
-export default function AboutCallout() {
+type AboutCalloutProps = {
+  extraStyle?: string;
+};
+
+export default function AboutCallout({ extraStyle }: AboutCalloutProps) {
   return (
-    <SectionContainer>
+    <SectionContainer extraStyle={extraStyle}>
       <div className="flex flex-col md:flex-row-reverse gap-12">
         <div className="mt-10 w-48 h-48 md:w-64 md:h-64 hidden md:block">
           <div className="relative w-full h-full rounded-2xl overflow-hidden bg-accent">

@@ -7,7 +7,7 @@ export default function AboutPage() {
   return (
     <LayoutContainer>
       <AboutIntro />
-      <ProfessionalExperience />
+      <ProfessionalExperience extraStyle="relative bg-muted" />
     </LayoutContainer>
   );
 }

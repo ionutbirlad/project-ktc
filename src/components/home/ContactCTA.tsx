@@ -2,9 +2,13 @@ import SectionContainer from "@/components/layout/SectionContainer";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-export default function ContactCTA() {
+type ContactCTAProps = {
+  extraStyle?: string;
+};
+
+export default function ContactCTA({ extraStyle }: ContactCTAProps) {
   return (
-    <SectionContainer extraStyle="text-center">
+    <SectionContainer extraStyle={extraStyle}>
       <h2 className="text-2xl font-semibold mb-4">Hai un&apos;idea? Parliamone.</h2>
       <p className="text-muted-foreground mb-6">
         Sono aperto a collaborazioni, sfide e proposte fuori dagli schemi.

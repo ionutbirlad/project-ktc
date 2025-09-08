@@ -2,7 +2,11 @@ import SectionContainer from "@/components/layout/SectionContainer";
 // import { Card, CardContent } from "@/components/ui/card";
 import TreemapChart from "@/components/custom/TreemapChart";
 
-export default function TechStatsSection() {
+type TechStatsSectionProps = {
+  extraStyle?: string;
+};
+
+export default function TechStatsSection({ extraStyle }: TechStatsSectionProps) {
   const stats = [
     { label: "🍴 Total Forks", value: "45" },
     { label: "📁 Public Repositories", value: "24" },
@@ -276,7 +280,7 @@ export default function TechStatsSection() {
   };
 
   return (
-    <SectionContainer>
+    <SectionContainer extraStyle={extraStyle}>
       <div className="flex items-center justify-center">
         <div className="w-full">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">

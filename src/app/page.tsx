@@ -11,13 +11,13 @@ import ContactCTA from "@/components/home/ContactCTA";
 export default function HomePage() {
   return (
     <LayoutContainer>
-      <HeroSection />
+      <HeroSection extraStyle="max-h-[100svh] overflow-hidden bg-muted" />
       <AboutCallout />
       <TechStatsSection />
-      <ProjectsPreview />
+      <ProjectsPreview extraStyle="relative bg-muted" />
       <BlogTeaser />
-      <TrustedBySection />
-      <ContactCTA />
+      <TrustedBySection extraStyle="bg-muted" />
+      <ContactCTA extraStyle="text-center" />
     </LayoutContainer>
   );
 }

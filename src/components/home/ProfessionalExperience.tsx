@@ -53,7 +53,11 @@ function ExperienceItem({
   );
 }
 
-export default function Experience() {
+type ExperienceProps = {
+  extraStyle?: string;
+};
+
+export default function Experience({ extraStyle }: ExperienceProps) {
   const experiences = [
     {
       title: "Senior Full Stack Developer",
@@ -82,7 +86,7 @@ export default function Experience() {
   ];
 
   return (
-    <SectionContainer id="experience" fullWidth={true} extraStyle="relative bg-muted">
+    <SectionContainer id="experience" fullWidth={true} extraStyle={extraStyle}>
       <div className="max-w-screen-lg mx-auto">
         <div className="text-center mb-12">
           <Badge variant="secondary" className="mb-4">

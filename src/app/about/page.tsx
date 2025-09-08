@@ -7,8 +7,8 @@ import TrustedBySection from "@/components/home/TrustedBySection";
 export default function AboutPage() {
   return (
     <LayoutContainer>
-      <AboutIntro />
-      <ProfessionalExperience extraStyle="relative bg-muted" />
+      <AboutIntro extraStyle="bg-muted" />
+      <ProfessionalExperience extraStyle="relative" />
       <TrustedBySection extraStyle="bg-muted" />
     </LayoutContainer>
   );

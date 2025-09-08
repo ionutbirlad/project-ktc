@@ -106,7 +106,9 @@ const Testimonials = ({ extraStyle, fullWidth }: TestimonialsProps) => {
   return (
     <SectionContainer id="experience" fullWidth={fullWidth} extraStyle={extraStyle}>
       <div className="w-full">
-        <h2 className="text-5xl font-semibold text-center tracking-[-0.03em]">Testimonials</h2>
+        <h2 className="text-5xl font-semibold text-center tracking-[-0.03em]">
+          Cosa dice chi ha lavorato con me
+        </h2>
         <p className="mt-3 text-center text-muted-foreground text-xl">
           See what our users have to say about us
         </p>

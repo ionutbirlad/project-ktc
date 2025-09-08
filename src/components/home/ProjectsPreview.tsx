@@ -84,9 +84,10 @@ const ProjectCard = ({
 
 type ProjectsProps = {
   extraStyle?: string;
+  fullWidth?: boolean;
 };
 
-const Projects = ({ extraStyle }: ProjectsProps) => {
+const Projects = ({ extraStyle, fullWidth }: ProjectsProps) => {
   const projects = [
     {
       title: "E-Commerce Platform",
@@ -126,7 +127,7 @@ const Projects = ({ extraStyle }: ProjectsProps) => {
   ];
 
   return (
-    <SectionContainer id="projects" fullWidth={true} extraStyle={extraStyle}>
+    <SectionContainer id="projects" fullWidth={fullWidth} extraStyle={extraStyle}>
       <div className="max-w-screen-lg mx-auto">
         <div className="text-center mb-12">
           <Badge

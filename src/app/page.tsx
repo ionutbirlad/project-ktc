@@ -10,10 +10,10 @@ import ContactCTA from "@/components/home/ContactCTA";
 export default function HomePage() {
   return (
     <LayoutContainer>
-      <HeroSection extraStyle="max-h-[100svh] overflow-hidden bg-muted" />
+      <HeroSection extraStyle="max-h-[100svh] overflow-hidden bg-muted" fullWidth={true} />
       <AboutCallout />
       <TechStatsSection />
-      <ProjectsPreview extraStyle="relative bg-muted" />
+      <ProjectsPreview extraStyle="relative bg-muted" fullWidth={true} />
       <BlogTeaser />
       <ContactCTA extraStyle="text-center" />
     </LayoutContainer>

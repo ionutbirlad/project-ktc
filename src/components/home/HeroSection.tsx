@@ -6,11 +6,12 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 type HeroSectionProps = {
   extraStyle?: string;
+  fullWidth?: boolean;
 };
 
-export default function HeroSection({ extraStyle }: HeroSectionProps) {
+export default function HeroSection({ extraStyle, fullWidth }: HeroSectionProps) {
   return (
-    <SectionContainer fullWidth={true} extraStyle={extraStyle}>
+    <SectionContainer fullWidth={fullWidth} extraStyle={extraStyle}>
       <AspectRatio ratio={16 / 9} className="bg-muted">
         <div className="h-full content-center py-16 text-center">
           <h1 className="text-4xl font-bold mb-4">Kill The Competition</h1>

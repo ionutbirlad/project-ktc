@@ -4,9 +4,10 @@ import TreemapChart from "@/components/custom/TreemapChart";
 
 type TechStatsSectionProps = {
   extraStyle?: string;
+  fullWidth?: boolean;
 };
 
-export default function TechStatsSection({ extraStyle }: TechStatsSectionProps) {
+export default function TechStatsSection({ extraStyle, fullWidth }: TechStatsSectionProps) {
   const stats = [
     { label: "🍴 Total Forks", value: "45" },
     { label: "📁 Public Repositories", value: "24" },
@@ -280,7 +281,7 @@ export default function TechStatsSection({ extraStyle }: TechStatsSectionProps) 
   };
 
   return (
-    <SectionContainer extraStyle={extraStyle}>
+    <SectionContainer extraStyle={extraStyle} fullWidth={fullWidth}>
       <div className="flex items-center justify-center">
         <div className="w-full">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">

@@ -8,8 +8,8 @@ export default function AboutPage() {
   return (
     <LayoutContainer>
       <AboutIntro extraStyle="bg-muted" />
-      <ProfessionalExperience extraStyle="relative" />
-      <TrustedBySection extraStyle="bg-muted" />
+      <ProfessionalExperience extraStyle="relative" fullWidth={true} />
+      <TrustedBySection extraStyle="bg-muted" fullWidth={true} />
     </LayoutContainer>
   );
 }

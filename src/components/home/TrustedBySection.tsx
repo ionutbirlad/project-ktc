@@ -39,11 +39,12 @@ const testimonials = [
 
 type TrustedByProps = {
   extraStyle?: string;
+  fullWidth?: boolean;
 };
 
-export default function TrustedBy({ extraStyle }: TrustedByProps) {
+export default function TrustedBy({ extraStyle, fullWidth }: TrustedByProps) {
   return (
-    <SectionContainer fullWidth={true} extraStyle={extraStyle}>
+    <SectionContainer fullWidth={fullWidth} extraStyle={extraStyle}>
       <div className="flex justify-center items-center">
         <div>
           <h2 className="mb-14 text-5xl md:text-6xl font-bold text-center tracking-tight text-zinc-900 dark:text-zinc-100">

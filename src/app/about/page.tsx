@@ -1,8 +1,8 @@
 import LayoutContainer from "@/components/layout/LayoutContainer";
 
 import AboutIntro from "@/components/about/AboutIntro";
-import ProfessionalExperience from "@/components/home/ProfessionalExperience";
-import TrustedBySection from "@/components/home/TrustedBySection";
+import ProfessionalExperience from "@/components/about/ProfessionalExperience";
+import TrustedBySection from "@/components/about/TrustedBySection";
 
 export default function AboutPage() {
   return (

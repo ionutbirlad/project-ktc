@@ -8,7 +8,7 @@ import Testimonials from "@/components/about/Testimonials";
 export default function AboutPage() {
   return (
     <LayoutContainer>
-      <AboutIntro extraStyle="bg-muted" />
+      <AboutIntro extraStyle="bg-muted p-0" fullWidth={true} />
       <ProfessionalExperience extraStyle="relative" fullWidth={true} />
       <TrustedBySection extraStyle="bg-muted" fullWidth={true} />
       <Testimonials />

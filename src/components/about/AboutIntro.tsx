@@ -5,8 +5,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
 import SectionContainer from "@/components/layout/SectionContainer";
-
-import { Download, ArrowRight, Linkedin, Github } from "lucide-react";
+import { Icons } from "@/components/icons/Icons";
 
 type AboutIntroProps = {
   extraStyle?: string;
@@ -48,12 +47,12 @@ export default function AboutIntro({ extraStyle, fullWidth }: AboutIntroProps) {
           <div className="flex flex-row gap-2">
             <Button asChild size="lg">
               <Link href="#contact">
-                Get in touch <ArrowRight className="ml-2 size-4" />
+                Get in touch <Icons.arrowRight className="ml-2 size-4" />
               </Link>
             </Button>
             <Button variant="outline" size="lg" className="hidden sm:flex" asChild>
               <a href="/michalskolak.pdf" download>
-                Download CV <Download className="ml-2 size-4" />
+                Download CV <Icons.download className="ml-2 size-4" />
               </a>
             </Button>
             <Button variant="outline" size="icon" asChild>
@@ -62,12 +61,12 @@ export default function AboutIntro({ extraStyle, fullWidth }: AboutIntroProps) {
                 aria-label="Linkedin"
                 target="_blank"
               >
-                <Linkedin className="size-5" />
+                <Icons.linkedin className="size-5" />
               </Link>
             </Button>
             <Button variant="outline" size="icon" asChild>
               <Link href="https://github.com/Skolaczk" aria-label="Github" target="_blank">
-                <Github className="size-5" />
+                <Icons.github className="size-5" />
               </Link>
             </Button>
           </div>

@@ -1,7 +1,5 @@
 "use client";
 
-import SectionContainer from "@/components/layout/SectionContainer";
-
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   Carousel,
@@ -12,8 +10,10 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
-import { StarIcon } from "lucide-react";
 import { useEffect, useState } from "react";
+
+import SectionContainer from "@/components/layout/SectionContainer";
+import { Icons } from "@/components/icons/Icons";
 
 const testimonials = [
   {
@@ -175,11 +175,11 @@ const TestimonialCard = ({ testimonial }: { testimonial: (typeof testimonials)[n
             </div>
           </div>
           <div className="flex items-center gap-1">
-            <StarIcon className="w-5 h-5 fill-muted-foreground stroke-muted-foreground" />
-            <StarIcon className="w-5 h-5 fill-muted-foreground stroke-muted-foreground" />
-            <StarIcon className="w-5 h-5 fill-muted-foreground stroke-muted-foreground" />
-            <StarIcon className="w-5 h-5 fill-muted-foreground stroke-muted-foreground" />
-            <StarIcon className="w-5 h-5 fill-muted-foreground stroke-muted-foreground" />
+            <Icons.starIcon className="w-5 h-5 fill-muted-foreground stroke-muted-foreground" />
+            <Icons.starIcon className="w-5 h-5 fill-muted-foreground stroke-muted-foreground" />
+            <Icons.starIcon className="w-5 h-5 fill-muted-foreground stroke-muted-foreground" />
+            <Icons.starIcon className="w-5 h-5 fill-muted-foreground stroke-muted-foreground" />
+            <Icons.starIcon className="w-5 h-5 fill-muted-foreground stroke-muted-foreground" />
           </div>
         </div>
         <p className="mt-6 text-lg sm:text-2xl lg:text-[1.75rem] xl:text-3xl leading-normal lg:leading-normal! font-semibold tracking-tight">

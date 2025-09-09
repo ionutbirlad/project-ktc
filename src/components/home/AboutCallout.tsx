@@ -1,10 +1,10 @@
-import SectionContainer from "@/components/layout/SectionContainer";
 import Image from "next/image";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
-import { Download } from "lucide-react";
+import SectionContainer from "@/components/layout/SectionContainer";
+import { Icons } from "@/components/icons/Icons";
 
 type AboutCalloutProps = {
   extraStyle?: string;
@@ -46,7 +46,7 @@ export default function AboutCallout({ extraStyle, fullWidth }: AboutCalloutProp
             </Button>
 
             <Button variant="outline" className="rounded-full">
-              <Download />
+              <Icons.download />
               Download CV
             </Button>
           </div>

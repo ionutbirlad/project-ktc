@@ -1,5 +1,5 @@
 import LayoutContainer from "@/components/layout/LayoutContainer";
-import ContactForm from "@/components/custom/ContactForm";
+import ContactForm from "@/components/general/ContactForm";
 
 export default function ContactPage() {
   return (

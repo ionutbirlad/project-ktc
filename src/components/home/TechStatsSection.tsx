@@ -1,6 +1,6 @@
 import SectionContainer from "@/components/layout/SectionContainer";
 // import { Card, CardContent } from "@/components/ui/card";
-import TreemapChart from "@/components/custom/TreemapChart";
+import TreemapChart from "@/components/general/TreemapChart";
 
 type TechStatsSectionProps = {
   extraStyle?: string;

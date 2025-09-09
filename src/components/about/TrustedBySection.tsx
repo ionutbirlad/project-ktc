@@ -1,6 +1,6 @@
 import SectionContainer from "@/components/layout/SectionContainer";
 
-import { Logo01, Logo02, Logo03, Logo04, Logo05, Logo06 } from "@/components/custom/logos";
+import { Logo01, Logo02, Logo03, Logo04, Logo05, Logo06 } from "@/components/general/logos";
 
 import Marquee from "react-fast-marquee";
 

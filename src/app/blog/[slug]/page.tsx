@@ -6,7 +6,7 @@ import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import { notFound } from "next/navigation";
 import { use } from "react";
-import MDXContent from "@/components/custom/MDXContent";
+import MDXContent from "@/components/general/MDXContent";
 
 // ⚠️ workaround: marcare come statica o dinamica
 export const dynamic = "force-static";

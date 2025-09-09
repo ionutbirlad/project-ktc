@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { projects } from "@/lib/projects";
 import ProjectsFilter from "./ProjectsFilter";
-import ProjectCard from "../custom/ProjectCard";
+import ProjectCard from "../general/ProjectCard";
 
 export default function ProjectsList() {
   const [stackFilter, setStackFilter] = useState("All");

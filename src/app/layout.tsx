@@ -4,7 +4,7 @@ import { ThemeProvider } from "@/styles/ThemeProvider";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
-import ComingSoon from "@/components/custom/ComingSoon";
+import ComingSoon from "@/components/general/ComingSoon";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   const MAINTENANCE_MODE = false;

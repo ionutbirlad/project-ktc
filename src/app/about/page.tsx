@@ -13,7 +13,9 @@ export default function AboutPage() {
       <AboutIntro extraStyle="bg-muted p-0" fullWidth={true} />
       <SectionDivider />
       <ProfessionalExperience extraStyle="relative" fullWidth={true} />
+      <SectionDivider />
       <TrustedBySection extraStyle="bg-muted" fullWidth={true} />
+      <SectionDivider />
       <Testimonials />
     </LayoutContainer>
   );

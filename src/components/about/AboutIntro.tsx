@@ -16,13 +16,6 @@ export default function AboutIntro({ extraStyle, fullWidth }: AboutIntroProps) {
   return (
     <SectionContainer extraStyle={extraStyle} fullWidth={fullWidth}>
       <div className="max-w-xl mx-auto mb-10">
-        {/* <h2 className="text-3xl font-bold mb-4">Chi sono</h2>
-        <p className="text-muted-foreground text-lg">
-          Sono uno sviluppatore full stack con un passato tra economia e frontend. Dopo anni in
-          agenzie e startup, oggi costruisco progetti su misura che uniscono estetica, performance e
-          strategia.
-        </p> */}
-
         <div className="my-10 flex scroll-mt-96 flex-col items-center gap-5 text-center sm:mt-28">
           <div>
             <Link href="#contact" className="flex items-center gap-3 rounded border px-3 py-1">

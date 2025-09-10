@@ -5,7 +5,11 @@ import { Button } from "@/components/ui/button";
 
 const stacks = ["All", "Next.js", "Shopify", "Vue.js", "Tailwind"];
 
-export default function ProjectsFilter({ onFilter }: { onFilter: (stack: string) => void }) {
+type ProjectsFilterProps = {
+  onFilter: (stack: string) => void;
+};
+
+export default function ProjectsFilter({ onFilter }: ProjectsFilterProps) {
   const [selected, setSelected] = useState("All");
 
   return (

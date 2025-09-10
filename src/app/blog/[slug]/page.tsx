@@ -1,14 +1,10 @@
-// ✅ pagina in src/app/blog/[slug]/page.tsx
-
+// app/blog/[slug]/page.tsx
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { serialize } from "next-mdx-remote/serialize";
 import { notFound } from "next/navigation";
-import { use } from "react";
-import MDXContent from "@/components/general/MDXContent";
+import { MDXRemote } from "next-mdx-remote/rsc";
 
-// ⚠️ workaround: marcare come statica o dinamica
 export const dynamic = "force-static";
 
 async function getPost(slug: string) {
@@ -17,26 +13,29 @@ async function getPost(slug: string) {
 
   const source = fs.readFileSync(filePath, "utf8");
   const { content, data } = matter(source);
-  const mdxSource = await serialize(content);
 
   return {
-    mdxSource,
-    meta: data as { title: string; date: string },
+    content,
+    meta: data as { title: string; date?: string; description?: string },
   };
 }
 
-export function generateStaticParams(): { slug: string }[] {
-  const dir = path.join(process.cwd(), "src/content/blog");
-  const files = fs.readdirSync(dir);
-  return files.map((file) => ({
-    slug: file.replace(/\.mdx?$/, ""),
-  }));
-}
+type BlogParams = { slug: string };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function Page(props: any) {
-  const post = use(getPost(props?.params?.slug));
+export default async function Page(props: unknown) {
+  // narrow da unknown → oggetto con params.slug
+  const { params } = props as { params: BlogParams };
+  const post = await getPost(params.slug);
   if (!post) return notFound();
 
-  return <MDXContent {...post} />;
+  return (
+    <article className="prose dark:prose-invert max-w-3xl mx-auto py-12">
+      <h1>{post.meta.title}</h1>
+      {post.meta.date && <p className="text-sm text-muted-foreground">{post.meta.date}</p>}
+      {post.meta.description && (
+        <p className="text-sm text-muted-foreground">{post.meta.description}</p>
+      )}
+      <MDXRemote source={post.content} />
+    </article>
+  );
 }

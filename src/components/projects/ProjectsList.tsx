@@ -3,9 +3,10 @@
 import { useState } from "react";
 
 import SectionContainer from "@/components/layout/SectionContainer";
-import { projects } from "@/lib/projects";
 import ProjectsFilter from "./ProjectsFilter";
 import ProjectCard from "../general/ProjectCard";
+
+import { projects } from "@/lib/projects";
 
 type ProjectsListProps = {
   extraStyle?: string;

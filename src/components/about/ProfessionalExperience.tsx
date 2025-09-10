@@ -1,7 +1,8 @@
 import SectionContainer from "@/components/layout/SectionContainer";
 
 import { Badge } from "@/components/ui/badge";
-import { Building2, Calendar } from "lucide-react";
+
+import { Icons } from "@/components/icons/Icons";
 
 type ExperienceItemProps = {
   title: string;
@@ -29,14 +30,14 @@ function ExperienceItem({
       <div className="space-y-3">
         <div className="flex items-center gap-3">
           <div className="flex-shrink-0 size-9 bg-accent rounded-full flex items-center justify-center">
-            <Building2 className="size-5 text-muted-foreground" />
+            <Icons.building2 className="size-5 text-muted-foreground" />
           </div>
           <span className="text-lg font-semibold">{company}</span>
         </div>
         <div>
           <h3 className="text-xl font-medium">{title}</h3>
           <div className="flex items-center gap-2 mt-1 text-sm">
-            <Calendar className="size-4" />
+            <Icons.calendar className="size-4" />
             <span>{period}</span>
           </div>
         </div>
@@ -53,7 +54,12 @@ function ExperienceItem({
   );
 }
 
-export default function Experience() {
+type ExperienceProps = {
+  extraStyle?: string;
+  fullWidth?: boolean;
+};
+
+export default function Experience({ extraStyle, fullWidth }: ExperienceProps) {
   const experiences = [
     {
       title: "Senior Full Stack Developer",
@@ -82,7 +88,7 @@ export default function Experience() {
   ];
 
   return (
-    <SectionContainer id="experience" fullWidth={true} extraStyle="relative bg-muted">
+    <SectionContainer id="experience" fullWidth={fullWidth} extraStyle={extraStyle}>
       <div className="max-w-screen-lg mx-auto">
         <div className="text-center mb-12">
           <Badge variant="secondary" className="mb-4">

@@ -1,10 +1,11 @@
-import SectionContainer from "@/components/layout/SectionContainer";
+import Image from "next/image";
+import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, ArrowRight } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+
+import SectionContainer from "@/components/layout/SectionContainer";
+import { Icons } from "@/components/icons/Icons";
 
 type ProjectCardProps = {
   title: string;
@@ -59,7 +60,7 @@ const ProjectCard = ({
           {liveUrl && (
             <Button variant="default" className="rounded-full" asChild>
               <a href={liveUrl} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="mr-1 h-4 w-4" />
+                <Icons.externalLink className="mr-1 h-4 w-4" />
                 Live Demo
               </a>
             </Button>
@@ -82,7 +83,12 @@ const ProjectCard = ({
   );
 };
 
-const Projects = () => {
+type ProjectsProps = {
+  extraStyle?: string;
+  fullWidth?: boolean;
+};
+
+const Projects = ({ extraStyle, fullWidth }: ProjectsProps) => {
   const projects = [
     {
       title: "E-Commerce Platform",
@@ -122,8 +128,8 @@ const Projects = () => {
   ];
 
   return (
-    <SectionContainer id="projects" fullWidth={true} extraStyle="relative bg-muted">
-      <div className="max-w-screen-lg mx-auto">
+    <SectionContainer id="projects" fullWidth={fullWidth} extraStyle={extraStyle}>
+      <div>
         <div className="text-center mb-12">
           <Badge
             variant="secondary"
@@ -151,7 +157,7 @@ const Projects = () => {
       <div className="flex justify-center mt-8">
         <Link href="/projects">
           <Button className="cursor-pointer">
-            Scopri di più <ArrowRight />
+            Scopri di più <Icons.arrowRight />
           </Button>
         </Link>
       </div>

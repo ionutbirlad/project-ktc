@@ -1,6 +1,6 @@
 import SectionContainer from "@/components/layout/SectionContainer";
 
-import { Logo01, Logo02, Logo03, Logo04, Logo05, Logo06 } from "@/components/custom/logos";
+import { Logo01, Logo02, Logo03, Logo04, Logo05, Logo06 } from "@/components/general/logos";
 
 import Marquee from "react-fast-marquee";
 
@@ -37,9 +37,14 @@ const testimonials = [
   },
 ];
 
-export default function TrustedBy() {
+type TrustedByProps = {
+  extraStyle?: string;
+  fullWidth?: boolean;
+};
+
+export default function TrustedBy({ extraStyle, fullWidth }: TrustedByProps) {
   return (
-    <SectionContainer fullWidth={true} extraStyle="bg-muted">
+    <SectionContainer fullWidth={fullWidth} extraStyle={extraStyle}>
       <div className="flex justify-center items-center">
         <div>
           <h2 className="mb-14 text-5xl md:text-6xl font-bold text-center tracking-tight text-zinc-900 dark:text-zinc-100">

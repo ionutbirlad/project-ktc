@@ -1,14 +1,19 @@
-import SectionContainer from "@/components/layout/SectionContainer";
 import Image from "next/image";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
-import { Download } from "lucide-react";
+import SectionContainer from "@/components/layout/SectionContainer";
+import { Icons } from "@/components/icons/Icons";
 
-export default function AboutCallout() {
+type AboutCalloutProps = {
+  extraStyle?: string;
+  fullWidth?: boolean;
+};
+
+export default function AboutCallout({ extraStyle, fullWidth }: AboutCalloutProps) {
   return (
-    <SectionContainer>
+    <SectionContainer extraStyle={extraStyle} fullWidth={fullWidth}>
       <div className="flex flex-col md:flex-row-reverse gap-12">
         <div className="mt-10 w-48 h-48 md:w-64 md:h-64 hidden md:block">
           <div className="relative w-full h-full rounded-2xl overflow-hidden bg-accent">
@@ -41,7 +46,7 @@ export default function AboutCallout() {
             </Button>
 
             <Button variant="outline" className="rounded-full">
-              <Download />
+              <Icons.download />
               Download CV
             </Button>
           </div>

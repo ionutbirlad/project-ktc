@@ -1,80 +1,67 @@
-import SectionContainer from "@/components/layout/SectionContainer";
-
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
+import SectionContainer from "@/components/layout/SectionContainer";
+import { Icons } from "@/components/icons/Icons";
 import { cn } from "@/lib/utils";
-import {
-  BadgeDollarSign,
-  Bike,
-  BookHeart,
-  BriefcaseBusiness,
-  Calendar,
-  ClockIcon,
-  Cpu,
-  FlaskRound,
-  HeartPulse,
-  Scale,
-  ArrowRight,
-} from "lucide-react";
 
 const categories = [
   {
     name: "Technology",
     totalPosts: 10,
-    icon: Cpu,
+    icon: Icons.cpu,
     background: "bg-indigo-500",
     color: "text-indigo-500",
   },
   {
     name: "Business",
     totalPosts: 5,
-    icon: BriefcaseBusiness,
+    icon: Icons.briefcaseBusiness,
     background: "bg-amber-500",
     color: "text-amber-500",
   },
   {
     name: "Finance",
     totalPosts: 8,
-    icon: BadgeDollarSign,
+    icon: Icons.badgeDollarSign,
     background: "bg-emerald-500",
     color: "text-emerald-500",
   },
   {
     name: "Health",
     totalPosts: 12,
-    icon: HeartPulse,
+    icon: Icons.heartPulse,
     background: "bg-rose-500",
     color: "text-rose-500",
   },
   {
     name: "Lifestyle",
     totalPosts: 15,
-    icon: BookHeart,
+    icon: Icons.bookHeart,
     background: "bg-cyan-500",
     color: "text-cyan-500",
   },
   {
     name: "Politics",
     totalPosts: 20,
-    icon: Scale,
+    icon: Icons.scale,
     background: "bg-teal-500",
     color: "text-teal-500",
   },
   {
     name: "Science",
     totalPosts: 25,
-    icon: FlaskRound,
+    icon: Icons.flaskRound,
     background: "bg-purple-500",
     color: "text-purple-500",
   },
   {
     name: "Sports",
     totalPosts: 30,
-    icon: Bike,
+    icon: Icons.bike,
     background: "bg-cyan-500",
     color: "text-cyan-500",
   },
@@ -85,13 +72,18 @@ const posts = [
   { title: "Dietro le quinte: admin panel", slug: "tailwind-setup-tips" },
 ];
 
-export default function BlogTeaser() {
+type BlogTeaserProps = {
+  extraStyle?: string;
+  fullWidth?: boolean;
+};
+
+export default function BlogTeaser({ extraStyle, fullWidth }: BlogTeaserProps) {
   return (
-    <SectionContainer>
-      <div className="flex flex-col lg:flex-row items-start gap-12">
+    <SectionContainer extraStyle={extraStyle} fullWidth={fullWidth}>
+      <div className="max-w-screen-lg mx-auto flex flex-col lg:flex-row items-start gap-12">
         <div>
           <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-            Posts
+            Tech thoughts
           </h2>
 
           <div className="mt-4 space-y-12">
@@ -121,10 +113,10 @@ export default function BlogTeaser() {
 
                     <div className="mt-4 flex items-center gap-6 text-zinc-600 dark:text-zinc-400 text-sm font-medium">
                       <div className="flex items-center gap-2">
-                        <ClockIcon className="h-4 w-4" /> 5 min read
+                        <Icons.clockIcon className="h-4 w-4" /> 5 min read
                       </div>
                       <div className="flex items-center gap-2">
-                        <Calendar className="h-4 w-4" /> Nov 20, 2024
+                        <Icons.calendar className="h-4 w-4" /> Nov 20, 2024
                       </div>
                     </div>
                   </CardContent>
@@ -139,7 +131,7 @@ export default function BlogTeaser() {
                 href="/blog"
                 className="flex items-center gap-1 text-zinc-900 dark:text-zinc-100"
               >
-                Guarda tutti i post <ArrowRight />
+                Guarda tutti i post <Icons.arrowRight />
               </Link>
             </Button>
           </div>

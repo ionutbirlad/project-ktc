@@ -2,24 +2,27 @@ import LayoutContainer from "@/components/layout/LayoutContainer";
 
 import HeroSection from "@/components/home/HeroSection";
 import AboutCallout from "@/components/home/AboutCallout";
-import ProfessionalExperience from "@/components/home/ProfessionalExperience";
 import TechStatsSection from "@/components/home/TechStatsSection";
 import ProjectsPreview from "@/components/home/ProjectsPreview";
 import BlogTeaser from "@/components/home/BlogTeaser";
-import TrustedBySection from "@/components/home/TrustedBySection";
-import ContactCTA from "@/components/home/ContactCTA";
+import ContactCTA from "@/components/general/ContactCTA";
+
+import SectionDivider from "@/components/general/SectionDivider";
 
 export default function HomePage() {
   return (
     <LayoutContainer>
-      <HeroSection />
+      <HeroSection extraStyle="max-h-[100svh] overflow-hidden bg-muted" fullWidth={true} />
+      <SectionDivider />
       <AboutCallout />
-      <ProfessionalExperience />
-      <TechStatsSection />
-      <ProjectsPreview />
-      <BlogTeaser />
-      <TrustedBySection />
-      <ContactCTA />
+      <SectionDivider />
+      <TechStatsSection extraStyle="bg-muted" fullWidth={true} />
+      <SectionDivider />
+      <ProjectsPreview extraStyle="relative" />
+      <SectionDivider />
+      <BlogTeaser extraStyle="bg-muted" fullWidth={true} />
+      <SectionDivider />
+      <ContactCTA extraStyle="text-center" />
     </LayoutContainer>
   );
 }

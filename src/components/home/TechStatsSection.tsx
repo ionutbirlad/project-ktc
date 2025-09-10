@@ -1,8 +1,13 @@
 import SectionContainer from "@/components/layout/SectionContainer";
 // import { Card, CardContent } from "@/components/ui/card";
-import TreemapChart from "@/components/custom/TreemapChart";
+import TreemapChart from "@/components/general/TreemapChart";
 
-export default function TechStatsSection() {
+type TechStatsSectionProps = {
+  extraStyle?: string;
+  fullWidth?: boolean;
+};
+
+export default function TechStatsSection({ extraStyle, fullWidth }: TechStatsSectionProps) {
   const stats = [
     { label: "🍴 Total Forks", value: "45" },
     { label: "📁 Public Repositories", value: "24" },
@@ -276,8 +281,8 @@ export default function TechStatsSection() {
   };
 
   return (
-    <SectionContainer>
-      <div className="flex items-center justify-center">
+    <SectionContainer extraStyle={extraStyle} fullWidth={fullWidth}>
+      <div className="max-w-screen-lg mx-auto">
         <div className="w-full">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
             The perfect starting point for any project
@@ -302,7 +307,7 @@ export default function TechStatsSection() {
         </div>
       </div>
 
-      <div className="mt-16 sm:mt-24">
+      <div className="max-w-screen-lg mx-auto mt-16 sm:mt-24">
         <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
           Panoramica delle Competenze Tecniche
         </h3>

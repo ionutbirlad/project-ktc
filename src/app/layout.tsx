@@ -7,7 +7,7 @@ import Footer from "@/components/layout/Footer";
 import ComingSoon from "@/components/general/ComingSoon";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  const MAINTENANCE_MODE = true;
+  const MAINTENANCE_MODE = false;
 
   return (
     <html lang="en" suppressHydrationWarning>

@@ -20,10 +20,14 @@ export default function ProjectsList({ extraStyle, fullWidth }: ProjectsListProp
     stackFilter === "All" ? true : p.tech.includes(stackFilter)
   );
 
+  function faiQuesto(stack: string) {
+    setStackFilter(stack);
+  }
+
   return (
     <SectionContainer extraStyle={extraStyle} fullWidth={fullWidth}>
       <h2 className="text-3xl font-bold text-center mb-6">Progetti reali</h2>
-      <ProjectsFilter onFilter={setStackFilter} />
+      <ProjectsFilter onFilter={faiQuesto} />
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {filtered.map((project) => (
           <ProjectCard key={project.title} project={project} />

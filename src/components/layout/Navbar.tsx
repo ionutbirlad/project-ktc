@@ -28,7 +28,7 @@ export default function Navbar() {
         }}
       >
         {/* Logo */}
-        <span className="sm:text-base font-bold tracking-tight text-muted-foreground hover:text-foreground transition whitespace-nowrap min-w-0">
+        <span className="sm:text-base font-bold tracking-tight text-muted-foreground hover:text-foreground transition whitespace-nowrap min-w-0 cursor-pointer">
           KTC
         </span>
 

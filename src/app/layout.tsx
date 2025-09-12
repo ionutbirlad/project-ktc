@@ -1,13 +1,11 @@
 import { ReactNode } from "react";
 import "@/styles/globals.css";
 import { ThemeProvider } from "@/styles/ThemeProvider";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 
 import ComingSoon from "@/components/general/ComingSoon";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  const MAINTENANCE_MODE = true;
+  const MAINTENANCE_MODE = false;
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -16,9 +14,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <ComingSoon />
         ) : (
           <ThemeProvider>
-            <Navbar />
             <main className="flex-grow">{children}</main>
-            <Footer />
           </ThemeProvider>
         )}
       </body>

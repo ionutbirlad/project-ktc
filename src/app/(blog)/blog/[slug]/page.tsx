@@ -1,9 +1,11 @@
-// app/blog/[slug]/page.tsx
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
+
+import { Button } from "@/components/ui/button";
 
 export const dynamic = "force-static";
 
@@ -30,6 +32,9 @@ export default async function Page(props: unknown) {
 
   return (
     <article className="prose dark:prose-invert max-w-3xl mx-auto py-12">
+      <Button className="mb-20">
+        <Link href="/blog">Torna al blog</Link>
+      </Button>
       <h1>{post.meta.title}</h1>
       {post.meta.date && <p className="text-sm text-muted-foreground">{post.meta.date}</p>}
       {post.meta.description && (

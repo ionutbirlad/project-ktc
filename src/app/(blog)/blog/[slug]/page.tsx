@@ -25,7 +25,6 @@ async function getPost(slug: string) {
 type BlogParams = { slug: string };
 
 export default async function Page(props: unknown) {
-  // narrow da unknown → oggetto con params.slug
   const { params } = props as { params: BlogParams };
   const post = await getPost(params.slug);
   if (!post) return notFound();

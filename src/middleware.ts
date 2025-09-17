@@ -1,14 +1,14 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 
-const PUBLIC_ROUTES = ["/", "/blog", "/site", "/auth/callback"]; // aggiungi le tue
+const PUBLIC_ROUTES = ["/", "/blog", "/site", "/auth/callback"];
 const AUTH_PAGES = ["/login", "/signup"];
-const PROTECTED_PREFIXES = ["/dashboard", "/account", "/settings"]; // adatta ai tuoi percorsi
-const ADMIN_PREFIX = "/admin"; // opzionale
+const PROTECTED_PREFIXES = ["/dashboard", "/account", "/settings"];
+const ADMIN_PREFIX = "/admin"; // optional
 
 export const config = {
   matcher: [
-    // escludi asset/statici
+    // exclude static assets
     "/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.(?:png|jpg|jpeg|gif|webp|svg|ico|css|js|map|txt|xml|woff|woff2|ttf|otf)).*)",
   ],
 };

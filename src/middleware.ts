@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 
-const PUBLIC_ROUTES = ["/", "/blog", "/site", "/auth/callback"];
+const PUBLIC_ROUTES = ["/", "/blog"];
 const AUTH_PAGES = ["/login", "/signup"];
 const PROTECTED_PREFIXES = ["/dashboard", "/account", "/settings"];
 const ADMIN_PREFIX = "/admin"; // optional
@@ -14,12 +14,13 @@ export const config = {
 };
 
 export async function middleware(req: NextRequest) {
-  console.log("asdasdas");
   const { pathname } = req.nextUrl;
   const res = NextResponse.next();
 
   const isAuthPage = AUTH_PAGES.includes(pathname);
-  const isPublic = PUBLIC_ROUTES.some((p) => pathname === p || pathname.startsWith(p + "/"));
+  const isPublic = PUBLIC_ROUTES.some(
+    (route) => pathname === route || pathname.startsWith(route + "/")
+  );
 
   // Pagine pubbliche (tranne /login e /signup): nessun check, esci subito
   if (isPublic && !isAuthPage) return res;

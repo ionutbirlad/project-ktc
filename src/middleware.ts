@@ -51,7 +51,7 @@ export async function middleware(req: NextRequest) {
   } = await supabase.auth.getUser();
 
   const isProtected = PROTECTED_PREFIXES.some(
-    (p) => pathname === p || pathname.startsWith(p + "/")
+    (prefix) => pathname === prefix || pathname.startsWith(prefix + "/")
   );
   const isAdminPath = pathname === ADMIN_PREFIX || pathname.startsWith(ADMIN_PREFIX + "/");
 

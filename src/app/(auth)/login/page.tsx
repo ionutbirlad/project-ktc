@@ -18,7 +18,7 @@ export default function LoginPage({ searchParams }: { searchParams: LoginPagePro
 
       <p className="mt-4 text-sm">
         Non hai un account?{" "}
-        <Link href="/signup" className="underline">
+        <Link href="/register" className="underline">
           Registrati
         </Link>
       </p>

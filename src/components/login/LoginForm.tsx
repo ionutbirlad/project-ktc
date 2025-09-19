@@ -1,17 +1,18 @@
-// 🆕 NEW: app/(auth)/login/LoginForm.tsx
 "use client";
 
 import { useFormState, useFormStatus } from "react-dom";
 import { signInWithEmailPassword, type AuthState } from "@/app/(auth)/actions";
+
+import { Button } from "@/components/ui/button";
 
 const initialState: AuthState = { ok: true };
 
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
-    <button className="w-full rounded bg-black text-white py-2" disabled={pending}>
+    <Button className="w-full" disabled={pending}>
       {pending ? "Invio..." : "Entra"}
-    </button>
+    </Button>
   );
 }
 

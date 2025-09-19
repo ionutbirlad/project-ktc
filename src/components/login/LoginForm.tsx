@@ -17,12 +17,10 @@ function SubmitButton() {
 }
 
 export function LoginForm({ next }: { next: string }) {
-  // ✨ CHANGED (rispetto a prima): ottieni formAction da useFormState
   const [state, formAction] = useFormState(signInWithEmailPassword, initialState);
 
   return (
     <form action={formAction} className="space-y-4">
-      {/* 🆕 NEW: messaggio d'errore inline */}
       {!state.ok && state.message && <p className="text-sm text-red-600">{state.message}</p>}
 
       <input type="hidden" name="next" value={next} />

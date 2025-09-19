@@ -1,5 +1,4 @@
 import Link from "next/link";
-// ✨ CHANGED: importa il form client
 import { LoginForm } from "@/components/login/LoginForm";
 
 export const metadata = { title: "Login" };
@@ -15,7 +14,6 @@ export default function LoginPage({ searchParams }: { searchParams: LoginPagePro
     <div className="mx-auto max-w-sm py-16">
       <h1 className="text-2xl font-semibold mb-6">Accedi</h1>
 
-      {/* ✨ CHANGED: sostituisce il <form> inline con il Client Component */}
       <LoginForm next={next} />
 
       <p className="mt-4 text-sm">

@@ -6,13 +6,10 @@ export const metadata = { title: "Login" };
 export default async function LoginPage({
   searchParams,
 }: {
-  searchParams?:
-    | Record<string, string | string[] | undefined>
-    | Promise<Record<string, string | string[] | undefined>>;
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  const params = await Promise.resolve(searchParams ?? {});
-  const raw = params?.redirect;
-  const next = Array.isArray(raw) ? raw[0] : raw || "/dashboard";
+  const raw = (await searchParams)?.redirect as string | string[] | undefined;
+  const next = Array.isArray(raw) ? raw[0] : (raw ?? "/dashboard");
 
   return (
     <div className="mx-auto max-w-sm py-16">

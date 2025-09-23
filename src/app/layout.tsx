@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/styles/ThemeProvider";
 import ComingSoon from "@/components/general/ComingSoon";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  const MAINTENANCE_MODE = false;
+  const MAINTENANCE_MODE = true;
 
   return (
     <html lang="en" suppressHydrationWarning>

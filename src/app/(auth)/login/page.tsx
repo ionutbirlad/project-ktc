@@ -3,12 +3,16 @@ import { LoginForm } from "@/components/login/LoginForm";
 
 export const metadata = { title: "Login" };
 
-type LoginPageProps = {
-  redirect?: string;
-};
-
-export default function LoginPage({ searchParams }: { searchParams: LoginPageProps }) {
-  const next = searchParams?.redirect || "/dashboard";
+export default async function LoginPage({
+  searchParams,
+}: {
+  searchParams?:
+    | Record<string, string | string[] | undefined>
+    | Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const params = await Promise.resolve(searchParams ?? {});
+  const raw = params?.redirect;
+  const next = Array.isArray(raw) ? raw[0] : raw || "/dashboard";
 
   return (
     <div className="mx-auto max-w-sm py-16">

@@ -1,6 +1,7 @@
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { signUpWithEmailPassword, type AuthState } from "@/app/(auth)/actions";
 
 import { Button } from "@/components/ui/button";
@@ -9,6 +10,7 @@ const initialState: AuthState = { ok: true };
 
 function SubmitButton() {
   const { pending } = useFormStatus();
+
   return (
     <Button className="w-full" disabled={pending}>
       {pending ? "Invio..." : "Entra"}
@@ -17,7 +19,7 @@ function SubmitButton() {
 }
 
 export function RegisterForm() {
-  const [state, formAction] = useFormState(signUpWithEmailPassword, initialState);
+  const [state, formAction] = useActionState(signUpWithEmailPassword, initialState);
 
   return (
     <form action={formAction} className="space-y-4">

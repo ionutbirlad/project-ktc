@@ -3,22 +3,9 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 
-import { z } from "zod";
-import {
-  signUpSchema,
-  signInSchema,
-  type SignUpInput,
-  type SignInInput,
-} from "@/lib/validation/auth";
-
-export type FieldErrors = Partial<Record<"email" | "password" | "confirmPassword", string>>;
-
-export type AuthState = {
-  ok: boolean;
-  message?: string;
-  formErrors?: string[]; // "global" form errors
-  fieldErrors?: FieldErrors; // field specific errors
-};
+import { signUpSchema, signInSchema } from "@/lib/validation/auth/auth";
+import { zodToAuthErrorsSignUp, zodToAuthErrorsSignin } from "@/lib/validation/auth/helpers";
+import { type AuthState } from "@/lib/validation/auth/types";
 
 export async function signInWithEmailPassword(
   _prevState: AuthState,
@@ -106,35 +93,4 @@ export async function signOut() {
   const supabase = await createClient();
   await supabase.auth.signOut();
   redirect("/login");
-}
-
-// HELPERS
-
-// Helper: map Zod errors (Sign Up) -> AuthState.fieldErrors / formErrors
-function zodToAuthErrorsSignUp(err: z.ZodError): Pick<AuthState, "fieldErrors" | "formErrors"> {
-  const { formErrors, fieldErrors } = z.flattenError(err) as z.ZodFlattenedError<
-    SignUpInput,
-    string
-  >;
-  // Get the first message for every field (if present)
-  const fe: FieldErrors = {
-    email: fieldErrors.email?.[0],
-    password: fieldErrors.password?.[0],
-    confirmPassword: fieldErrors.confirmPassword?.[0],
-  };
-  return { fieldErrors: fe, formErrors };
-}
-
-// Helper: map Zod errors (Sign In) -> AuthState.fieldErrors / formErrors
-function zodToAuthErrorsSignin(err: z.ZodError): Pick<AuthState, "fieldErrors" | "formErrors"> {
-  const { formErrors, fieldErrors } = z.flattenError(err) as z.ZodFlattenedError<
-    SignInInput,
-    string
-  >;
-  // Get the first message for every field (if present)
-  const fe: FieldErrors = {
-    email: fieldErrors.email?.[0],
-    password: fieldErrors.password?.[0],
-  };
-  return { fieldErrors: fe, formErrors };
 }

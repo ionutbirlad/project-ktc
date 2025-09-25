@@ -23,41 +23,47 @@ export function RegisterForm() {
 
   return (
     <form action={formAction} className="space-y-4">
-      {!state.ok && state.message && <p className="text-sm text-red-600">{state.message}</p>}
-
+      {!state.ok && state.message && <p className="text-sm text-red-600 m-0">{state.message}</p>}{" "}
+      <br />
+      {!state.ok && state.formErrors && state.formErrors.length > 0 && (
+        <div>
+          {state.formErrors.map((error, index) => (
+            <p key={index} className="text-sm text-red-600">
+              {error}
+            </p>
+          ))}
+        </div>
+      )}
       <input
         name="email"
         type="email"
         required
         placeholder="Email"
-        className="w-full rounded border p-2"
+        className="w-full rounded border p-2 mb-0"
       />
       {!state.ok && state.fieldErrors?.email && (
         <p className="text-sm text-red-600">{state.fieldErrors?.email}</p>
       )}
-
       <input
         name="password"
         type="password"
         required
         placeholder="Password"
-        className="w-full rounded border p-2"
+        className="w-full rounded border p-2 mb-0"
       />
       {!state.ok && state.fieldErrors?.password && (
         <p className="text-sm text-red-600">{state.fieldErrors?.password}</p>
       )}
-
       <input
         name="confirmPassword"
         type="password"
         required
         placeholder="Conferma password"
-        className="w-full rounded border p-2"
+        className="w-full rounded border p-2 mb-0"
       />
       {!state.ok && state.fieldErrors?.confirmPassword && (
         <p className="text-sm text-red-600">{state.fieldErrors?.confirmPassword}</p>
       )}
-
       <SubmitButton />
     </form>
   );

@@ -19,14 +19,42 @@ export async function signInWithEmailPassword(
   _prevState: AuthState,
   formData: FormData
 ): Promise<AuthState> {
-  const email = String(formData.get("email") || "").trim();
-  const password = String(formData.get("password") || "");
-  const next = String(formData.get("next") || "/dashboard");
+  try {
+    // 1) Read data from the form
+    const data = {
+      email: String(formData.get("email") || "").trim(),
+      password: String(formData.get("password") || ""),
+      next: String(formData.get("next") || "/dashboard"),
+    };
 
-  const supabase = await createClient();
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
-  if (error) return { ok: false, message: error.message };
-  redirect(next);
+    // 2) Validate with Zod (source of truth)
+    const parsed = signUpSchema.safeParse(data);
+    if (!parsed.success) {
+      return {
+        ok: false,
+        message: "Correggi gli errori e riprova.",
+        ...zodToAuthErrorsSignin(parsed.error),
+      };
+    }
+
+    // 3) Sign in with Supabase
+    const supabase = await createClient();
+    const { error } = await supabase.auth.signInWithPassword({
+      email: data.email,
+      password: data.password,
+    });
+    if (error) return { ok: false, message: error.message };
+
+    // 4) Go further
+    redirect(data.next);
+  } catch (e) {
+    // 5) Unexpected errors fallback
+    console.error("[signUpWithEmailPassword] Unexpected error:", e);
+    return {
+      ok: false,
+      message: "Si è verificato un errore inatteso. Riprova più tardi.",
+    };
+  }
 }
 
 export async function signUpWithEmailPassword(
@@ -77,7 +105,7 @@ export async function signOut() {
 
 // HELPERS
 
-// Helper: map Zod errors -> AuthState.fieldErrors / formErrors
+// Helper: map Zod errors (Sign Up) -> AuthState.fieldErrors / formErrors
 function zodToAuthErrorsSignUp(err: z.ZodError): Pick<AuthState, "fieldErrors" | "formErrors"> {
   const { formErrors, fieldErrors } = z.flattenError(err) as z.ZodFlattenedError<
     SignUpInput,
@@ -88,6 +116,20 @@ function zodToAuthErrorsSignUp(err: z.ZodError): Pick<AuthState, "fieldErrors" |
     email: fieldErrors.email?.[0],
     password: fieldErrors.password?.[0],
     confirmPassword: fieldErrors.confirmPassword?.[0],
+  };
+  return { fieldErrors: fe, formErrors };
+}
+
+// Helper: map Zod errors (Sign In) -> AuthState.fieldErrors / formErrors
+function zodToAuthErrorsSignin(err: z.ZodError): Pick<AuthState, "fieldErrors" | "formErrors"> {
+  const { formErrors, fieldErrors } = z.flattenError(err) as z.ZodFlattenedError<
+    SignUpInput,
+    string
+  >;
+  // Get the first message for every field (if present)
+  const fe: FieldErrors = {
+    email: fieldErrors.email?.[0],
+    password: fieldErrors.password?.[0],
   };
   return { fieldErrors: fe, formErrors };
 }

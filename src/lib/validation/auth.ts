@@ -14,5 +14,14 @@ export const signUpSchema = z
     message: "Le password non coincidono",
   });
 
+export const signInSchema = z.object({
+  email: z.email({ message: "Inserisci un'email valida" }),
+  password: z
+    .string()
+    .min(8, "La password deve avere almeno 8 caratteri")
+    .max(100, "La password è troppo lunga"),
+});
+
 // Inferred types
 export type SignUpInput = z.infer<typeof signUpSchema>;
+export type SignInInput = z.infer<typeof signUpSchema>;

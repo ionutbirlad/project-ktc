@@ -4,7 +4,12 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 
 import { z } from "zod";
-import { signUpSchema, type SignUpInput } from "@/lib/validation/auth";
+import {
+  signUpSchema,
+  signInSchema,
+  type SignUpInput,
+  type SignInInput,
+} from "@/lib/validation/auth";
 
 export type FieldErrors = Partial<Record<"email" | "password" | "confirmPassword", string>>;
 
@@ -28,7 +33,7 @@ export async function signInWithEmailPassword(
     };
 
     // 2) Validate with Zod (source of truth)
-    const parsed = signUpSchema.safeParse(data);
+    const parsed = signInSchema.safeParse(data);
     if (!parsed.success) {
       return {
         ok: false,
@@ -123,7 +128,7 @@ function zodToAuthErrorsSignUp(err: z.ZodError): Pick<AuthState, "fieldErrors" |
 // Helper: map Zod errors (Sign In) -> AuthState.fieldErrors / formErrors
 function zodToAuthErrorsSignin(err: z.ZodError): Pick<AuthState, "fieldErrors" | "formErrors"> {
   const { formErrors, fieldErrors } = z.flattenError(err) as z.ZodFlattenedError<
-    SignUpInput,
+    SignInInput,
     string
   >;
   // Get the first message for every field (if present)

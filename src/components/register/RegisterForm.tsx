@@ -34,39 +34,45 @@ export function RegisterForm() {
           ))}
         </div>
       )}
-      <input
-        name="email"
-        type="email"
-        required
-        placeholder="Email"
-        autoComplete="email"
-        className="w-full rounded border p-2 mb-0"
-      />
-      {!state.ok && state.fieldErrors?.email && (
-        <p className="text-sm text-red-600">{state.fieldErrors?.email}</p>
-      )}
-      <input
-        name="password"
-        type="password"
-        required
-        placeholder="Password"
-        autoComplete="new-password"
-        className="w-full rounded border p-2 mb-0"
-      />
-      {!state.ok && state.fieldErrors?.password && (
-        <p className="text-sm text-red-600">{state.fieldErrors?.password}</p>
-      )}
-      <input
-        name="confirmPassword"
-        type="password"
-        required
-        placeholder="Conferma password"
-        autoComplete="new-password"
-        className="w-full rounded border p-2 mb-0"
-      />
-      {!state.ok && state.fieldErrors?.confirmPassword && (
-        <p className="text-sm text-red-600">{state.fieldErrors?.confirmPassword}</p>
-      )}
+      <div className="mb-5">
+        <input
+          name="email"
+          type="email"
+          required
+          placeholder="Email"
+          autoComplete="email"
+          className="w-full rounded border p-2 m-0"
+        />
+        {!state.ok && state.fieldErrors?.email && (
+          <p className="text-sm text-red-600">{state.fieldErrors?.email}</p>
+        )}
+      </div>
+      <div className="mb-5">
+        <input
+          name="password"
+          type="password"
+          required
+          placeholder="Password"
+          autoComplete="new-password"
+          className="w-full rounded border p-2 m-0"
+        />
+        {!state.ok && state.fieldErrors?.password && (
+          <p className="text-sm text-red-600">{state.fieldErrors?.password}</p>
+        )}
+      </div>
+      <div className="mb-5">
+        <input
+          name="confirmPassword"
+          type="password"
+          required
+          placeholder="Conferma password"
+          autoComplete="new-password"
+          className="w-full rounded border p-2 m-0"
+        />
+        {!state.ok && state.fieldErrors?.confirmPassword && (
+          <p className="text-sm text-red-600">{state.fieldErrors?.confirmPassword}</p>
+        )}
+      </div>
       <SubmitButton />
     </form>
   );

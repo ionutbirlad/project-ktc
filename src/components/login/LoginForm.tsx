@@ -33,28 +33,32 @@ export function LoginForm({ next }: { next: string }) {
       )}
 
       <input type="hidden" name="next" value={next} />
-      <input
-        name="email"
-        type="email"
-        required
-        placeholder="Email"
-        autoComplete="email"
-        className="w-full rounded border p-2 mb-0"
-      />
-      {!state.ok && state.fieldErrors?.email && (
-        <p className="text-sm text-red-600">{state.fieldErrors?.email}</p>
-      )}
-      <input
-        name="password"
-        type="password"
-        required
-        placeholder="Password"
-        autoComplete="current-password"
-        className="w-full rounded border p-2 mb-0"
-      />
-      {!state.ok && state.fieldErrors?.password && (
-        <p className="text-sm text-red-600">{state.fieldErrors?.password}</p>
-      )}
+      <div className="mb-5">
+        <input
+          name="email"
+          type="email"
+          required
+          placeholder="Email"
+          autoComplete="email"
+          className="w-full rounded border p-2 m-0"
+        />
+        {!state.ok && state.fieldErrors?.email && (
+          <p className="text-sm text-red-600">{state.fieldErrors?.email}</p>
+        )}
+      </div>
+      <div className="mb-5">
+        <input
+          name="password"
+          type="password"
+          required
+          placeholder="Password"
+          autoComplete="current-password"
+          className="w-full rounded border p-2 m-0"
+        />
+        {!state.ok && state.fieldErrors?.password && (
+          <p className="text-sm text-red-600">{state.fieldErrors?.password}</p>
+        )}
+      </div>
 
       <SubmitButton />
     </form>

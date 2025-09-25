@@ -39,6 +39,7 @@ export function RegisterForm() {
         type="email"
         required
         placeholder="Email"
+        autoComplete="email"
         className="w-full rounded border p-2 mb-0"
       />
       {!state.ok && state.fieldErrors?.email && (
@@ -49,6 +50,7 @@ export function RegisterForm() {
         type="password"
         required
         placeholder="Password"
+        autoComplete="new-password"
         className="w-full rounded border p-2 mb-0"
       />
       {!state.ok && state.fieldErrors?.password && (
@@ -59,6 +61,7 @@ export function RegisterForm() {
         type="password"
         required
         placeholder="Conferma password"
+        autoComplete="new-password"
         className="w-full rounded border p-2 mb-0"
       />
       {!state.ok && state.fieldErrors?.confirmPassword && (

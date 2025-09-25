@@ -38,6 +38,7 @@ export function LoginForm({ next }: { next: string }) {
         type="email"
         required
         placeholder="Email"
+        autoComplete="email"
         className="w-full rounded border p-2 mb-0"
       />
       {!state.ok && state.fieldErrors?.email && (
@@ -48,6 +49,7 @@ export function LoginForm({ next }: { next: string }) {
         type="password"
         required
         placeholder="Password"
+        autoComplete="current-password"
         className="w-full rounded border p-2 mb-0"
       />
       {!state.ok && state.fieldErrors?.password && (

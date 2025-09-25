@@ -1,9 +1,11 @@
 "use client";
 
 import { useFormState, useFormStatus } from "react-dom";
-import { signInWithEmailPassword, type AuthState } from "@/app/(auth)/actions";
+import { signInWithEmailPassword } from "@/app/(auth)/actions";
 
 import { Button } from "@/components/ui/button";
+
+import { type AuthState } from "@/lib/validation/auth/types";
 
 const initialState: AuthState = { ok: true };
 

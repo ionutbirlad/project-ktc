@@ -2,9 +2,11 @@
 
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
-import { signUpWithEmailPassword, type AuthState } from "@/app/(auth)/actions";
+import { signUpWithEmailPassword } from "@/app/(auth)/actions";
 
 import { Button } from "@/components/ui/button";
+
+import { type AuthState } from "@/lib/validation/auth/types";
 
 const initialState: AuthState = { ok: true };
 

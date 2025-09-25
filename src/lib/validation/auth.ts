@@ -1,8 +1,10 @@
 import { z } from "zod";
 
+const emailSchema = z.string().trim().toLowerCase().email("Inserisci un'email valida");
+
 export const signUpSchema = z
   .object({
-    email: z.email({ message: "Inserisci un'email valida" }),
+    email: emailSchema,
     password: z
       .string()
       .min(8, "La password deve avere almeno 8 caratteri")
@@ -15,11 +17,8 @@ export const signUpSchema = z
   });
 
 export const signInSchema = z.object({
-  email: z.email({ message: "Inserisci un'email valida" }),
-  password: z
-    .string()
-    .min(8, "La password deve avere almeno 8 caratteri")
-    .max(100, "La password è troppo lunga"),
+  email: emailSchema,
+  password: z.string().min(1, "Inserisci la password"),
 });
 
 // Inferred types

@@ -1,12 +1,14 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState, useEffect } from "react";
 import { useFormStatus } from "react-dom";
 import { signUpWithEmailPassword } from "@/app/(auth)/actions";
 
 import { Button } from "@/components/ui/button";
 
-import { type AuthState } from "@/lib/validation/auth/types";
+import { type AuthState, type FieldErrors } from "@/lib/validation/auth/types";
+import { signUpSchema } from "@/lib/validation/auth/auth";
+import { zodToAuthErrorsSignUp } from "@/lib/validation/auth/helpers";
 
 const initialState: AuthState = { ok: true };
 
@@ -22,6 +24,22 @@ function SubmitButton() {
 
 export function RegisterForm() {
   const [state, formAction] = useActionState(signUpWithEmailPassword, initialState);
+
+  const [formValues, setFormValues] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [formErrors, setFormErrors] = useState<FieldErrors>({});
+
+  useEffect(() => {
+    // Validate with Zod
+    const parsed = signUpSchema.safeParse(formValues);
+    if (!parsed.success) {
+      const { fieldErrors } = zodToAuthErrorsSignUp(parsed.error);
+      setFormErrors(fieldErrors);
+    }
+  }, [formValues]);
 
   return (
     <form action={formAction} className="space-y-4">
@@ -44,10 +62,13 @@ export function RegisterForm() {
           placeholder="Email"
           autoComplete="email"
           className="w-full rounded border p-2 m-0"
+          onChange={(e) => setFormValues({ ...formValues, [e.target.name]: e.target.value })}
         />
         {!state.ok && state.fieldErrors?.email && (
           <p className="text-sm text-red-600">{state.fieldErrors?.email}</p>
         )}
+
+        {formErrors.email && <p className="text-sm text-red-600">{formErrors.email}</p>}
       </div>
       <div className="mb-5">
         <input
@@ -57,10 +78,13 @@ export function RegisterForm() {
           placeholder="Password"
           autoComplete="new-password"
           className="w-full rounded border p-2 m-0"
+          onChange={(e) => setFormValues({ ...formValues, [e.target.name]: e.target.value })}
         />
         {!state.ok && state.fieldErrors?.password && (
           <p className="text-sm text-red-600">{state.fieldErrors?.password}</p>
         )}
+
+        {formErrors.password && <p className="text-sm text-red-600">{formErrors.password}</p>}
       </div>
       <div className="mb-5">
         <input
@@ -70,9 +94,14 @@ export function RegisterForm() {
           placeholder="Conferma password"
           autoComplete="new-password"
           className="w-full rounded border p-2 m-0"
+          onChange={(e) => setFormValues({ ...formValues, [e.target.name]: e.target.value })}
         />
         {!state.ok && state.fieldErrors?.confirmPassword && (
           <p className="text-sm text-red-600">{state.fieldErrors?.confirmPassword}</p>
+        )}
+
+        {formErrors.confirmPassword && (
+          <p className="text-sm text-red-600">{formErrors.confirmPassword}</p>
         )}
       </div>
       <SubmitButton />

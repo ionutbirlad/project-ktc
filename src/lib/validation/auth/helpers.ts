@@ -6,7 +6,7 @@ import { type FieldErrors, type AuthState } from "@/lib/validation/auth/types";
 // Helper: map Zod errors (Sign Up) -> AuthState.fieldErrors / formErrors
 export function zodToAuthErrorsSignUp(
   err: z.ZodError
-): Pick<AuthState, "fieldErrors" | "formErrors"> {
+): Required<Pick<AuthState, "fieldErrors" | "formErrors">> {
   const { formErrors, fieldErrors } = z.flattenError(err) as z.ZodFlattenedError<
     SignUpInput,
     string

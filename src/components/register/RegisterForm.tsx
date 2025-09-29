@@ -87,14 +87,21 @@ export function RegisterForm() {
           autoComplete="email"
           className="w-full rounded border p-2 m-0"
           aria-invalid={!!(formErrors.email || state.fieldErrors?.email)}
+          aria-describedby="email-error"
           onChange={(e) => setFormValues({ ...formValues, [e.target.name]: e.target.value })}
           onBlur={() => setTouched((t) => ({ ...t, email: true }))}
         />
         {!state.ok && state.fieldErrors?.email && (
-          <p className="text-sm text-red-600">{state.fieldErrors?.email}</p>
+          <p id="email-error" className="text-sm text-red-600">
+            {state.fieldErrors?.email}
+          </p>
         )}
 
-        {showFieldError("email") && <p className="text-sm text-red-600">{formErrors.email}</p>}
+        {showFieldError("email") && (
+          <p id="email-error" className="text-sm text-red-600">
+            {formErrors.email}
+          </p>
+        )}
       </div>
       <div className="mb-5">
         <input
@@ -105,15 +112,20 @@ export function RegisterForm() {
           autoComplete="new-password"
           className="w-full rounded border p-2 m-0"
           aria-invalid={!!(formErrors.password || state.fieldErrors?.password)}
+          aria-describedby="password-error"
           onChange={(e) => setFormValues({ ...formValues, [e.target.name]: e.target.value })}
           onBlur={() => setTouched((t) => ({ ...t, password: true }))}
         />
         {!state.ok && state.fieldErrors?.password && (
-          <p className="text-sm text-red-600">{state.fieldErrors?.password}</p>
+          <p id="password-error" className="text-sm text-red-600">
+            {state.fieldErrors?.password}
+          </p>
         )}
 
         {showFieldError("password") && (
-          <p className="text-sm text-red-600">{formErrors.password}</p>
+          <p id="password-error" className="text-sm text-red-600">
+            {formErrors.password}
+          </p>
         )}
       </div>
       <div className="mb-5">
@@ -125,15 +137,20 @@ export function RegisterForm() {
           autoComplete="new-password"
           className="w-full rounded border p-2 m-0"
           aria-invalid={!!(formErrors.confirmPassword || state.fieldErrors?.confirmPassword)}
+          aria-describedby="confirmPasword-error"
           onChange={(e) => setFormValues({ ...formValues, [e.target.name]: e.target.value })}
           onBlur={() => setTouched((t) => ({ ...t, confirmPassword: true }))}
         />
         {!state.ok && state.fieldErrors?.confirmPassword && (
-          <p className="text-sm text-red-600">{state.fieldErrors?.confirmPassword}</p>
+          <p id="confirmPassword-error" className="text-sm text-red-600">
+            {state.fieldErrors?.confirmPassword}
+          </p>
         )}
 
         {showFieldError("confirmPassword") && (
-          <p className="text-sm text-red-600">{formErrors.confirmPassword}</p>
+          <p id="confirmPassword-error" className="text-sm text-red-600">
+            {formErrors.confirmPassword}
+          </p>
         )}
       </div>
       <SubmitButton />

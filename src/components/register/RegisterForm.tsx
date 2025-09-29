@@ -37,19 +37,25 @@ export function RegisterForm() {
     confirmPassword?: boolean;
   }>({});
 
-  const showFieldError = (name: "email" | "password" | "confirmPassword") => {
-    if (name === "confirmPassword") {
-      return (
-        touched.confirmPassword &&
-        formValues.password.length > 0 &&
-        formValues.confirmPassword.length > 0 &&
-        !!formErrors.confirmPassword
-      );
+  // ✅ Mostra errori server solo dopo submit fallita.
+  // ✅ Non mostra MAI errori client finché il campo non è touched.
+  // ✅ Conferma: niente messaggi finché uno dei due è vuoto.
+  const getFieldError = (name: "email" | "password" | "confirmPassword") => {
+    const server = !state.ok ? state.fieldErrors?.[name] : undefined;
+    const client = formErrors[name];
+
+    // Se il campo NON è touched, non mostrare errori client.
+    // Mostra solo l'errore server (se esiste) dopo una submit fallita.
+    if (!touched[name]) {
+      return server ?? undefined;
     }
-    if (name === "password") {
-      return touched.password && !!formErrors.password;
+
+    // Da qui in poi il campo è touched → preferisci l'errore client "fresco"
+    if (name === "confirmPassword" && (!formValues.password || !formValues.confirmPassword)) {
+      return undefined;
     }
-    return touched[name] && !!formErrors[name];
+
+    return client ?? server ?? undefined;
   };
 
   useEffect(() => {
@@ -91,15 +97,9 @@ export function RegisterForm() {
           onChange={(e) => setFormValues({ ...formValues, [e.target.name]: e.target.value })}
           onBlur={() => setTouched((t) => ({ ...t, email: true }))}
         />
-        {!state.ok && state.fieldErrors?.email && (
+        {getFieldError("email") && (
           <p id="email-error" className="text-sm text-red-600">
-            {state.fieldErrors?.email}
-          </p>
-        )}
-
-        {showFieldError("email") && (
-          <p id="email-error" className="text-sm text-red-600">
-            {formErrors.email}
+            {getFieldError("email")}
           </p>
         )}
       </div>
@@ -116,15 +116,9 @@ export function RegisterForm() {
           onChange={(e) => setFormValues({ ...formValues, [e.target.name]: e.target.value })}
           onBlur={() => setTouched((t) => ({ ...t, password: true }))}
         />
-        {!state.ok && state.fieldErrors?.password && (
+        {getFieldError("password") && (
           <p id="password-error" className="text-sm text-red-600">
-            {state.fieldErrors?.password}
-          </p>
-        )}
-
-        {showFieldError("password") && (
-          <p id="password-error" className="text-sm text-red-600">
-            {formErrors.password}
+            {getFieldError("password")}
           </p>
         )}
       </div>
@@ -141,15 +135,9 @@ export function RegisterForm() {
           onChange={(e) => setFormValues({ ...formValues, [e.target.name]: e.target.value })}
           onBlur={() => setTouched((t) => ({ ...t, confirmPassword: true }))}
         />
-        {!state.ok && state.fieldErrors?.confirmPassword && (
+        {getFieldError("confirmPassword") && (
           <p id="confirmPassword-error" className="text-sm text-red-600">
-            {state.fieldErrors?.confirmPassword}
-          </p>
-        )}
-
-        {showFieldError("confirmPassword") && (
-          <p id="confirmPassword-error" className="text-sm text-red-600">
-            {formErrors.confirmPassword}
+            {getFieldError("confirmPassword")}
           </p>
         )}
       </div>

@@ -86,6 +86,7 @@ export function RegisterForm() {
           placeholder="Email"
           autoComplete="email"
           className="w-full rounded border p-2 m-0"
+          aria-invalid={!!(formErrors.email || state.fieldErrors?.email)}
           onChange={(e) => setFormValues({ ...formValues, [e.target.name]: e.target.value })}
           onBlur={() => setTouched((t) => ({ ...t, email: true }))}
         />
@@ -103,6 +104,7 @@ export function RegisterForm() {
           placeholder="Password"
           autoComplete="new-password"
           className="w-full rounded border p-2 m-0"
+          aria-invalid={!!(formErrors.password || state.fieldErrors?.password)}
           onChange={(e) => setFormValues({ ...formValues, [e.target.name]: e.target.value })}
           onBlur={() => setTouched((t) => ({ ...t, password: true }))}
         />
@@ -122,6 +124,7 @@ export function RegisterForm() {
           placeholder="Conferma password"
           autoComplete="new-password"
           className="w-full rounded border p-2 m-0"
+          aria-invalid={!!(formErrors.confirmPassword || state.fieldErrors?.confirmPassword)}
           onChange={(e) => setFormValues({ ...formValues, [e.target.name]: e.target.value })}
           onBlur={() => setTouched((t) => ({ ...t, confirmPassword: true }))}
         />

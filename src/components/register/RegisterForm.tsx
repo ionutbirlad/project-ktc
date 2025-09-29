@@ -12,11 +12,10 @@ import { zodToAuthErrorsSignUp } from "@/lib/validation/auth/helpers";
 
 const initialState: AuthState = { ok: true };
 
-function SubmitButton() {
+function SubmitButton({ isFormValid }: { isFormValid: boolean }) {
   const { pending } = useFormStatus();
-
   return (
-    <Button className="w-full" disabled={pending}>
+    <Button className="w-full" disabled={pending || !isFormValid}>
       {pending ? "Invio..." : "Entra"}
     </Button>
   );
@@ -36,6 +35,8 @@ export function RegisterForm() {
     password?: boolean;
     confirmPassword?: boolean;
   }>({});
+
+  const isFormValid = signUpSchema.safeParse(formValues).success;
 
   // ✅ Mostra errori server solo dopo submit fallita.
   // ✅ Non mostra MAI errori client finché il campo non è touched.
@@ -141,7 +142,7 @@ export function RegisterForm() {
           </p>
         )}
       </div>
-      <SubmitButton />
+      <SubmitButton isFormValid={isFormValid} />
     </form>
   );
 }

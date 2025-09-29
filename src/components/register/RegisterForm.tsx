@@ -40,7 +40,7 @@ export function RegisterForm() {
   }
 
   useEffect(() => {
-    if (!hasInteracted) return; // 👈 evita validazione al primo render
+    if (!hasInteracted) return; // 👈 avoid validation on first page load
     const t = setTimeout(() => {
       const parsed = signUpSchema.safeParse(formValues);
       if (!parsed.success) {

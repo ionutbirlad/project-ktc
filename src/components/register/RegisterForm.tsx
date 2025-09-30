@@ -38,20 +38,20 @@ export function RegisterForm() {
 
   const isFormValid = signUpSchema.safeParse(formValues).success;
 
-  // ✅ Mostra errori server solo dopo submit fallita.
-  // ✅ Non mostra MAI errori client finché il campo non è touched.
-  // ✅ Conferma: niente messaggi finché uno dei due è vuoto.
+  // ✅ Show server errors only after a failed submit
+  // ✅ Never show client errors if the field is not touched
+  // ✅ Confirm password: no messages until both fields are filled
   const getFieldError = (name: "email" | "password" | "confirmPassword") => {
     const server = !state.ok ? state.fieldErrors?.[name] : undefined;
     const client = formErrors[name];
 
-    // Se il campo NON è touched, non mostrare errori client.
-    // Mostra solo l'errore server (se esiste) dopo una submit fallita.
+    // If the field is NOT touched, don’t show client errors
+    // Show only the server error (if any) after a failed submit
     if (!touched[name]) {
       return server ?? undefined;
     }
 
-    // Da qui in poi il campo è touched → preferisci l'errore client "fresco"
+    // From here on the field is touched → prefer the fresh client error
     if (name === "confirmPassword" && (!formValues.password || !formValues.confirmPassword)) {
       return undefined;
     }

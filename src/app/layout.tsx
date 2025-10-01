@@ -9,7 +9,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="bg-background text-foreground flex min-h-screen flex-col font-sanss">
+      <body className="bg-background text-foreground flex min-h-screen flex-col font-sans">
         {maintenance ? (
           <ComingSoon />
         ) : (

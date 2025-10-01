@@ -1,14 +1,16 @@
 "use client";
 
-import { useActionState, useState, useEffect } from "react";
+import { useActionState, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { signInWithEmailPassword } from "@/app/(auth)/actions";
 
 import { Button } from "@/components/ui/button";
 
-import { type AuthState, type FieldErrors } from "@/lib/validation/auth/types";
+import { type AuthState } from "@/lib/validation/auth/types";
 import { signInSchema } from "@/lib/validation/auth/auth";
 import { zodToAuthErrorsSignin } from "@/lib/validation/auth/helpers";
+
+import { useZodValidation } from "@/hooks/useZodValidation";
 
 const initialState: AuthState = { ok: true };
 
@@ -28,42 +30,16 @@ export function LoginForm({ next }: { next: string }) {
     email: "",
     password: "",
   });
-  const [formErrors, setFormErrors] = useState<FieldErrors>({});
-  const [touched, setTouched] = useState<{
-    email?: boolean;
-    password?: boolean;
-  }>({});
-  const [isFormValid, setIsFormValid] = useState(false);
 
-  // ✅ Show server errors only after a failed submit
-  // ✅ Never show client errors if the field is not touched
-  // ✅ Confirm password: no messages until both fields are filled
-  const getFieldError = (name: "email" | "password") => {
-    const server = !state.ok ? state.fieldErrors?.[name] : undefined;
-    const client = formErrors[name];
-    // If the field is NOT touched, don’t show client errors
-    // Show only the server error (if any) after a failed submit
-    if (!touched[name]) {
-      return server ?? undefined;
-    }
-    // From here if the field is touched → prefer the fresh client error
-    return client ?? server ?? undefined;
-  };
-
-  useEffect(() => {
-    const t = setTimeout(() => {
-      const parsed = signInSchema.safeParse(formValues);
-      if (!parsed.success) {
-        const { fieldErrors } = zodToAuthErrorsSignin(parsed.error);
-        setFormErrors(fieldErrors);
-        setIsFormValid(false);
-      } else {
-        setFormErrors({});
-        setIsFormValid(true);
-      }
-    }, 300);
-    return () => clearTimeout(t);
-  }, [formValues]);
+  const {
+    isValid: isFormValid,
+    getFieldError,
+    setTouched,
+  } = useZodValidation(signInSchema, formValues, zodToAuthErrorsSignin, {
+    delay: 300,
+    serverErrors: state.ok ? {} : (state.fieldErrors ?? {}),
+    // nessuna confirmPairs nel login
+  });
 
   return (
     <form action={formAction} className="space-y-4">
@@ -87,10 +63,10 @@ export function LoginForm({ next }: { next: string }) {
           placeholder="Email"
           autoComplete="email"
           className="w-full rounded border p-2 m-0"
-          aria-invalid={!!(formErrors.email || state.fieldErrors?.email)}
+          aria-invalid={Boolean(getFieldError("email"))}
           aria-describedby="email-error"
           onChange={(e) => setFormValues({ ...formValues, [e.target.name]: e.target.value })}
-          onBlur={() => setTouched((t) => ({ ...t, email: true }))}
+          onBlur={() => setTouched("email")}
         />
         {getFieldError("email") && (
           <p id="email-error" className="text-sm text-red-600">
@@ -106,10 +82,10 @@ export function LoginForm({ next }: { next: string }) {
           placeholder="Password"
           autoComplete="current-password"
           className="w-full rounded border p-2 m-0"
-          aria-invalid={!!(formErrors.password || state.fieldErrors?.password)}
+          aria-invalid={Boolean(getFieldError("password"))}
           aria-describedby="password-error"
           onChange={(e) => setFormValues({ ...formValues, [e.target.name]: e.target.value })}
-          onBlur={() => setTouched((t) => ({ ...t, password: true }))}
+          onBlur={() => setTouched("password")}
         />
         {getFieldError("password") && (
           <p id="password-error" className="text-sm text-red-600">

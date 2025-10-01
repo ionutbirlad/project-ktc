@@ -1,6 +1,7 @@
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { signInWithEmailPassword } from "@/app/(auth)/actions";
 
 import { Button } from "@/components/ui/button";
@@ -19,7 +20,7 @@ function SubmitButton() {
 }
 
 export function LoginForm({ next }: { next: string }) {
-  const [state, formAction] = useFormState(signInWithEmailPassword, initialState);
+  const [state, formAction] = useActionState(signInWithEmailPassword, initialState);
 
   return (
     <form action={formAction} className="space-y-4">

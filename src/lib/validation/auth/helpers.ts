@@ -23,7 +23,7 @@ export function zodToAuthErrorsSignUp(
 // Helper: map Zod errors (Sign In) -> AuthState.fieldErrors / formErrors
 export function zodToAuthErrorsSignin(
   err: z.ZodError
-): Pick<AuthState, "fieldErrors" | "formErrors"> {
+): Required<Pick<AuthState, "fieldErrors" | "formErrors">> {
   const { formErrors, fieldErrors } = z.flattenError(err) as z.ZodFlattenedError<
     SignInInput,
     string

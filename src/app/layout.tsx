@@ -5,12 +5,12 @@ import { ThemeProvider } from "@/styles/ThemeProvider";
 import ComingSoon from "@/components/general/ComingSoon";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  const MAINTENANCE_MODE = true;
+  const maintenance = process.env.MAINTENANCE_MODE === "on";
 
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="bg-background text-foreground flex min-h-screen flex-col font-sans">
-        {MAINTENANCE_MODE ? (
+        {maintenance ? (
           <ComingSoon />
         ) : (
           <ThemeProvider>

@@ -44,18 +44,15 @@ export function RegisterForm() {
   const getFieldError = (name: "email" | "password" | "confirmPassword") => {
     const server = !state.ok ? state.fieldErrors?.[name] : undefined;
     const client = formErrors[name];
-
     // If the field is NOT touched, don’t show client errors
     // Show only the server error (if any) after a failed submit
     if (!touched[name]) {
       return server ?? undefined;
     }
-
     // From here on the field is touched → prefer the fresh client error
     if (name === "confirmPassword" && (!formValues.password || !formValues.confirmPassword)) {
       return undefined;
     }
-
     return client ?? server ?? undefined;
   };
 

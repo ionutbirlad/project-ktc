@@ -49,7 +49,7 @@ export function RegisterForm() {
     if (!touched[name]) {
       return server ?? undefined;
     }
-    // From here on the field is touched → prefer the fresh client error
+    // From here if the field is touched → prefer the fresh client error
     if (name === "confirmPassword" && (!formValues.password || !formValues.confirmPassword)) {
       return undefined;
     }

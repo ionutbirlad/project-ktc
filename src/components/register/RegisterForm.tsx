@@ -35,8 +35,7 @@ export function RegisterForm() {
     password?: boolean;
     confirmPassword?: boolean;
   }>({});
-
-  const isFormValid = signUpSchema.safeParse(formValues).success;
+  const [isFormValid, setIsFormValid] = useState(false);
 
   // ✅ Show server errors only after a failed submit
   // ✅ Never show client errors if the field is not touched
@@ -62,8 +61,10 @@ export function RegisterForm() {
       if (!parsed.success) {
         const { fieldErrors } = zodToAuthErrorsSignUp(parsed.error);
         setFormErrors(fieldErrors);
+        setIsFormValid(false);
       } else {
         setFormErrors({});
+        setIsFormValid(true);
       }
     }, 300);
     return () => clearTimeout(t);

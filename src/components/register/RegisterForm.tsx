@@ -1,14 +1,16 @@
 "use client";
 
-import { useActionState, useState, useEffect } from "react";
+import { useActionState, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { signUpWithEmailPassword } from "@/app/(auth)/actions";
 
 import { Button } from "@/components/ui/button";
 
-import { type AuthState, type FieldErrors } from "@/lib/validation/auth/types";
+import { type AuthState } from "@/lib/validation/auth/types";
 import { signUpSchema } from "@/lib/validation/auth/auth";
 import { zodToAuthErrorsSignUp } from "@/lib/validation/auth/helpers";
+
+import { useZodValidation } from "@/hooks/useZodValidation";
 
 const initialState: AuthState = { ok: true };
 
@@ -29,46 +31,16 @@ export function RegisterForm() {
     password: "",
     confirmPassword: "",
   });
-  const [formErrors, setFormErrors] = useState<FieldErrors>({});
-  const [touched, setTouched] = useState<{
-    email?: boolean;
-    password?: boolean;
-    confirmPassword?: boolean;
-  }>({});
-  const [isFormValid, setIsFormValid] = useState(false);
 
-  // ✅ Show server errors only after a failed submit
-  // ✅ Never show client errors if the field is not touched
-  // ✅ Confirm password: no messages until both fields are filled
-  const getFieldError = (name: "email" | "password" | "confirmPassword") => {
-    const server = !state.ok ? state.fieldErrors?.[name] : undefined;
-    const client = formErrors[name];
-    // If the field is NOT touched, don’t show client errors
-    // Show only the server error (if any) after a failed submit
-    if (!touched[name]) {
-      return server ?? undefined;
-    }
-    // From here if the field is touched → prefer the fresh client error
-    if (name === "confirmPassword" && (!formValues.password || !formValues.confirmPassword)) {
-      return undefined;
-    }
-    return client ?? server ?? undefined;
-  };
-
-  useEffect(() => {
-    const t = setTimeout(() => {
-      const parsed = signUpSchema.safeParse(formValues);
-      if (!parsed.success) {
-        const { fieldErrors } = zodToAuthErrorsSignUp(parsed.error);
-        setFormErrors(fieldErrors);
-        setIsFormValid(false);
-      } else {
-        setFormErrors({});
-        setIsFormValid(true);
-      }
-    }, 300);
-    return () => clearTimeout(t);
-  }, [formValues]);
+  const {
+    isValid: isFormValid,
+    getFieldError,
+    setTouched,
+  } = useZodValidation(signUpSchema, formValues, zodToAuthErrorsSignUp, {
+    delay: 300,
+    serverErrors: state.ok ? {} : (state.fieldErrors ?? {}),
+    confirmPairs: [["password", "confirmPassword"]],
+  });
 
   return (
     <form action={formAction} className="space-y-4">
@@ -94,7 +66,7 @@ export function RegisterForm() {
           aria-invalid={Boolean(getFieldError("email"))}
           aria-describedby="email-error"
           onChange={(e) => setFormValues({ ...formValues, [e.target.name]: e.target.value })}
-          onBlur={() => setTouched((t) => ({ ...t, email: true }))}
+          onBlur={() => setTouched("email")}
         />
         {getFieldError("email") && (
           <p id="email-error" className="text-sm text-red-600">
@@ -113,7 +85,7 @@ export function RegisterForm() {
           aria-invalid={Boolean(getFieldError("password"))}
           aria-describedby="password-error"
           onChange={(e) => setFormValues({ ...formValues, [e.target.name]: e.target.value })}
-          onBlur={() => setTouched((t) => ({ ...t, password: true }))}
+          onBlur={() => setTouched("password")}
         />
         {getFieldError("password") && (
           <p id="password-error" className="text-sm text-red-600">
@@ -132,7 +104,7 @@ export function RegisterForm() {
           aria-invalid={Boolean(getFieldError("confirmPassword"))}
           aria-describedby="confirmPassword-error"
           onChange={(e) => setFormValues({ ...formValues, [e.target.name]: e.target.value })}
-          onBlur={() => setTouched((t) => ({ ...t, confirmPassword: true }))}
+          onBlur={() => setTouched("confirmPassword")}
         />
         {getFieldError("confirmPassword") && (
           <p id="confirmPassword-error" className="text-sm text-red-600">

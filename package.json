@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@nivo/core": "^0.99.0",

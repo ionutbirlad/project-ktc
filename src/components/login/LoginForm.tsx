@@ -1,45 +1,100 @@
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
-import { signInWithEmailPassword, type AuthState } from "@/app/(auth)/actions";
+import { useActionState, useState } from "react";
+import { useFormStatus } from "react-dom";
+import { signInWithEmailPassword } from "@/app/(auth)/actions";
 
 import { Button } from "@/components/ui/button";
 
+import { type AuthState } from "@/lib/validation/auth/types";
+import { signInSchema } from "@/lib/validation/auth/auth";
+import { zodToAuthErrorsSignin } from "@/lib/validation/auth/helpers";
+
+import { useZodValidation } from "@/hooks/useZodValidation";
+
 const initialState: AuthState = { ok: true };
 
-function SubmitButton() {
+function SubmitButton({ isFormValid }: { isFormValid: boolean }) {
   const { pending } = useFormStatus();
   return (
-    <Button className="w-full" disabled={pending}>
+    <Button className="w-full" disabled={pending || !isFormValid}>
       {pending ? "Invio..." : "Entra"}
     </Button>
   );
 }
 
 export function LoginForm({ next }: { next: string }) {
-  const [state, formAction] = useFormState(signInWithEmailPassword, initialState);
+  const [state, formAction] = useActionState(signInWithEmailPassword, initialState);
+
+  const [formValues, setFormValues] = useState({
+    email: "",
+    password: "",
+  });
+
+  const {
+    isValid: isFormValid,
+    getFieldError,
+    setTouched,
+  } = useZodValidation(signInSchema, formValues, zodToAuthErrorsSignin, {
+    delay: 300,
+    serverErrors: state.ok ? {} : (state.fieldErrors ?? {}),
+    // nessuna confirmPairs nel login
+  });
 
   return (
     <form action={formAction} className="space-y-4">
       {!state.ok && state.message && <p className="text-sm text-red-600">{state.message}</p>}
+      {!state.ok && state.formErrors && state.formErrors.length > 0 && (
+        <div>
+          {state.formErrors.map((error, index) => (
+            <p key={index} className="text-sm text-red-600">
+              {error}
+            </p>
+          ))}
+        </div>
+      )}
 
       <input type="hidden" name="next" value={next} />
-      <input
-        name="email"
-        type="email"
-        required
-        placeholder="Email"
-        className="w-full rounded border p-2"
-      />
-      <input
-        name="password"
-        type="password"
-        required
-        placeholder="Password"
-        className="w-full rounded border p-2"
-      />
+      <div className="mb-5">
+        <input
+          name="email"
+          type="email"
+          required
+          placeholder="Email"
+          autoComplete="email"
+          className="w-full rounded border p-2 m-0"
+          aria-invalid={Boolean(getFieldError("email"))}
+          aria-describedby="email-error"
+          onChange={(e) => setFormValues({ ...formValues, [e.target.name]: e.target.value })}
+          onBlur={() => setTouched("email")}
+        />
+        {getFieldError("email") && (
+          <p id="email-error" className="text-sm text-red-600">
+            {getFieldError("email")}
+          </p>
+        )}
+      </div>
+      <div className="mb-5">
+        <input
+          name="password"
+          type="password"
+          required
+          placeholder="Password"
+          autoComplete="current-password"
+          className="w-full rounded border p-2 m-0"
+          aria-invalid={Boolean(getFieldError("password"))}
+          aria-describedby="password-error"
+          onChange={(e) => setFormValues({ ...formValues, [e.target.name]: e.target.value })}
+          onBlur={() => setTouched("password")}
+        />
+        {getFieldError("password") && (
+          <p id="password-error" className="text-sm text-red-600">
+            {getFieldError("password")}
+          </p>
+        )}
+      </div>
 
-      <SubmitButton />
+      <SubmitButton isFormValid={isFormValid} />
     </form>
   );
 }

@@ -62,18 +62,22 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(url);
   }
 
+  // ⛔ --- QUESTA PARTE puoi commentarla/toglierla per ora ---
   // (Opzionale) RBAC admin: app_metadata.roles = ['admin']
-  if (isAdminPath) {
-    const roles = (user?.app_metadata?.roles as string[]) ?? [];
-    if (!roles.includes("admin")) {
-      return NextResponse.redirect(new URL("/login", req.url));
-    }
-  }
+  // if (isAdminPath) {
+  //   const roles = (user?.app_metadata?.roles as string[]) ?? [];
+  //   if (!roles.includes("admin")) {
+  //     return NextResponse.redirect(new URL("/login", req.url));
+  //   }
+  // }
+  // ⛔ -----------------------------------------------------
 
+  // ⛔ --- ANCHE QUESTO BLOCCO puoi toglierlo per ora ---
   // Utente loggato che visita /login o /signup → portalo alla dashboard
-  if (user && isAuthPage) {
-    return NextResponse.redirect(new URL("/dashboard", req.url));
-  }
+  // if (user && isAuthPage) {
+  //   return NextResponse.redirect(new URL("/dashboard", req.url));
+  // }
+  // ⛔ ---------------------------------------------------
 
   return res;
 }

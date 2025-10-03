@@ -13,7 +13,7 @@ export default async function AdminLayout({ children }: { children: ReactNode })
 
   // If not logged → go to login (with redirect parameter to came back)
   if (!user) {
-    redirect(`/login?redirect=${encodeURIComponent("/admin")}`);
+    redirect(`/login?redirect=${encodeURIComponent("/admin/dashboard")}`);
   }
 
   return (

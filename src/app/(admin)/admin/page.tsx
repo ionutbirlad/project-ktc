@@ -3,18 +3,18 @@
 import LayoutContainer from "@/components/layout/LayoutContainer";
 import AdminPanel from "@/components/admin/AdminPanel";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+// import { useEffect } from "react";
+// import { useRouter } from "next/navigation";
 
 export default function AdminPage() {
-  const router = useRouter();
+  // const router = useRouter();
 
-  useEffect(() => {
-    const password = prompt("Inserisci password:");
-    if (password !== "ktc123") {
-      router.push("/");
-    }
-  }, [router]);
+  // useEffect(() => {
+  //   const password = prompt("Inserisci password:");
+  //   if (password !== "ktc123") {
+  //     router.push("/");
+  //   }
+  // }, [router]);
 
   return (
     <LayoutContainer>

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 import ThemeToggle from "@/components/general/ThemeToggle";
@@ -27,10 +28,15 @@ export default function AdminNavbar() {
           <NavMenu menuItems={links} className="hidden md:block" />
         </div>
         <div className="flex items-center gap-3">
-          <Button variant="outline" className="hidden sm:inline-flex">
-            Sign In
-          </Button>
-          <Button>Sign Up</Button>
+          <Link href="/login">
+            <Button variant="outline" size="sm" className="hidden sm:inline-flex">
+              Sign In
+            </Button>
+          </Link>
+          <Link href="/register">
+            <Button size="sm">Sign Up</Button>
+          </Link>
+
           <div className="shrink-0 min-w-0">
             <ThemeToggle />
           </div>

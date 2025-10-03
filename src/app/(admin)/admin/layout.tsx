@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { redirect } from "next/navigation";
-import AdminNavbar from "@/components/admin/layout/navbar/Navbar";
+import AdminNavbar from "@/components/admin/layout/navbar/AdminNavbar";
 
 import { createClient } from "@/lib/supabase/server";
 

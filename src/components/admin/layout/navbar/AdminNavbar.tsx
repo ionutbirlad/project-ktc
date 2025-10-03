@@ -9,7 +9,6 @@ import { NavigationSheet } from "./navigation-sheet";
 
 export default function AdminNavbar() {
   const links = [
-    { href: "/", label: "Home" },
     { href: "/admin/dashboard", label: "Dashboard" },
     { href: "/admin/account", label: "Account" },
     { href: "/admin/settings", label: "Settings" },
@@ -21,7 +20,7 @@ export default function AdminNavbar() {
         {/* Logo */}
         <div className="flex items-center gap-8">
           <span className="sm:text-base font-bold tracking-tight text-muted-foreground hover:text-foreground transition whitespace-nowrap min-w-0 cursor-pointer">
-            KTC
+            <Link href="/">KTC</Link>
           </span>
           {/* Desktop Menu */}
           <NavMenu menuItems={links} className="hidden md:block" />

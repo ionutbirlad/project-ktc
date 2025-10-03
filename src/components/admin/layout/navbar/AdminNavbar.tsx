@@ -10,10 +10,9 @@ import { NavigationSheet } from "./navigation-sheet";
 export default function AdminNavbar() {
   const links = [
     { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/projects", label: "Projects" },
-    { href: "/blog", label: "Blog" },
-    { href: "/contact", label: "Contact" },
+    { href: "/admin/dashboard", label: "Dashboard" },
+    { href: "/admin/account", label: "Account" },
+    { href: "/admin/settings", label: "Settings" },
   ];
 
   return (

@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 
 const PUBLIC_ROUTES = ["/", "/blog"];
-const AUTH_PAGES = ["/login", "/signup"];
+const AUTH_PAGES = ["/login", "/register"];
 const PROTECTED_PREFIXES = ["/dashboard", "/account", "/settings"];
 const ADMIN_PREFIX = "/admin"; // optional
 
@@ -72,12 +72,9 @@ export async function middleware(req: NextRequest) {
   // }
   // ⛔ -----------------------------------------------------
 
-  // ⛔ --- ANCHE QUESTO BLOCCO puoi toglierlo per ora ---
-  // Utente loggato che visita /login o /signup → portalo alla dashboard
-  // if (user && isAuthPage) {
-  //   return NextResponse.redirect(new URL("/dashboard", req.url));
-  // }
-  // ⛔ ---------------------------------------------------
+  if (user && isAuthPage) {
+    return NextResponse.redirect(new URL("/dashboard", req.url));
+  }
 
   return res;
 }

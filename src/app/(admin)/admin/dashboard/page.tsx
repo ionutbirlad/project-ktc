@@ -3,7 +3,7 @@
 import LayoutContainer from "@/components/layout/LayoutContainer";
 import AdminPanel from "@/components/admin/AdminPanel";
 
-export default function AdminPage() {
+export default function DashboardPage() {
   return (
     <LayoutContainer>
       <section className="max-w-5xl mx-auto px-4 py-20">

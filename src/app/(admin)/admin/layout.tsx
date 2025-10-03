@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { redirect } from "next/navigation";
+import AdminNavbar from "@/components/layout/Navbar";
 
 import { createClient } from "@/lib/supabase/server";
 
@@ -17,6 +18,7 @@ export default async function AdminLayout({ children }: { children: ReactNode })
 
   return (
     <div>
+      <AdminNavbar />
       <main className="flex-grow">{children}</main>
     </div>
   );

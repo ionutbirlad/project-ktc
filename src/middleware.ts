@@ -3,7 +3,7 @@ import { createServerClient } from "@supabase/ssr";
 
 const PUBLIC_ROUTES = ["/", "/blog"];
 const AUTH_PAGES = ["/login", "/register"];
-const PROTECTED_PREFIXES = ["/dashboard", "/account", "/settings"];
+const PROTECTED_PREFIXES = ["/admin/dashboard", "/admin/account", "/admin/settings"];
 const ADMIN_PREFIX = "/admin"; // optional
 
 export const config = {
@@ -73,7 +73,8 @@ export async function middleware(req: NextRequest) {
   // ⛔ -----------------------------------------------------
 
   if (user && isAuthPage) {
-    return NextResponse.redirect(new URL("/dashboard", req.url));
+    const next = req.nextUrl.searchParams.get("redirect") ?? "/admin/dashboard";
+    return NextResponse.redirect(new URL(next, req.url));
   }
 
   return res;

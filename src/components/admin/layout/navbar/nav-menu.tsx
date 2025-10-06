@@ -1,5 +1,4 @@
 import { ComponentProps } from "react";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   NavigationMenu,
@@ -20,18 +19,16 @@ export const NavMenu = ({ menuItems, ...props }: NavMenuProps) => {
       <NavigationMenuList className="gap-3 space-x-0 data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-start">
         {menuItems.map((menuItem) => (
           <NavigationMenuItem key={menuItem.href} asChild>
-            <NavigationMenuLink>
-              <Link href={menuItem.href}>
-                <span
-                  className={`inline-block transition-transform duration-300 ease-out hover:scale-125 whitespace-nowrap min-w-0 ${
-                    pathname === menuItem.href
-                      ? "text-primary font-semibold"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {menuItem.label}
-                </span>
-              </Link>
+            <NavigationMenuLink href={menuItem.href}>
+              <span
+                className={`inline-block transition-transform duration-300 ease-out hover:scale-125 whitespace-nowrap min-w-0 ${
+                  pathname === menuItem.href
+                    ? "text-primary font-semibold"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {menuItem.label}
+              </span>
             </NavigationMenuLink>
           </NavigationMenuItem>
         ))}

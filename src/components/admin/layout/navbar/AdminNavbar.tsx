@@ -8,6 +8,7 @@ import type { User } from "@supabase/supabase-js";
 import ThemeToggle from "@/components/general/ThemeToggle";
 import { NavMenu } from "./nav-menu";
 import { NavigationSheet } from "./navigation-sheet";
+import { LogoutForm } from "@/components/logout/LogoutForm";
 
 type AdminNavbarProps = {
   user: User;
@@ -33,7 +34,7 @@ export default function AdminNavbar({ user }: AdminNavbarProps) {
         </div>
         <div className="flex items-center gap-3">
           {user ? (
-            <Button size="sm">Logout</Button>
+            <LogoutForm />
           ) : (
             <>
               <Link href="/login">

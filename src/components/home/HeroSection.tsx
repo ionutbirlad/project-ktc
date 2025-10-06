@@ -6,6 +6,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 import Image from "next/image";
 import heroPhoto from "@/assets/images/home_hero-section.webp";
+import mePixelArt from "@/assets/images/me.png";
 
 type HeroSectionProps = {
   extraStyle?: string;
@@ -18,12 +19,23 @@ export default function HeroSection({ extraStyle, fullWidth }: HeroSectionProps)
       <AspectRatio ratio={16 / 9} className="bg-muted">
         <div className="max-w-screen-xl mx-auto flex h-full">
           <div className="w-1/2 h-full bg-red-500">
-            <div className="h-full content-center py-16 text-center">
+            <div className="h-full content-center px-10 py-16">
+              <Image
+                src={mePixelArt}
+                alt="Pixel Art di Ionut Birlad"
+                className="object-contain w-12 block"
+                priority
+              />
               <h1 className="text-4xl font-bold mb-4">Kill The Competition</h1>
-              <p className="text-muted-foreground max-w-xl mx-auto mb-6">
+              <p className="text-muted-foreground mx-auto mb-6">
                 Un progetto tecnico per distinguersi. Creato per sviluppatori, makers e visionari.
               </p>
-              <Button>Scopri di più</Button>
+              <div>
+                <Button>Scopri di più</Button>
+                <Button className="ml-5" variant="ghost">
+                  Scopri di più
+                </Button>
+              </div>
             </div>
           </div>
           <div className="w-1/2 h-full bg-orange-500 justify-center content-center">

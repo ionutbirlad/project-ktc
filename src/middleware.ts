@@ -2,8 +2,8 @@ import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 
 const PUBLIC_ROUTES = ["/", "/blog"];
-const AUTH_PAGES = ["/login", "/signup"];
-const PROTECTED_PREFIXES = ["/dashboard", "/account", "/settings"];
+const AUTH_PAGES = ["/login", "/register"];
+const PROTECTED_PREFIXES = ["/admin/dashboard", "/admin/account", "/admin/settings"];
 const ADMIN_PREFIX = "/admin"; // optional
 
 export const config = {
@@ -62,17 +62,19 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(url);
   }
 
+  // ⛔ --- QUESTA PARTE puoi commentarla/toglierla per ora ---
   // (Opzionale) RBAC admin: app_metadata.roles = ['admin']
-  if (isAdminPath) {
-    const roles = (user?.app_metadata?.roles as string[]) ?? [];
-    if (!roles.includes("admin")) {
-      return NextResponse.redirect(new URL("/login", req.url));
-    }
-  }
+  // if (isAdminPath) {
+  //   const roles = (user?.app_metadata?.roles as string[]) ?? [];
+  //   if (!roles.includes("admin")) {
+  //     return NextResponse.redirect(new URL("/login", req.url));
+  //   }
+  // }
+  // ⛔ -----------------------------------------------------
 
-  // Utente loggato che visita /login o /signup → portalo alla dashboard
   if (user && isAuthPage) {
-    return NextResponse.redirect(new URL("/dashboard", req.url));
+    const next = req.nextUrl.searchParams.get("redirect") ?? "/admin/dashboard";
+    return NextResponse.redirect(new URL(next, req.url));
   }
 
   return res;

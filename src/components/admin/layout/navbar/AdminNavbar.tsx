@@ -3,11 +3,17 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
+import type { User } from "@supabase/supabase-js";
+
 import ThemeToggle from "@/components/general/ThemeToggle";
 import { NavMenu } from "./nav-menu";
 import { NavigationSheet } from "./navigation-sheet";
 
-export default function AdminNavbar() {
+type AdminNavbarProps = {
+  user: User;
+};
+
+export default function AdminNavbar({ user }: AdminNavbarProps) {
   const links = [
     { href: "/admin/dashboard", label: "Dashboard" },
     { href: "/admin/account", label: "Account" },
@@ -26,14 +32,20 @@ export default function AdminNavbar() {
           <NavMenu menuItems={links} className="hidden md:block" />
         </div>
         <div className="flex items-center gap-3">
-          <Link href="/login">
-            <Button variant="outline" size="sm" className="hidden sm:inline-flex">
-              Sign In
-            </Button>
-          </Link>
-          <Link href="/register">
-            <Button size="sm">Sign Up</Button>
-          </Link>
+          {user ? (
+            <Button size="sm">Logout</Button>
+          ) : (
+            <>
+              <Link href="/login">
+                <Button variant="outline" size="sm" className="hidden sm:inline-flex">
+                  Sign In
+                </Button>
+              </Link>
+              <Link href="/register">
+                <Button size="sm">Sign Up</Button>
+              </Link>
+            </>
+          )}
 
           <div className="shrink-0 min-w-0">
             <ThemeToggle />

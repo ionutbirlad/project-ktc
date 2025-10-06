@@ -34,17 +34,6 @@ export const NavMenu = ({ menuItems, ...props }: NavMenuProps) => {
               </Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
-          //  <Link key={link.href} href={link.href}>
-          //    <span
-          //      className={`inline-block transition-transform duration-300 ease-out hover:scale-125 whitespace-nowrap min-w-0 ${
-          //        pathname === link.href
-          //          ? "text-primary font-semibold"
-          //          : "text-muted-foreground hover:text-foreground"
-          //      }`}
-          //    >
-          //      {link.label}
-          //    </span>
-          //  </Link>
         ))}
       </NavigationMenuList>
     </NavigationMenu>

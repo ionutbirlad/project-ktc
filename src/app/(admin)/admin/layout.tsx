@@ -18,7 +18,7 @@ export default async function AdminLayout({ children }: { children: ReactNode })
 
   return (
     <div>
-      <AdminNavbar />
+      <AdminNavbar user={user} />
       <main className="flex-grow">{children}</main>
     </div>
   );

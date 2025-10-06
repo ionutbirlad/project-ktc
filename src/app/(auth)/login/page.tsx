@@ -9,7 +9,7 @@ export default async function LoginPage({
   searchParams?: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const raw = (await searchParams)?.redirect as string | string[] | undefined;
-  const next = Array.isArray(raw) ? raw[0] : (raw ?? "/dashboard");
+  const next = Array.isArray(raw) ? raw[0] : (raw ?? "/admin/dashboard");
 
   return (
     <div className="mx-auto max-w-sm py-16">

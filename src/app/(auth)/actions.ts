@@ -11,9 +11,11 @@ export async function signInWithEmailPassword(
   _prevState: AuthState,
   formData: FormData
 ): Promise<AuthState> {
+  let data: { email: string; password: string; next: string };
+
   try {
     // 1) Read data from the form
-    const data = {
+    data = {
       email: String(formData.get("email") || "").trim(),
       password: String(formData.get("password") || ""),
       next: String(formData.get("next") || "/dashboard"),
@@ -36,17 +38,17 @@ export async function signInWithEmailPassword(
       password: data.password,
     });
     if (error) return { ok: false, message: error.message };
-
-    // 4) Go further
-    redirect(data.next);
   } catch (e) {
-    // 5) Unexpected errors fallback
+    // 4) Unexpected errors fallback
     console.error("[signUpWithEmailPassword] Unexpected error:", e);
     return {
       ok: false,
       message: "Si è verificato un errore inatteso. Riprova più tardi.",
     };
   }
+
+  // 5) Go further
+  redirect(data.next);
 }
 
 export async function signUpWithEmailPassword(

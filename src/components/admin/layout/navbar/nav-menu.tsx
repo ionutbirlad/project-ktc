@@ -23,7 +23,7 @@ export const NavMenu = ({ menuItems, ...props }: NavMenuProps) => {
             <NavigationMenuLink>
               <Link href={menuItem.href}>
                 <span
-                  className={`inline-block transition-transform duration-300 ease-out hover:scale-125 whitespace-nowrap min-w-0 ${
+                  className={`inline-blocks transition-transform duration-300 ease-out hover:scale-125 whitespace-nowrap min-w-0 ${
                     pathname === menuItem.href
                       ? "text-primary font-semibold"
                       : "text-muted-foreground hover:text-foreground"

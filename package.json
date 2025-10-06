@@ -7,9 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
-    "format:check": "prettier --check ."
+    "check": "npm run format:check && npm run lint && npm run typecheck"
   },
   "dependencies": {
     "@nivo/core": "^0.99.0",

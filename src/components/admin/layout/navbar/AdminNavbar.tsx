@@ -40,7 +40,7 @@ export default function AdminNavbar() {
           </div>
           {/* Mobile Menu */}
           <div className="md:hidden">
-            <NavigationSheet />
+            <NavigationSheet menuItems={links} />
           </div>
         </div>
       </div>

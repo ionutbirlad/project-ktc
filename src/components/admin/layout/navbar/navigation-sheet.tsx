@@ -4,7 +4,11 @@ import { Menu } from "lucide-react";
 import { Logo } from "./logo";
 import { NavMenu } from "./nav-menu";
 
-export const NavigationSheet = () => {
+type NavigationSheet = {
+  menuItems: Record<"href" | "label", string>[];
+};
+
+export const NavigationSheet = ({ menuItems }: NavigationSheet) => {
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -14,7 +18,7 @@ export const NavigationSheet = () => {
       </SheetTrigger>
       <SheetContent className="px-6 py-3">
         <Logo />
-        <NavMenu orientation="vertical" className="mt-6 [&>div]:h-full" />
+        <NavMenu menuItems={menuItems} orientation="vertical" className="mt-6 [&>div]:h-full" />
       </SheetContent>
     </Sheet>
   );

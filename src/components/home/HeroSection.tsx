@@ -1,11 +1,13 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
+
 import { useTheme } from "@/styles/ThemeProvider";
 import SectionContainer from "@/components/layout/SectionContainer";
 import { Button } from "@/components/ui/button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 
-import Image from "next/image";
 import heroPhoto from "@/assets/images/home_hero-section.webp";
 import signatureBlack from "@/assets/images/signature_black.png";
 import signatureWhite from "@/assets/images/signature_white.png";
@@ -24,30 +26,36 @@ export default function HeroSection({ extraStyle, fullWidth }: HeroSectionProps)
         <div className="max-w-screen-xl mx-auto flex h-full">
           <div className="w-1/2 h-full bg-red-500">
             <div className="h-full content-center px-10 py-16">
-              {theme === "dark" ? (
-                <Image
-                  src={signatureWhite}
-                  alt="White version of Ionut Birlad's signature"
-                  className="object-contain w-25 block"
-                  priority
-                />
-              ) : (
-                <Image
-                  src={signatureBlack}
-                  alt="Black version of Ionut Birlad's signature"
-                  className="object-contain w-25 block"
-                  priority
-                />
-              )}
-              <h1 className="text-4xl font-bold mb-4">Kill The Competition</h1>
+              <div className="mb-2">
+                {theme === "dark" ? (
+                  <Image
+                    src={signatureWhite}
+                    alt="White version of Ionut Birlad's signature"
+                    className="object-contain w-25 block"
+                    priority
+                  />
+                ) : (
+                  <Image
+                    src={signatureBlack}
+                    alt="Black version of Ionut Birlad's signature"
+                    className="object-contain w-25 block"
+                    priority
+                  />
+                )}
+              </div>
+              <h1 className="text-4xl font-bold mb-3">Kill The Competition</h1>
               <p className="text-muted-foreground mx-auto mb-6">
                 Un progetto tecnico per distinguersi. Creato per sviluppatori, makers e visionari.
               </p>
               <div>
-                <Button>Scopri di più</Button>
-                <Button className="ml-5" variant="ghost">
-                  Scopri di più
-                </Button>
+                <Link href="/contact">
+                  <Button>Contattami</Button>
+                </Link>
+                <Link href="/about">
+                  <Button className="ml-5" variant="ghost">
+                    Scopri di più
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

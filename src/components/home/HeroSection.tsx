@@ -51,10 +51,8 @@ export default function HeroSection({ extraStyle, fullWidth }: HeroSectionProps)
                 <Link href="/contact">
                   <Button>Contattami</Button>
                 </Link>
-                <Link href="/about">
-                  <Button className="ml-5" variant="ghost">
-                    Scopri di più
-                  </Button>
+                <Link className="ml-5" href="/about">
+                  <Button variant="ghost">Scopri di più</Button>
                 </Link>
               </div>
             </div>

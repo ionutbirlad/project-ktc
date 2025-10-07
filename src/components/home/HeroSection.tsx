@@ -22,46 +22,46 @@ export default function HeroSection({ extraStyle, fullWidth }: HeroSectionProps)
 
   return (
     <SectionContainer fullWidth={fullWidth} extraStyle={extraStyle}>
-      <AspectRatio ratio={16 / 9} className="bg-muted">
-        <div className="max-w-screen-xl mx-auto flex h-full">
-          <div className="w-1/2 h-full bg-red-500">
-            <div className="h-full content-center px-10 py-16">
-              <div className="mb-2">
-                {theme === "dark" ? (
-                  <Image
-                    src={signatureWhite}
-                    alt="White version of Ionut Birlad's signature"
-                    className="object-contain w-25 block"
-                    priority
-                  />
-                ) : (
-                  <Image
-                    src={signatureBlack}
-                    alt="Black version of Ionut Birlad's signature"
-                    className="object-contain w-25 block"
-                    priority
-                  />
-                )}
-              </div>
-              <h1 className="text-4xl font-bold mb-3">Kill The Competition</h1>
-              <p className="text-muted-foreground mx-auto mb-6">
-                Un progetto tecnico per distinguersi. Creato per sviluppatori, makers e visionari.
-              </p>
-              <div>
-                <Link href="/contact">
-                  <Button>Contattami</Button>
-                </Link>
-                <Link className="ml-5" href="/about">
-                  <Button variant="ghost">Scopri di più</Button>
-                </Link>
-              </div>
+      {/* <AspectRatio ratio={16 / 9} className="bg-muted"> */}
+      <div className="max-w-screen-lg lg:max-w-screen-xl mx-auto flex flex-col items-center lg:flex-row h-full">
+        <div className="w-1/2 h-full bg-red-500">
+          <div className="h-full px-10 py-16">
+            <div className="mb-2">
+              {theme === "dark" ? (
+                <Image
+                  src={signatureWhite}
+                  alt="White version of Ionut Birlad's signature"
+                  className="object-contain w-25 block"
+                  priority
+                />
+              ) : (
+                <Image
+                  src={signatureBlack}
+                  alt="Black version of Ionut Birlad's signature"
+                  className="object-contain w-25 block"
+                  priority
+                />
+              )}
+            </div>
+            <h1 className="text-4xl font-bold mb-3">Kill The Competition</h1>
+            <p className="text-muted-foreground mx-auto mb-6">
+              Un progetto tecnico per distinguersi. Creato per sviluppatori, makers e visionari.
+            </p>
+            <div>
+              <Link href="/contact">
+                <Button>Contattami</Button>
+              </Link>
+              <Link className="ml-5" href="/about">
+                <Button variant="ghost">Scopri di più</Button>
+              </Link>
             </div>
           </div>
-          <div className="w-1/2 h-full bg-orange-500 justify-center content-center">
-            <Image src={heroPhoto} alt="Foto di Ionut Birlad" className="object-contain" priority />
-          </div>
         </div>
-      </AspectRatio>
+        <div className="w-1/2 h-full bg-orange-500 justify-center content-center">
+          <Image src={heroPhoto} alt="Foto di Ionut Birlad" className="object-contain" priority />
+        </div>
+      </div>
+      {/* </AspectRatio> */}
     </SectionContainer>
   );
 }

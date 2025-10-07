@@ -24,7 +24,7 @@ export default function HeroSection({ extraStyle, fullWidth }: HeroSectionProps)
     <SectionContainer fullWidth={fullWidth} extraStyle={extraStyle}>
       {/* <AspectRatio ratio={16 / 9} className="bg-muted"> */}
       <div className="max-w-screen-sm lg:max-w-screen-xl mx-auto flex flex-col items-center lg:flex-row h-full">
-        <div className="lg:w-1/2 h-full bg-red-500">
+        <div className="lg:w-1/2 h-full">
           <div className="h-full px-10 py-16">
             <div className="mb-2">
               {theme === "dark" ? (
@@ -57,7 +57,7 @@ export default function HeroSection({ extraStyle, fullWidth }: HeroSectionProps)
             </div>
           </div>
         </div>
-        <div className="lg:w-1/2 h-full bg-orange-500 justify-center content-center">
+        <div className="lg:w-1/2 h-full justify-center content-center">
           <Image src={heroPhoto} alt="Foto di Ionut Birlad" className="object-contain" priority />
         </div>
       </div>

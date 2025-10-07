@@ -12,7 +12,7 @@ import SectionDivider from "@/components/general/SectionDivider";
 export default function HomePage() {
   return (
     <LayoutContainer>
-      <HeroSection extraStyle="max-h-[100svh] overflow-hidden bg-muted" fullWidth={true} />
+      <HeroSection extraStyle="bg-muted lg:py-20" fullWidth={true} />
       <SectionDivider />
       <AboutCallout />
       <SectionDivider />

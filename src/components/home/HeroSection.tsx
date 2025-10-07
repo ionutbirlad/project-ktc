@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useTheme } from "@/styles/ThemeProvider";
 import SectionContainer from "@/components/layout/SectionContainer";
 import { Button } from "@/components/ui/button";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+// import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 import heroPhoto from "@/assets/images/home_hero-section.webp";
 import signatureBlack from "@/assets/images/signature_black.png";

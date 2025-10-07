@@ -27,14 +27,14 @@ export default function HeroSection({ extraStyle, fullWidth }: HeroSectionProps)
               {theme === "dark" ? (
                 <Image
                   src={signatureWhite}
-                  alt="Pixel Art di Ionut Birlad"
+                  alt="White version of Ionut Birlad's signature"
                   className="object-contain w-25 block"
                   priority
                 />
               ) : (
                 <Image
                   src={signatureBlack}
-                  alt="Pixel Art di Ionut Birlad"
+                  alt="Black version of Ionut Birlad's signature"
                   className="object-contain w-25 block"
                   priority
                 />

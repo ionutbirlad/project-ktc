@@ -43,9 +43,10 @@ export default function HeroSection({ extraStyle, fullWidth }: HeroSectionProps)
                 />
               )}
             </div>
-            <h1 className="text-4xl font-bold mb-3">Kill The Competition</h1>
+            <h1 className="text-4xl font-bold mb-3">Project KTC</h1>
             <p className="text-muted-foreground mx-auto mb-6">
-              Un progetto tecnico per distinguersi. Creato per sviluppatori, makers e visionari.
+              Non il solito portfolio. È un ambiente reale dove pubblico codice, idee e risultati.
+              Se ti piace la pratica, sei nel posto giusto.
             </p>
             <div>
               <Link href="/contact">

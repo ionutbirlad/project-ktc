@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -35,15 +36,18 @@ export default function AboutCallout({ extraStyle, fullWidth }: AboutCalloutProp
           <h2 className="text-4xl font-bold mb-4 tracking-tight">Chi c&apos;è dietro KTC?</h2>
 
           <p className="text-muted-foreground mb-6 text-justify">
-            Sono uno sviluppatore con background tecnico e mente creativa. Kill The Competition è il
-            mio laboratorio per sperimentare, migliorare e distinguermi.
+            Sono uno sviluppatore full-stack con un approccio pratico e una mente curiosa. Kill The
+            Competition è il mio spazio indipendente per creare, testare idee reali e superare i
+            miei limiti — un progetto alla volta.
           </p>
 
           <div className="flex flex-wrap gap-4 justify-start">
-            <Button className="rounded-full">
-              <GitHubIcon />
-              View Github
-            </Button>
+            <Link target="_blank" rel="noopener noreferrer" href="https://github.com/ionutbirlad">
+              <Button className="rounded-full">
+                <GitHubIcon />
+                View Github
+              </Button>
+            </Link>
 
             <Button variant="outline" className="rounded-full">
               <Icons.download />

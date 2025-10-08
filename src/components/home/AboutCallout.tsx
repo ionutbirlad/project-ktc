@@ -15,7 +15,7 @@ type AboutCalloutProps = {
 export default function AboutCallout({ extraStyle, fullWidth }: AboutCalloutProps) {
   return (
     <SectionContainer extraStyle={extraStyle} fullWidth={fullWidth}>
-      <div className="flex flex-col md:flex-row-reverse gap-12">
+      <div className="flex flex-col md:flex-row-reverse gap-12 max-w-screen-sm lg:max-w-screen-xl mx-auto px-10">
         <div className="mt-10 w-48 h-48 md:w-64 md:h-64 hidden md:block">
           <div className="relative w-full h-full rounded-2xl overflow-hidden bg-accent">
             <Image src="/images/placeholder.svg" alt="" className="object-cover" fill />
@@ -24,7 +24,7 @@ export default function AboutCallout({ extraStyle, fullWidth }: AboutCalloutProp
 
         <div className="flex-1 md:text-left">
           <Badge variant="secondary" className="mb-4">
-            About Me
+            Il lato umano
           </Badge>
 
           <div className="mt-10 w-48 h-48 md:w-64 md:h-64 mt-3 mb-8 block md:hidden">

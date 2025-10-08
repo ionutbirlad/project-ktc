@@ -282,7 +282,7 @@ export default function TechStatsSection({ extraStyle, fullWidth }: TechStatsSec
 
   return (
     <SectionContainer extraStyle={extraStyle} fullWidth={fullWidth}>
-      <div className="max-w-screen-lg mx-auto">
+      <div className="max-w-screen-sm lg:max-w-screen-xl mx-auto px-10">
         <div className="w-full">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
             The perfect starting point for any project

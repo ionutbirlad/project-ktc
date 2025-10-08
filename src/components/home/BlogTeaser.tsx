@@ -80,7 +80,7 @@ type BlogTeaserProps = {
 export default function BlogTeaser({ extraStyle, fullWidth }: BlogTeaserProps) {
   return (
     <SectionContainer extraStyle={extraStyle} fullWidth={fullWidth}>
-      <div className="max-w-screen-lg mx-auto flex flex-col lg:flex-row items-start gap-12">
+      <div className="max-w-screen-sm lg:max-w-screen-xl mx-auto px-10 flex flex-col lg:flex-row items-start gap-12">
         <div>
           <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
             Tech thoughts

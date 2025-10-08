@@ -49,10 +49,12 @@ export default function AboutCallout({ extraStyle, fullWidth }: AboutCalloutProp
               </Button>
             </Link>
 
-            <Button variant="outline" className="rounded-full">
-              <Icons.download />
-              Download CV
-            </Button>
+            <Link target="_blank" rel="noopener noreferrer" href="/CV_IonutBirlad_2025.pdf">
+              <Button variant="outline" className="rounded-full">
+                <Icons.download />
+                Download CV
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

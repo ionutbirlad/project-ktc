@@ -45,14 +45,14 @@ export default function AboutCallout({ extraStyle, fullWidth }: AboutCalloutProp
             <Link target="_blank" rel="noopener noreferrer" href="https://github.com/ionutbirlad">
               <Button className="rounded-full">
                 <GitHubIcon />
-                View Github
+                Profilo Github
               </Button>
             </Link>
 
             <Link target="_blank" rel="noopener noreferrer" href="/CV_IonutBirlad_2025.pdf">
               <Button variant="outline" className="rounded-full">
                 <Icons.download />
-                Download CV
+                Scarica CV
               </Button>
             </Link>
           </div>

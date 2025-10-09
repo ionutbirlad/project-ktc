@@ -7,7 +7,17 @@ type TechStatsSectionProps = {
   fullWidth?: boolean;
 };
 
-export default function TechStatsSection({ extraStyle, fullWidth }: TechStatsSectionProps) {
+type RepoStats = {
+  stars: number;
+  forks: number;
+  commits30d: number;
+  prsMerged: number;
+  issuesClosed: number;
+  languages: { name: string; pct: number }[];
+  latestRelease?: { tag: string; publishedAt: string } | null;
+};
+
+export default async function TechStatsSection({ extraStyle, fullWidth }: TechStatsSectionProps) {
   const stats = [
     { label: "🍴 Total Forks", value: "45" },
     { label: "📁 Public Repositories", value: "24" },
@@ -279,6 +289,17 @@ export default function TechStatsSection({ extraStyle, fullWidth }: TechStatsSec
       },
     ],
   };
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SITE_URL}/api/github-stats?owner=ionutbirlad&name=project-ktc`,
+    { next: { revalidate: 3600 } }
+  );
+
+  if (!res.ok) return <p>Errore nel caricamento delle statistiche.</p>;
+
+  const ktcData: RepoStats = await res.json();
+
+  console.log(ktcData);
 
   return (
     <SectionContainer extraStyle={extraStyle} fullWidth={fullWidth}>

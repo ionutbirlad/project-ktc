@@ -1,34 +1,21 @@
-// app/api/github-stats/route.ts
 import { NextResponse } from "next/server";
 
+// 🔹 Query GraphQL estesa (repo + user)
 const GQL = `
-  query RepoStats(
-    $owner: String!
-    $name: String!
-    $since7d: GitTimestamp!
-    $since30d: GitTimestamp!
-    $sinceY: GitTimestamp!
-  ) {
+  query RepoStats($owner: String!, $name: String!, $sinceY: GitTimestamp!) {
     repository(owner: $owner, name: $name) {
       name
       stargazers { totalCount }
       forks { totalCount }
       pullRequests(states: MERGED) { totalCount }
       issues(states: CLOSED) { totalCount }
-      releases(first: 1, orderBy: {field: CREATED_AT, direction: DESC}) {
+      releases(first: 1, orderBy: { field: CREATED_AT, direction: DESC }) {
         nodes { tagName publishedAt }
       }
       defaultBranchRef {
         target {
           ... on Commit {
-            history(since: $since7d)  { totalCount }
-          }
-        }
-      }
-      commits30d: defaultBranchRef {
-        target {
-          ... on Commit {
-            history(since: $since30d) { totalCount }
+            history { totalCount }
           }
         }
       }
@@ -44,6 +31,20 @@ const GQL = `
         edges { size node { name } }
       }
     }
+
+    user(login: $owner) {
+      contributionsCollection {
+        contributionCalendar {
+          totalContributions
+          weeks {
+            contributionDays {
+              date
+              contributionCount
+            }
+          }
+        }
+      }
+    }
   }
 `;
 
@@ -55,9 +56,6 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "Missing ?owner= & ?name=" }, { status: 400 });
   }
 
-  const now = new Date();
-  const since7d = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString();
-  const since30d = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000).toISOString();
   const sinceY = new Date(new Date().getFullYear(), 0, 1).toISOString();
 
   const res = await fetch("https://api.github.com/graphql", {
@@ -68,9 +66,8 @@ export async function GET(req: Request) {
     },
     body: JSON.stringify({
       query: GQL,
-      variables: { owner, name, since7d, since30d, sinceY },
+      variables: { owner, name, sinceY },
     }),
-    // cache lato server (riduce rate-limit). Cambia TTL se vuoi.
     next: { revalidate: 3600 },
   });
 
@@ -81,41 +78,70 @@ export async function GET(req: Request) {
 
   const { data } = await res.json();
   const repo = data?.repository;
+  const user = data?.user;
   if (!repo) return NextResponse.json({ error: "Repository not found" }, { status: 404 });
 
-  // Normalizzazione output
-  const commits7d = repo.defaultBranchRef?.target?.history?.totalCount ?? 0;
-  const commits30d = repo.commits30d?.target?.history?.totalCount ?? 0;
+  // 🔹 Estrazione e normalizzazione
+  const totalCommits = repo.defaultBranchRef?.target?.history?.totalCount ?? 0;
   const commitsY = repo.commitsY?.target?.history?.totalCount ?? 0;
-
   const latest = repo.releases?.nodes?.[0] ?? null;
 
   type LanguageEdge = {
     size: number;
-    node: { name: string };
+    node: {
+      name: string;
+    };
   };
 
   const totalLang = repo.languages?.totalSize ?? 0;
-  const edges: LanguageEdge[] = repo.languages?.edges ?? [];
-
-  const languages = edges
+  const langEdges: LanguageEdge[] = repo.languages?.edges ?? [];
+  const languages = langEdges
     .map((e) => ({
       name: e.node.name,
       pct: totalLang ? Math.round((e.size / totalLang) * 100) : 0,
     }))
     .slice(0, 5);
 
+  // 🔹 Calcolo streak (giorni consecutivi con almeno 1 contributo)
+  type Week = {
+    contributionDays: {
+      date: Date;
+      contributionCount: number;
+    };
+  };
+
+  const weeks: Week[] = user?.contributionsCollection?.contributionCalendar?.weeks ?? [];
+
+  const days = weeks.flatMap((w) => w.contributionDays) ?? [];
+
+  let streak = 0;
+  for (let i = days.length - 1; i >= 0; i--) {
+    if (days[i].contributionCount > 0) streak++;
+    else break;
+  }
+
+  // 🔹 Normalizzazione finale in array di stats
+  const stats = [
+    { label: "⭐ Stars", value: repo.stargazers.totalCount },
+    { label: "🍴 Forks", value: repo.forks.totalCount },
+    { label: "🔄 PR Mergeate", value: repo.pullRequests.totalCount },
+    { label: "🐛 Issue Chiuse", value: repo.issues.totalCount },
+    { label: "💻 Commit Totali", value: totalCommits },
+    { label: "📆 Commit quest’anno", value: commitsY },
+    { label: "🔥 Streak", value: `${streak} giorni` },
+    {
+      label: "🧠 Linguaggi principali",
+      value: languages.map((l) => `${l.name} (${l.pct}%)`).join(", "),
+    },
+    latest && {
+      label: "🚀 Ultima release",
+      value: `${latest.tagName} – ${new Date(latest.publishedAt).toLocaleDateString("it-IT")}`,
+    },
+  ].filter(Boolean);
+
   return NextResponse.json({
     repo: repo.name,
-    stars: repo.stargazers.totalCount,
-    forks: repo.forks.totalCount,
-    prsMerged: repo.pullRequests.totalCount,
-    issuesClosed: repo.issues.totalCount,
-    commits7d,
-    commits30d,
-    commitsThisYear: commitsY,
-    latestRelease: latest ? { tag: latest.tagName, publishedAt: latest.publishedAt } : null,
-    languages,
     fetchedAt: new Date().toISOString(),
+    stats,
   });
 }

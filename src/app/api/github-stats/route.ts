@@ -122,20 +122,50 @@ export async function GET(req: Request) {
 
   // 🔹 Normalizzazione finale in array di stats
   const stats = [
-    { label: "⭐ Stars", value: repo.stargazers.totalCount },
-    { label: "🍴 Forks", value: repo.forks.totalCount },
-    { label: "🔄 PR Mergeate", value: repo.pullRequests.totalCount },
-    { label: "🐛 Issue Chiuse", value: repo.issues.totalCount },
-    { label: "💻 Commit Totali", value: totalCommits },
-    { label: "📆 Commit quest’anno", value: commitsY },
-    { label: "🔥 Streak", value: `${streak} giorni` },
+    {
+      label: "⭐ Stars",
+      value: repo.stargazers.totalCount,
+      description: "Numero di utenti che hanno aggiunto una stella al repository su GitHub.",
+    },
+    {
+      label: "🍴 Forks",
+      value: repo.forks.totalCount,
+      description: "Sviluppatori che hanno clonato il progetto per modificarlo o contribuire.",
+    },
+    {
+      label: "🔄 PR Mergeate",
+      value: repo.pullRequests.totalCount,
+      description: "Pull request completate con successo nel branch principale.",
+    },
+    {
+      label: "🐛 Issue Chiuse",
+      value: repo.issues.totalCount,
+      description: "Segnalazioni o bug risolti all’interno del repository.",
+    },
+    {
+      label: "💻 Commit Totali",
+      value: totalCommits,
+      description: "Numero complessivo di commit effettuati sul branch principale.",
+    },
+    {
+      label: "📆 Commit quest’anno",
+      value: commitsY,
+      description: "Totale dei commit realizzati dall’inizio dell’anno.",
+    },
+    {
+      label: "🔥 Streak",
+      value: `${streak} giorni`,
+      description: "Giorni consecutivi in cui ci sono stati contributi al codice.",
+    },
     {
       label: "🧠 Linguaggi principali",
       value: languages.map((l) => `${l.name} (${l.pct}%)`).join(", "),
+      description: "Distribuzione percentuale dei linguaggi usati nel repository.",
     },
     latest && {
       label: "🚀 Ultima release",
       value: `${latest.tagName} – ${new Date(latest.publishedAt).toLocaleDateString("it-IT")}`,
+      description: "Versione più recente del progetto pubblicata su GitHub.",
     },
   ].filter(Boolean);
 

@@ -10,7 +10,7 @@ type TechStatsSectionProps = {
 type RepoStats = {
   fetchedAt: Date;
   repo: string;
-  stats: { label: string; value: number }[];
+  stats: { label: string; value: number; description: string }[];
 };
 
 export default async function TechStatsSection({ extraStyle, fullWidth }: TechStatsSectionProps) {
@@ -306,9 +306,7 @@ export default async function TechStatsSection({ extraStyle, fullWidth }: TechSt
                   {stat.value}
                 </span>
                 <p className="mt-6 font-semibold text-xl">{stat.label}</p>
-                <p className="mt-2 text-[17px] text-muted-foreground">
-                  Super smart global color, typography and effects styles + variables!
-                </p>
+                <p className="mt-2 text-[17px] text-muted-foreground">{stat.description}</p>
               </div>
             ))}
           </div>

@@ -284,8 +284,6 @@ export default async function TechStatsSection({ extraStyle, fullWidth }: TechSt
 
   const ktcData: RepoStats = await res.json();
 
-  console.log(ktcData);
-
   return (
     <SectionContainer extraStyle={extraStyle} fullWidth={fullWidth}>
       <div className="max-w-screen-sm lg:max-w-screen-xl mx-auto px-10">

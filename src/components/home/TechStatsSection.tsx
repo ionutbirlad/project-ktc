@@ -8,27 +8,12 @@ type TechStatsSectionProps = {
 };
 
 type RepoStats = {
-  stars: number;
-  forks: number;
-  commits30d: number;
-  prsMerged: number;
-  issuesClosed: number;
-  languages: { name: string; pct: number }[];
-  latestRelease?: { tag: string; publishedAt: string } | null;
+  fetchedAt: Date;
+  repo: string;
+  stats: { label: string; value: number }[];
 };
 
 export default async function TechStatsSection({ extraStyle, fullWidth }: TechStatsSectionProps) {
-  const stats = [
-    { label: "🍴 Total Forks", value: "45" },
-    { label: "📁 Public Repositories", value: "24" },
-    { label: "⏱️ Contributions this year", value: "1,250+" },
-    { label: "🧑‍💻 Coding streak", value: "24 giorni" },
-    { label: "📆 Contributions in last 7 days", value: "31" },
-    { label: "🕐 Total Hours Coded", value: "~500h" },
-    { label: "🔁 Pull requests merged", value: "67" },
-    { label: "🐛 Issues closed", value: "33" },
-  ];
-
   const chartData = {
     name: "Skills",
     children: [
@@ -313,8 +298,10 @@ export default async function TechStatsSection({ extraStyle, fullWidth }: TechSt
             Layout 5.0, variables, smart variants, and WCAG accessibility.
           </p>
           <div className="mt-16 sm:mt-24 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-10 gap-y-16 justify-center">
-            {stats.map((stat, i) => (
-              <div key={i}>
+            {/* {ktcData.repo}
+            {new Date(ktcData.fetchedAt).toLocaleDateString("it-IT")} */}
+            {ktcData.stats.map((stat, index) => (
+              <div key={index}>
                 <span className="text-5xl md:text-6xl font-bold text-primary-foreground">
                   {stat.value}
                 </span>

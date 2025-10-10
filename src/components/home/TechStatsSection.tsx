@@ -16,7 +16,7 @@ type RepoStats = {
 
 export default async function TechStatsSection({ extraStyle, fullWidth }: TechStatsSectionProps) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SITE_URL}/api/github-stats?owner=ionutbirlad&name=project-ktc`,
+    `${process.env.NEXT_PUBLIC_SITE_URL}/api/github-stats?owner=ionutbirlad&name=project-ktc&weighted=1`,
     { next: { revalidate: 3600 } }
   );
 

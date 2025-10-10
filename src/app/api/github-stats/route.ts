@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
+import { promises as fs } from "node:fs";
+import path from "node:path";
 
-// 🔹 Query GraphQL estesa (repo + user)
 const GQL = `
   query RepoStats($owner: String!, $name: String!, $sinceY: GitTimestamp!) {
     repository(owner: $owner, name: $name) {
@@ -12,36 +13,13 @@ const GQL = `
       releases(first: 1, orderBy: { field: CREATED_AT, direction: DESC }) {
         nodes { tagName publishedAt }
       }
-      defaultBranchRef {
-        target {
-          ... on Commit {
-            history { totalCount }
-          }
-        }
-      }
-      commitsY: defaultBranchRef {
-        target {
-          ... on Commit {
-            history(since: $sinceY) { totalCount }
-          }
-        }
-      }
-      languages(first: 100, orderBy: { field: SIZE, direction: DESC }) {
-        totalSize
-        edges { size node { name } }
-      }
+      defaultBranchRef { target { ... on Commit { history { totalCount } } } }
+      commitsY: defaultBranchRef { target { ... on Commit { history(since: $sinceY) { totalCount } } } }
     }
-
     user(login: $owner) {
       contributionsCollection {
         contributionCalendar {
-          totalContributions
-          weeks {
-            contributionDays {
-              date
-              contributionCount
-            }
-          }
+          weeks { contributionDays { date contributionCount } }
         }
       }
     }
@@ -58,16 +36,14 @@ export async function GET(req: Request) {
 
   const sinceY = new Date(new Date().getFullYear(), 0, 1).toISOString();
 
+  // 1) Stats da GitHub (niente languages)
   const res = await fetch("https://api.github.com/graphql", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
     },
-    body: JSON.stringify({
-      query: GQL,
-      variables: { owner, name, sinceY },
-    }),
+    body: JSON.stringify({ query: GQL, variables: { owner, name, sinceY } }),
     next: { revalidate: 3600 },
   });
 
@@ -81,30 +57,39 @@ export async function GET(req: Request) {
   const user = data?.user;
   if (!repo) return NextResponse.json({ error: "Repository not found" }, { status: 404 });
 
-  // 🔹 Estrazione e normalizzazione
+  // 2) Leggi package.json in tempo reale
+  const pkgPath = path.join(process.cwd(), "package.json");
+  const pkgRaw = await fs.readFile(pkgPath, "utf8");
+  const pkg = JSON.parse(pkgRaw) as {
+    dependencies?: Record<string, string>;
+    devDependencies?: Record<string, string>;
+  };
+
+  const deps = Object.keys(pkg.dependencies ?? {}).sort((a, b) => a.localeCompare(b));
+  const devDeps = Object.keys(pkg.devDependencies ?? {}).sort((a, b) => a.localeCompare(b));
+
+  // 3) chartDataTechnologies per treemap (nessuna mappatura, nomi così come sono)
+  const chartDataTechnologies = {
+    name: "Technologies",
+    children: [
+      {
+        name: "Dependencies",
+        children: deps.map((d) => ({ name: d, value: 1 })),
+      },
+      {
+        name: "DevDependencies",
+        children: devDeps.map((d) => ({ name: d, value: 1 })),
+      },
+    ],
+  };
+
+  // 4) Stats (invariati)
   const totalCommits = repo.defaultBranchRef?.target?.history?.totalCount ?? 0;
   const commitsY = repo.commitsY?.target?.history?.totalCount ?? 0;
   const latest = repo.releases?.nodes?.[0] ?? null;
 
-  type LanguageEdge = {
-    size: number;
-    node: { name: string };
-  };
-
-  const langEdges: LanguageEdge[] = repo.languages?.edges ?? [];
-  const languagesAll = langEdges
-    .slice() // copia
-    .sort((a, b) => (b.size ?? 0) - (a.size ?? 0))
-    .map((e) => e.node.name);
-
-  // 🔹 Calcolo streak (giorni consecutivi con almeno 1 contributo)
-  type Week = {
-    contributionDays: {
-      date: Date;
-      contributionCount: number;
-    };
-  };
-  const weeks: Week[] = user?.contributionsCollection?.contributionCalendar?.weeks ?? [];
+  const weeks: { contributionDays: { date: string; contributionCount: number }[] }[] =
+    user?.contributionsCollection?.contributionCalendar?.weeks ?? [];
   const days = weeks.flatMap((w) => w.contributionDays) ?? [];
   let streak = 0;
   for (let i = days.length - 1; i >= 0; i--) {
@@ -112,60 +97,24 @@ export async function GET(req: Request) {
     else break;
   }
 
-  // 🔹 Normalizzazione finale in array di stats
   const stats = [
-    {
-      label: "⭐ Stars",
-      value: repo.stargazers.totalCount,
-      description: "Numero di utenti che hanno aggiunto una stella al repository su GitHub.",
-    },
-    {
-      label: "🍴 Forks",
-      value: repo.forks.totalCount,
-      description: "Sviluppatori che hanno clonato il progetto per modificarlo o contribuire.",
-    },
-    {
-      label: "🔄 PR Mergeate",
-      value: repo.pullRequests.totalCount,
-      description: "Pull request completate con successo nel branch principale.",
-    },
-    {
-      label: "🐛 Issue Chiuse",
-      value: repo.issues.totalCount,
-      description: "Segnalazioni o bug risolti all’interno del repository.",
-    },
-    {
-      label: "💻 Commit Totali",
-      value: totalCommits,
-      description: "Numero complessivo di commit effettuati sul branch principale.",
-    },
-    {
-      label: "📆 Commit quest’anno",
-      value: commitsY,
-      description: "Totale dei commit realizzati dall’inizio dell’anno.",
-    },
-    {
-      label: "🔥 Streak",
-      value: `${streak} giorni`,
-      description: "Giorni consecutivi in cui ci sono stati contributi al codice.",
-    },
-    {
-      label: "🧩 Tecnologie usate",
-      value: languagesAll.join(", "),
-      description:
-        "Elenco completo dei linguaggi, dal più usato al meno usato (secondo la metrica size).",
-    },
+    { label: "⭐ Stars", value: repo.stargazers.totalCount },
+    { label: "🍴 Forks", value: repo.forks.totalCount },
+    { label: "🔄 PR Mergeate", value: repo.pullRequests.totalCount },
+    { label: "🐛 Issue Chiuse", value: repo.issues.totalCount },
+    { label: "💻 Commit Totali", value: totalCommits },
+    { label: "📆 Commit quest’anno", value: commitsY },
     latest && {
       label: "🚀 Ultima release",
       value: `${latest.tagName} – ${new Date(latest.publishedAt).toLocaleDateString("it-IT")}`,
-      description: "Versione più recente del progetto pubblicata su GitHub.",
     },
+    { label: "🔥 Streak", value: `${streak} giorni` },
   ].filter(Boolean);
 
   return NextResponse.json({
     repo: repo.name,
     fetchedAt: new Date().toISOString(),
     stats,
-    languagesAll, // utile se vuoi renderizzarle come badge/pill nel client
+    chartDataTechnologies,
   });
 }

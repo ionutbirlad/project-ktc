@@ -12,17 +12,17 @@ import SectionDivider from "@/components/general/SectionDivider";
 export default function HomePage() {
   return (
     <LayoutContainer>
-      <HeroSection extraStyle="max-h-[100svh] overflow-hidden bg-muted" fullWidth={true} />
+      <HeroSection extraStyle="bg-muted lg:py-20" fullWidth={true} />
       <SectionDivider />
-      <AboutCallout />
+      <AboutCallout extraStyle="bg-muted" fullWidth={true} />
       <SectionDivider />
       <TechStatsSection extraStyle="bg-muted" fullWidth={true} />
       <SectionDivider />
-      <ProjectsPreview extraStyle="relative" />
+      <ProjectsPreview extraStyle="relative bg-muted" fullWidth={true} />
       <SectionDivider />
       <BlogTeaser extraStyle="bg-muted" fullWidth={true} />
       <SectionDivider />
-      <ContactCTA extraStyle="text-center" />
+      <ContactCTA extraStyle="bg-muted text-center" fullWidth={true} />
     </LayoutContainer>
   );
 }

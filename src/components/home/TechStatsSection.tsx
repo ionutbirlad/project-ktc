@@ -306,7 +306,6 @@ export default async function TechStatsSection({ extraStyle, fullWidth }: TechSt
                 </span>
                 <p className="mt-6 font-semibold text-xl">{stat.label}</p>
                 <p className="mt-2 text-[17px] text-muted-foreground">{stat.description}</p>
-                {ktcData.languagesAll.length}
               </div>
             ))}
           </div>

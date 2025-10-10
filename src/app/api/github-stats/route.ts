@@ -26,7 +26,7 @@ const GQL = `
           }
         }
       }
-      languages(first: 6, orderBy: { field: SIZE, direction: DESC }) {
+      languages(first: 100, orderBy: { field: SIZE, direction: DESC }) {
         totalSize
         edges { size node { name } }
       }
@@ -88,19 +88,14 @@ export async function GET(req: Request) {
 
   type LanguageEdge = {
     size: number;
-    node: {
-      name: string;
-    };
+    node: { name: string };
   };
 
-  const totalLang = repo.languages?.totalSize ?? 0;
   const langEdges: LanguageEdge[] = repo.languages?.edges ?? [];
-  const languages = langEdges
-    .map((e) => ({
-      name: e.node.name,
-      pct: totalLang ? Math.round((e.size / totalLang) * 100) : 0,
-    }))
-    .slice(0, 5);
+  const languagesAll = langEdges
+    .slice() // copia
+    .sort((a, b) => (b.size ?? 0) - (a.size ?? 0))
+    .map((e) => e.node.name);
 
   // 🔹 Calcolo streak (giorni consecutivi con almeno 1 contributo)
   type Week = {
@@ -109,11 +104,8 @@ export async function GET(req: Request) {
       contributionCount: number;
     };
   };
-
   const weeks: Week[] = user?.contributionsCollection?.contributionCalendar?.weeks ?? [];
-
   const days = weeks.flatMap((w) => w.contributionDays) ?? [];
-
   let streak = 0;
   for (let i = days.length - 1; i >= 0; i--) {
     if (days[i].contributionCount > 0) streak++;
@@ -158,9 +150,10 @@ export async function GET(req: Request) {
       description: "Giorni consecutivi in cui ci sono stati contributi al codice.",
     },
     {
-      label: "🧠 Linguaggi principali",
-      value: languages.map((l) => `${l.name} (${l.pct}%)`).join(", "),
-      description: "Distribuzione percentuale dei linguaggi usati nel repository.",
+      label: "🧩 Tecnologie usate",
+      value: languagesAll.join(", "),
+      description:
+        "Elenco completo dei linguaggi, dal più usato al meno usato (secondo la metrica size).",
     },
     latest && {
       label: "🚀 Ultima release",
@@ -173,5 +166,6 @@ export async function GET(req: Request) {
     repo: repo.name,
     fetchedAt: new Date().toISOString(),
     stats,
+    languagesAll, // utile se vuoi renderizzarle come badge/pill nel client
   });
 }

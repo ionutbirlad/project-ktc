@@ -11,6 +11,7 @@ type RepoStats = {
   fetchedAt: Date;
   repo: string;
   stats: { label: string; value: number; description: string }[];
+  languagesAll: object[];
 };
 
 export default async function TechStatsSection({ extraStyle, fullWidth }: TechStatsSectionProps) {
@@ -305,6 +306,7 @@ export default async function TechStatsSection({ extraStyle, fullWidth }: TechSt
                 </span>
                 <p className="mt-6 font-semibold text-xl">{stat.label}</p>
                 <p className="mt-2 text-[17px] text-muted-foreground">{stat.description}</p>
+                {ktcData.languagesAll.length}
               </div>
             ))}
           </div>

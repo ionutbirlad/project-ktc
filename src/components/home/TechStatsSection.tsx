@@ -28,12 +28,11 @@ export default async function TechStatsSection({ extraStyle, fullWidth }: TechSt
     <SectionContainer extraStyle={extraStyle} fullWidth={fullWidth}>
       <div className="max-w-screen-sm lg:max-w-screen-xl mx-auto px-10">
         <div className="w-full">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-            The perfect starting point for any project
-          </h2>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Sotto il cofano</h2>
           <p className="mt-6 text-lg max-w-2xl text-foreground/70">
-            The world&apos;s most advanced UI kit for Figma. Meticulously crafted with 100% Auto
-            Layout 5.0, variables, smart variants, and WCAG accessibility.
+            Uno sguardo dietro le quinte: commit, release e l’intero stack di tecnologie che danno
+            vita a questo progetto — costruito con precisione, velocità e un flusso di lavoro
+            moderno.
           </p>
           <div className="mt-16 sm:mt-24 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-10 gap-y-16 justify-center">
             {/* {ktcData.repo}
@@ -52,9 +51,7 @@ export default async function TechStatsSection({ extraStyle, fullWidth }: TechSt
       </div>
 
       <div className="max-w-screen-lg mx-auto mt-16 sm:mt-24">
-        <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
-          Panoramica delle Competenze Tecniche
-        </h3>
+        <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">Di cosa è fatto</h3>
         <TreemapChart chartData={ktcData.chartDataTechnologies} />
       </div>
     </SectionContainer>

@@ -124,15 +124,28 @@ export async function GET(req: Request) {
   const commitsY = repo.commitsY?.target?.history?.totalCount ?? 0;
   const latest = repo.releases?.nodes?.[0] ?? null;
 
+  // ✅ Calcolo streak robusto: ignora giorni FUTURI e ignora gli 0 di "oggi" in coda
   const weeks: { contributionDays: { date: string; contributionCount: number }[] }[] =
     user?.contributionsCollection?.contributionCalendar?.weeks ?? [];
   const days = weeks.flatMap((w) => w.contributionDays) ?? [];
 
+  // Oggi nel fuso Europe/Rome formattato YYYY-MM-DD (compatibile con date GitHub)
+  const todayRome = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Rome" }).format(
+    new Date()
+  );
+
+  // Tieni solo i giorni <= oggi e ordina cronologicamente
+  const pastOrToday = days
+    .filter((d) => d.date <= todayRome)
+    .sort((a, b) => a.date.localeCompare(b.date));
+
+  // Salta eventuali zeri finali (es. oggi ancora a 0)
+  let i = pastOrToday.length - 1;
+  while (i >= 0 && pastOrToday[i].contributionCount === 0) i--;
+
+  // Conta la streak da lì indietro finché > 0
   let streak = 0;
-  for (let i = days.length - 1; i >= 0; i--) {
-    if (days[i].contributionCount > 0) streak++;
-    else break;
-  }
+  for (; i >= 0 && pastOrToday[i].contributionCount > 0; i--) streak++;
 
   const stats = [
     { label: "⭐ Stars", value: repo.stargazers.totalCount },

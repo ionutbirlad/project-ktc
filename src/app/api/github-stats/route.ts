@@ -46,7 +46,7 @@ function scoreTech(pkgName: string, isDev: boolean): number {
 
 // ✅ CORS whitelist (browser). Le richieste senza Origin (server-to-server) passano comunque.
 const CORS = {
-  origins: ["https://killthecompetition.vercel.app", "http://localhost:3000"],
+  origins: ["https://project-ktc.vercel.app", "http://localhost:3000"],
   methods: ["GET", "OPTIONS"] as const,
   maxAge: 600,
 };

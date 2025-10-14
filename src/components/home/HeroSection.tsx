@@ -23,7 +23,7 @@ export default function HeroSection({ extraStyle, fullWidth }: HeroSectionProps)
   return (
     <SectionContainer fullWidth={fullWidth} extraStyle={extraStyle}>
       {/* <AspectRatio ratio={16 / 9} className="bg-muted"> */}
-      <div className="max-w-screen-sm lg:max-w-screen-xl mx-auto flex flex-col items-center lg:flex-row h-full">
+      <div className="max-w-screen-sm lg:max-w-screen-xls mx-auto flex flex-col items-center lg:flex-row h-full">
         <div className="lg:w-1/2 h-full">
           <div className="h-full px-10 py-16">
             <div className="mb-2">

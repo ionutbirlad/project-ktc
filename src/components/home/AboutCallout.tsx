@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -14,7 +15,7 @@ type AboutCalloutProps = {
 export default function AboutCallout({ extraStyle, fullWidth }: AboutCalloutProps) {
   return (
     <SectionContainer extraStyle={extraStyle} fullWidth={fullWidth}>
-      <div className="flex flex-col md:flex-row-reverse gap-12">
+      <div className="flex flex-col md:flex-row-reverse gap-12 max-w-screen-sm lg:max-w-screen-xl mx-auto px-10">
         <div className="mt-10 w-48 h-48 md:w-64 md:h-64 hidden md:block">
           <div className="relative w-full h-full rounded-2xl overflow-hidden bg-accent">
             <Image src="/images/placeholder.svg" alt="" className="object-cover" fill />
@@ -23,7 +24,7 @@ export default function AboutCallout({ extraStyle, fullWidth }: AboutCalloutProp
 
         <div className="flex-1 md:text-left">
           <Badge variant="secondary" className="mb-4">
-            About Me
+            Il lato umano
           </Badge>
 
           <div className="mt-10 w-48 h-48 md:w-64 md:h-64 mt-3 mb-8 block md:hidden">
@@ -35,20 +36,25 @@ export default function AboutCallout({ extraStyle, fullWidth }: AboutCalloutProp
           <h2 className="text-4xl font-bold mb-4 tracking-tight">Chi c&apos;è dietro KTC?</h2>
 
           <p className="text-muted-foreground mb-6 text-justify">
-            Sono uno sviluppatore con background tecnico e mente creativa. Kill The Competition è il
-            mio laboratorio per sperimentare, migliorare e distinguermi.
+            Sono uno sviluppatore full-stack con un approccio pratico e una mente curiosa. Kill The
+            Competition è il mio spazio indipendente per creare, testare idee reali e superare i
+            miei limiti — un progetto alla volta.
           </p>
 
           <div className="flex flex-wrap gap-4 justify-start">
-            <Button className="rounded-full">
-              <GitHubIcon />
-              View Github
-            </Button>
+            <Link target="_blank" rel="noopener noreferrer" href="https://github.com/ionutbirlad">
+              <Button className="rounded-full">
+                <GitHubIcon />
+                Profilo Github
+              </Button>
+            </Link>
 
-            <Button variant="outline" className="rounded-full">
-              <Icons.download />
-              Download CV
-            </Button>
+            <Link target="_blank" rel="noopener noreferrer" href="/CV_IonutBirlad_2025.pdf">
+              <Button variant="outline" className="rounded-full">
+                <Icons.download />
+                Scarica CV
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

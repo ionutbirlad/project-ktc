@@ -41,3 +41,7 @@ jobs:
 
       - name: Build (dry)
         run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
+          GITHUB_STATS_TOKEN: ${{ secrets.GH_STATS_TOKEN }}
+          MAINTENANCE_MODE: ${{ secrets.MAINTENANCE_MODE }}

@@ -18,10 +18,10 @@
     "db:stop": "supabase stop",
     "db:status": "supabase status",
     "db:migration:new": "supabase migration new",
-    "db:migrate": "supabase db migrate",
     "db:reset": "supabase db reset",
     "db:push:dev": "supabase db push --project-ref $SUPABASE_PROJECT_REF_DEV",
-    "db:push:prod": "supabase db push --project-ref $SUPABASE_PROJECT_REF_PROD"
+    "db:push:prod": "supabase db push --project-ref $SUPABASE_PROJECT_REF_PROD",
+    "db:logs": "supabase logs -f"
   },
   "dependencies": {
     "@nivo/core": "^0.99.0",
@@ -61,7 +61,7 @@
     "eslint-config-next": "15.3.2",
     "eslint-config-prettier": "^10.1.5",
     "prettier": "^3.5.3",
-    "supabase": "^2.51.0",
+    "supabase": "^2.53.6",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.0",
     "typescript": "^5"

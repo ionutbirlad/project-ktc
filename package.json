@@ -22,7 +22,8 @@
     "db:up": "supabase migration up",
     "db:push:dev": "supabase db push --project-ref $SUPABASE_PROJECT_REF_DEV",
     "db:push:prod": "supabase db push --project-ref $SUPABASE_PROJECT_REF_PROD",
-    "db:logs": "supabase logs -f"
+    "db:logs": "supabase logs -f",
+    "db:genTypes:local": "npx supabase gen types typescript --local > src/types/database.types.ts"
   },
   "dependencies": {
     "@nivo/core": "^0.99.0",

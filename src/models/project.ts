@@ -18,6 +18,6 @@ export interface Project {
   order_rank?: number | null;
   meta?: Json | null;
   created_at: string;
-  updated_at?: string | null;
+  updated_at: string;
   deleted_at?: string | null;
 }

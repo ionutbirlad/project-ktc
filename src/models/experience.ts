@@ -1,4 +1,5 @@
 import { Json } from "./json";
+import { Status } from "./status";
 
 export type EmploymentType =
   | "full_time"
@@ -7,7 +8,6 @@ export type EmploymentType =
   | "contract"
   | "internship"
   | "temporary";
-export type ExperienceStatus = "draft" | "published" | "archived";
 
 export interface Experience {
   id: string;
@@ -19,7 +19,7 @@ export interface Experience {
   end_date?: string | null;
   summary?: string | null;
   achievements?: Json | null;
-  status: ExperienceStatus;
+  status: Status;
   order_rank?: number | null;
   meta?: Json | null;
   created_at: string;

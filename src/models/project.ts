@@ -1,7 +1,7 @@
 import type { Json } from "./json";
+import type { Status } from "./status";
 
 export type ProjectVisibility = "public" | "private";
-export type ProjectStatus = "draft" | "published" | "archived";
 
 export interface Project {
   id: string;
@@ -14,7 +14,7 @@ export interface Project {
   repo_url?: string | null;
   live_url?: string | null;
   visibility: ProjectVisibility;
-  status: ProjectStatus;
+  status: Status;
   order_rank?: number | null;
   meta?: Json | null;
   created_at: string;
